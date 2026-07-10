@@ -1,0 +1,6042 @@
+{
+ "report": {
+  "sample": 300,
+  "infra_errors": 0,
+  "gate": 0.9,
+  "fidelity_exact": 0.95,
+  "fidelity_float": 0.98,
+  "semantics": "exact",
+  "t_e": "PASS"
+ },
+ "results": [
+  {
+   "problem_id": "p02584",
+   "bug_id": 184208,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p02859",
+   "bug_id": 396605,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.33
+  },
+  {
+   "problem_id": "p00491",
+   "bug_id": 40490,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p02270",
+   "bug_id": 77350,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.34
+  },
+  {
+   "problem_id": "p03773",
+   "bug_id": 816258,
+   "exposing_test_id": 801993,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.76
+  },
+  {
+   "problem_id": "p02235",
+   "bug_id": 64215,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.12
+  },
+  {
+   "problem_id": "p03845",
+   "bug_id": 843726,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.02
+  },
+  {
+   "problem_id": "p02309",
+   "bug_id": 86052,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.04
+  },
+  {
+   "problem_id": "p04045",
+   "bug_id": 882677,
+   "n_tests": 11,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.92
+  },
+  {
+   "problem_id": "p03705",
+   "bug_id": 795682,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.95
+  },
+  {
+   "problem_id": "p02782",
+   "bug_id": 352542,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.77
+  },
+  {
+   "problem_id": "p03132",
+   "bug_id": 552760,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.1
+  },
+  {
+   "problem_id": "p03128",
+   "bug_id": 546589,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.07
+  },
+  {
+   "problem_id": "p03071",
+   "bug_id": 518982,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p03658",
+   "bug_id": 775770,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.19
+  },
+  {
+   "problem_id": "p03338",
+   "bug_id": 647979,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.36
+  },
+  {
+   "problem_id": "p03240",
+   "bug_id": 601009,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.51
+  },
+  {
+   "problem_id": "p03894",
+   "bug_id": 852129,
+   "exposing_test_id": 136369,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.12
+  },
+  {
+   "problem_id": "p03480",
+   "bug_id": 716869,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.21
+  },
+  {
+   "problem_id": "p02380",
+   "bug_id": 90772,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 13,
+    "buggy_passed": 7,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.08
+  },
+  {
+   "problem_id": "p03216",
+   "bug_id": 591897,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.1
+  },
+  {
+   "problem_id": "p04044",
+   "bug_id": 881568,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.12
+  },
+  {
+   "problem_id": "p02617",
+   "bug_id": 208328,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.16
+  },
+  {
+   "problem_id": "p02977",
+   "bug_id": 464462,
+   "n_tests": 10,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.82
+  },
+  {
+   "problem_id": "p03427",
+   "bug_id": 684907,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.08
+  },
+  {
+   "problem_id": "p00016",
+   "bug_id": 14826,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.15
+  },
+  {
+   "problem_id": "p04012",
+   "bug_id": 870084,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.12
+  },
+  {
+   "problem_id": "p02238",
+   "bug_id": 63630,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.1
+  },
+  {
+   "problem_id": "p02781",
+   "bug_id": 351626,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.05
+  },
+  {
+   "problem_id": "p03986",
+   "bug_id": 862076,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.59
+  },
+  {
+   "problem_id": "p00439",
+   "bug_id": 37240,
+   "exposing_test_id": 106769,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.77
+  },
+  {
+   "problem_id": "p03494",
+   "bug_id": 723744,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.06
+  },
+  {
+   "problem_id": "p03944",
+   "bug_id": 855413,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.04
+  },
+  {
+   "problem_id": "p03713",
+   "bug_id": 798645,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p03852",
+   "bug_id": 845256,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p02924",
+   "bug_id": 431180,
+   "exposing_test_id": 801788,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.76
+  },
+  {
+   "problem_id": "p02275",
+   "bug_id": 80842,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.97
+  },
+  {
+   "problem_id": "p02536",
+   "bug_id": 160468,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.59
+  },
+  {
+   "problem_id": "p03485",
+   "bug_id": 718803,
+   "n_tests": 4,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.63
+  },
+  {
+   "problem_id": "p04008",
+   "bug_id": 870246,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.56
+  },
+  {
+   "problem_id": "p02742",
+   "bug_id": 317023,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.99
+  },
+  {
+   "problem_id": "p00038",
+   "bug_id": 19789,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.02
+  },
+  {
+   "problem_id": "p02701",
+   "bug_id": 280005,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.32
+  },
+  {
+   "problem_id": "p02879",
+   "bug_id": 402765,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.28
+  },
+  {
+   "problem_id": "p03737",
+   "bug_id": 809324,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.27
+  },
+  {
+   "problem_id": "p02606",
+   "bug_id": 198418,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.27
+  },
+  {
+   "problem_id": "p03681",
+   "bug_id": 785787,
+   "n_tests": 4,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.62
+  },
+  {
+   "problem_id": "p01695",
+   "bug_id": 58925,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.04
+  },
+  {
+   "problem_id": "p00428",
+   "bug_id": 36146,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.06
+  },
+  {
+   "problem_id": "p01300",
+   "bug_id": 54362,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.61
+  },
+  {
+   "problem_id": "p02552",
+   "bug_id": 164058,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.57
+  },
+  {
+   "problem_id": "p02689",
+   "bug_id": 262447,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.03
+  },
+  {
+   "problem_id": "p03998",
+   "bug_id": 865752,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.08
+  },
+  {
+   "problem_id": "p03146",
+   "bug_id": 554398,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.03
+  },
+  {
+   "problem_id": "p00030",
+   "bug_id": 18912,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.03
+  },
+  {
+   "problem_id": "p03291",
+   "bug_id": 630469,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.05
+  },
+  {
+   "problem_id": "p02713",
+   "bug_id": 292077,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.84
+  },
+  {
+   "problem_id": "p03386",
+   "bug_id": 668875,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.08
+  },
+  {
+   "problem_id": "p03819",
+   "bug_id": 836147,
+   "exposing_test_id": 761042,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.21
+  },
+  {
+   "problem_id": "p03416",
+   "bug_id": 677416,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.32
+  },
+  {
+   "problem_id": "p02829",
+   "bug_id": 378637,
+   "n_tests": 5,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.77
+  },
+  {
+   "problem_id": "p02662",
+   "bug_id": 242122,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.13
+  },
+  {
+   "problem_id": "p03150",
+   "bug_id": 556417,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.1
+  },
+  {
+   "problem_id": "p03360",
+   "bug_id": 657469,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.1
+  },
+  {
+   "problem_id": "p03148",
+   "bug_id": 555598,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.15
+  },
+  {
+   "problem_id": "p04005",
+   "bug_id": 867494,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.13
+  },
+  {
+   "problem_id": "p02018",
+   "bug_id": 61331,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.23
+  },
+  {
+   "problem_id": "p03229",
+   "bug_id": 597558,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.35
+  },
+  {
+   "problem_id": "p02594",
+   "bug_id": 187441,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 9,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 9,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.23
+  },
+  {
+   "problem_id": "p03752",
+   "bug_id": 812489,
+   "exposing_test_id": 622218,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.04
+  },
+  {
+   "problem_id": "p03370",
+   "bug_id": 661955,
+   "exposing_test_id": 53495,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.01
+  },
+  {
+   "problem_id": "p02410",
+   "bug_id": 140999,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.09
+  },
+  {
+   "problem_id": "p03241",
+   "bug_id": 602030,
+   "exposing_test_id": 95669,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.1
+  },
+  {
+   "problem_id": "p00341",
+   "bug_id": 886494,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p03273",
+   "bug_id": 617348,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.15
+  },
+  {
+   "problem_id": "p03628",
+   "bug_id": 764383,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.66
+  },
+  {
+   "problem_id": "p03987",
+   "bug_id": 862348,
+   "n_tests": 17,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.03
+  },
+  {
+   "problem_id": "p03805",
+   "bug_id": 830427,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.52
+  },
+  {
+   "problem_id": "p02889",
+   "bug_id": 412528,
+   "exposing_test_id": 689595,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.54
+  },
+  {
+   "problem_id": "p03558",
+   "bug_id": 741748,
+   "exposing_test_id": 95757,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.04
+  },
+  {
+   "problem_id": "p03632",
+   "bug_id": 765548,
+   "exposing_test_id": 698093,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.95
+  },
+  {
+   "problem_id": "p03318",
+   "bug_id": 639706,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.23
+  },
+  {
+   "problem_id": "p03353",
+   "bug_id": 654780,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.22
+  },
+  {
+   "problem_id": "p03437",
+   "bug_id": 691889,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.25
+  },
+  {
+   "problem_id": "p02646",
+   "bug_id": 229762,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.21
+  },
+  {
+   "problem_id": "p03593",
+   "bug_id": 750655,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.74
+  },
+  {
+   "problem_id": "p02853",
+   "bug_id": 394317,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.03
+  },
+  {
+   "problem_id": "p03649",
+   "bug_id": 773568,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.99
+  },
+  {
+   "problem_id": "p02863",
+   "bug_id": 399674,
+   "exposing_test_id": 626702,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.05
+  },
+  {
+   "problem_id": "p03617",
+   "bug_id": 759910,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.34
+  },
+  {
+   "problem_id": "p03418",
+   "bug_id": 679752,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.74
+  },
+  {
+   "problem_id": "p03844",
+   "bug_id": 843255,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.33
+  },
+  {
+   "problem_id": "p01143",
+   "bug_id": 52239,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.23
+  },
+  {
+   "problem_id": "p02945",
+   "bug_id": 442372,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.72
+  },
+  {
+   "problem_id": "p02785",
+   "bug_id": 355061,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.17
+  },
+  {
+   "problem_id": "p00388",
+   "bug_id": 35574,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.18
+  },
+  {
+   "problem_id": "p02391",
+   "bug_id": 112164,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.11
+  },
+  {
+   "problem_id": "p00012",
+   "bug_id": 14071,
+   "exposing_test_id": 606817,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.97
+  },
+  {
+   "problem_id": "p02632",
+   "bug_id": 219255,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.55
+  },
+  {
+   "problem_id": "p03733",
+   "bug_id": 808426,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.06
+  },
+  {
+   "problem_id": "p02368",
+   "bug_id": 89120,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p00150",
+   "bug_id": 29490,
+   "exposing_test_id": 622564,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.67
+  },
+  {
+   "problem_id": "p03653",
+   "bug_id": 774706,
+   "exposing_test_id": 740297,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.52
+  },
+  {
+   "problem_id": "p03211",
+   "bug_id": 588878,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.07
+  },
+  {
+   "problem_id": "p03315",
+   "bug_id": 637191,
+   "n_tests": 16,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.16
+  },
+  {
+   "problem_id": "p03624",
+   "bug_id": 761962,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.88
+  },
+  {
+   "problem_id": "p03401",
+   "bug_id": 672592,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.75
+  },
+  {
+   "problem_id": "p00506",
+   "bug_id": 41545,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.72
+  },
+  {
+   "problem_id": "p03878",
+   "bug_id": 851681,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.28
+  },
+  {
+   "problem_id": "p00002",
+   "bug_id": 10296,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.24
+  },
+  {
+   "problem_id": "p04026",
+   "bug_id": 874772,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.24
+  },
+  {
+   "problem_id": "p03030",
+   "bug_id": 495806,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.1
+  },
+  {
+   "problem_id": "p03298",
+   "bug_id": 632932,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 10.72
+  },
+  {
+   "problem_id": "p03381",
+   "bug_id": 667614,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.11
+  },
+  {
+   "problem_id": "p03072",
+   "bug_id": 519983,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 13,
+    "buggy_passed": 7,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 13,
+    "buggy_passed": 7,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.79
+  },
+  {
+   "problem_id": "p02844",
+   "bug_id": 390573,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.16
+  },
+  {
+   "problem_id": "p00055",
+   "bug_id": 22077,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.18
+  },
+  {
+   "problem_id": "p02819",
+   "bug_id": 375225,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.9
+  },
+  {
+   "problem_id": "p02946",
+   "bug_id": 443066,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.12
+  },
+  {
+   "problem_id": "p03378",
+   "bug_id": 666076,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.88
+  },
+  {
+   "problem_id": "p02833",
+   "bug_id": 381864,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.67
+  },
+  {
+   "problem_id": "p03598",
+   "bug_id": 751538,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.53
+  },
+  {
+   "problem_id": "p03564",
+   "bug_id": 741979,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.51
+  },
+  {
+   "problem_id": "p02887",
+   "bug_id": 410951,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.95
+  },
+  {
+   "problem_id": "p01751",
+   "bug_id": 59712,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.76
+  },
+  {
+   "problem_id": "p03610",
+   "bug_id": 757543,
+   "n_tests": 4,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.92
+  },
+  {
+   "problem_id": "p03637",
+   "bug_id": 768728,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.11
+  },
+  {
+   "problem_id": "p03255",
+   "bug_id": 610066,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.16
+  },
+  {
+   "problem_id": "p03324",
+   "bug_id": 641630,
+   "exposing_test_id": 801849,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.69
+  },
+  {
+   "problem_id": "p01283",
+   "bug_id": 53866,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 0,
+    "buggy_passed": 20,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 0,
+    "buggy_passed": 20,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "seconds": 11.72
+  },
+  {
+   "problem_id": "p03393",
+   "bug_id": 670949,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.49
+  },
+  {
+   "problem_id": "p03307",
+   "bug_id": 634198,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.33
+  },
+  {
+   "problem_id": "p03222",
+   "bug_id": 596640,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "seconds": 1.75
+  },
+  {
+   "problem_id": "p02709",
+   "bug_id": 286566,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.6
+  },
+  {
+   "problem_id": "p03761",
+   "bug_id": 814177,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.32
+  },
+  {
+   "problem_id": "p03276",
+   "bug_id": 619073,
+   "n_tests": 4,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.75
+  },
+  {
+   "problem_id": "p04048",
+   "bug_id": 884008,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.31
+  },
+  {
+   "problem_id": "p02774",
+   "bug_id": 346716,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "seconds": 1.59
+  },
+  {
+   "problem_id": "p02934",
+   "bug_id": 438084,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.55
+  },
+  {
+   "problem_id": "p03423",
+   "bug_id": 681288,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.83
+  },
+  {
+   "problem_id": "p02741",
+   "bug_id": 316499,
+   "n_tests": 13,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.11
+  },
+  {
+   "problem_id": "p03244",
+   "bug_id": 604311,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.19
+  },
+  {
+   "problem_id": "p02389",
+   "bug_id": 99531,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.37
+  },
+  {
+   "problem_id": "p00590",
+   "bug_id": 43568,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.29
+  },
+  {
+   "problem_id": "p02818",
+   "bug_id": 373518,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.23
+  },
+  {
+   "problem_id": "p02684",
+   "bug_id": 256905,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.41
+  },
+  {
+   "problem_id": "p02975",
+   "bug_id": 463699,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.17
+  },
+  {
+   "problem_id": "p03035",
+   "bug_id": 499262,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.43
+  },
+  {
+   "problem_id": "p04031",
+   "bug_id": 876711,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.41
+  },
+  {
+   "problem_id": "p03272",
+   "bug_id": 617109,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.29
+  },
+  {
+   "problem_id": "p02264",
+   "bug_id": 73353,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.18
+  },
+  {
+   "problem_id": "p02359",
+   "bug_id": 89260,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p00589",
+   "bug_id": 43545,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.3
+  },
+  {
+   "problem_id": "p03666",
+   "bug_id": 779610,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.41
+  },
+  {
+   "problem_id": "p02578",
+   "bug_id": 179551,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.63
+  },
+  {
+   "problem_id": "p03609",
+   "bug_id": 757104,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.67
+  },
+  {
+   "problem_id": "p00183",
+   "bug_id": 30414,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.75
+  },
+  {
+   "problem_id": "p03005",
+   "bug_id": 484443,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.64
+  },
+  {
+   "problem_id": "p03268",
+   "bug_id": 616000,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.61
+  },
+  {
+   "problem_id": "p02675",
+   "bug_id": 244391,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.63
+  },
+  {
+   "problem_id": "p00254",
+   "bug_id": 33225,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.72
+  },
+  {
+   "problem_id": "p02939",
+   "bug_id": 441245,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.9
+  },
+  {
+   "problem_id": "p03977",
+   "bug_id": 861973,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.89
+  },
+  {
+   "problem_id": "p02276",
+   "bug_id": 81224,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.89
+  },
+  {
+   "problem_id": "p00200",
+   "bug_id": 31024,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.14
+  },
+  {
+   "problem_id": "p02700",
+   "bug_id": 277812,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.9
+  },
+  {
+   "problem_id": "p03399",
+   "bug_id": 671908,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.0
+  },
+  {
+   "problem_id": "p03415",
+   "bug_id": 676881,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.97
+  },
+  {
+   "problem_id": "p02691",
+   "bug_id": 266758,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.75
+  },
+  {
+   "problem_id": "p02262",
+   "bug_id": 73060,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.17
+  },
+  {
+   "problem_id": "p02682",
+   "bug_id": 253092,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.09
+  },
+  {
+   "problem_id": "p02821",
+   "bug_id": 385402,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 9,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 9,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.95
+  },
+  {
+   "problem_id": "p03129",
+   "bug_id": 547177,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.99
+  },
+  {
+   "problem_id": "p02624",
+   "bug_id": 213049,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.67
+  },
+  {
+   "problem_id": "p03125",
+   "bug_id": 543872,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.5
+  },
+  {
+   "problem_id": "p02761",
+   "bug_id": 334434,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.72
+  },
+  {
+   "problem_id": "p02456",
+   "bug_id": 150418,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.52
+  },
+  {
+   "problem_id": "p00064",
+   "bug_id": 23020,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.39
+  },
+  {
+   "problem_id": "p03774",
+   "bug_id": 817474,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.55
+  },
+  {
+   "problem_id": "p02795",
+   "bug_id": 362344,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.48
+  },
+  {
+   "problem_id": "p03861",
+   "bug_id": 849269,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.46
+  },
+  {
+   "problem_id": "p03696",
+   "bug_id": 791834,
+   "exposing_test_id": 61933,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.1
+  },
+  {
+   "problem_id": "p03814",
+   "bug_id": 833819,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.49
+  },
+  {
+   "problem_id": "p03016",
+   "bug_id": 490418,
+   "exposing_test_id": 668463,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 24.82
+  },
+  {
+   "problem_id": "p03739",
+   "bug_id": 810130,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.0
+  },
+  {
+   "problem_id": "p03242",
+   "bug_id": 602951,
+   "n_tests": 5,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.46
+  },
+  {
+   "problem_id": "p03062",
+   "bug_id": 516347,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.66
+  },
+  {
+   "problem_id": "p03006",
+   "bug_id": 485372,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.65
+  },
+  {
+   "problem_id": "p02847",
+   "bug_id": 391376,
+   "n_tests": 7,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.27
+  },
+  {
+   "problem_id": "p03627",
+   "bug_id": 763868,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.7
+  },
+  {
+   "problem_id": "p02948",
+   "bug_id": 446055,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.96
+  },
+  {
+   "problem_id": "p03775",
+   "bug_id": 818525,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.79
+  },
+  {
+   "problem_id": "p03213",
+   "bug_id": 590745,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.52
+  },
+  {
+   "problem_id": "p02783",
+   "bug_id": 352369,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.15
+  },
+  {
+   "problem_id": "p03972",
+   "bug_id": 861541,
+   "exposing_test_id": 727267,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.19
+  },
+  {
+   "problem_id": "p03282",
+   "bug_id": 621505,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.21
+  },
+  {
+   "problem_id": "p02856",
+   "bug_id": 395497,
+   "exposing_test_id": 613743,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.33
+  },
+  {
+   "problem_id": "p03945",
+   "bug_id": 855915,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.42
+  },
+  {
+   "problem_id": "p00029",
+   "bug_id": 18906,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.8
+  },
+  {
+   "problem_id": "p00074",
+   "bug_id": 23412,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.8
+  },
+  {
+   "problem_id": "p02257",
+   "bug_id": 67660,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.82
+  },
+  {
+   "problem_id": "p03184",
+   "bug_id": 578701,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 22.49
+  },
+  {
+   "problem_id": "p02308",
+   "bug_id": 86036,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.86
+  },
+  {
+   "problem_id": "p02724",
+   "bug_id": 305132,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.73
+  },
+  {
+   "problem_id": "p03073",
+   "bug_id": 520829,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.69
+  },
+  {
+   "problem_id": "p03639",
+   "bug_id": 769622,
+   "n_tests": 5,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.03
+  },
+  {
+   "problem_id": "p02753",
+   "bug_id": 322780,
+   "n_tests": 8,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.95
+  },
+  {
+   "problem_id": "p03909",
+   "bug_id": 851969,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.53
+  },
+  {
+   "problem_id": "p03388",
+   "bug_id": 670829,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.64
+  },
+  {
+   "problem_id": "p01101",
+   "bug_id": 50937,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.37
+  },
+  {
+   "problem_id": "p03200",
+   "bug_id": 581839,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.43
+  },
+  {
+   "problem_id": "p03546",
+   "bug_id": 735173,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.75
+  },
+  {
+   "problem_id": "p02603",
+   "bug_id": 197119,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.16
+  },
+  {
+   "problem_id": "p02379",
+   "bug_id": 90418,
+   "exposing_test_id": 801825,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 6.65
+  },
+  {
+   "problem_id": "p02234",
+   "bug_id": 62254,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.42
+  },
+  {
+   "problem_id": "p02111",
+   "bug_id": 61765,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.55
+  },
+  {
+   "problem_id": "p02891",
+   "bug_id": 412851,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.48
+  },
+  {
+   "problem_id": "p02760",
+   "bug_id": 332317,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.4
+  },
+  {
+   "problem_id": "p03625",
+   "bug_id": 762795,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.18
+  },
+  {
+   "problem_id": "p03776",
+   "bug_id": 821339,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.16
+  },
+  {
+   "problem_id": "p02913",
+   "bug_id": 423926,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.5
+  },
+  {
+   "problem_id": "p02845",
+   "bug_id": 390866,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.39
+  },
+  {
+   "problem_id": "p03284",
+   "bug_id": 623606,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.38
+  },
+  {
+   "problem_id": "p02548",
+   "bug_id": 162775,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.96
+  },
+  {
+   "problem_id": "p03012",
+   "bug_id": 487223,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.44
+  },
+  {
+   "problem_id": "p03734",
+   "bug_id": 808621,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.6
+  },
+  {
+   "problem_id": "p03101",
+   "bug_id": 534459,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.93
+  },
+  {
+   "problem_id": "p02537",
+   "bug_id": 160912,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 5.85
+  },
+  {
+   "problem_id": "p03363",
+   "bug_id": 659541,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 2.04
+  },
+  {
+   "problem_id": "p04019",
+   "bug_id": 872694,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 9,
+    "buggy_passed": 11,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.47
+  },
+  {
+   "problem_id": "p00180",
+   "bug_id": 30445,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.38
+  },
+  {
+   "problem_id": "p03219",
+   "bug_id": 592073,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.12
+  },
+  {
+   "problem_id": "p02241",
+   "bug_id": 63821,
+   "n_tests": 9,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.79
+  },
+  {
+   "problem_id": "p03600",
+   "bug_id": 755340,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p02602",
+   "bug_id": 196653,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.32
+  },
+  {
+   "problem_id": "p03145",
+   "bug_id": 553663,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.37
+  },
+  {
+   "problem_id": "p02615",
+   "bug_id": 206276,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.48
+  },
+  {
+   "problem_id": "p02282",
+   "bug_id": 83010,
+   "n_tests": 14,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.17
+  },
+  {
+   "problem_id": "p03573",
+   "bug_id": 745010,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.33
+  },
+  {
+   "problem_id": "p02688",
+   "bug_id": 261055,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.37
+  },
+  {
+   "problem_id": "p03762",
+   "bug_id": 814475,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 15,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p02911",
+   "bug_id": 422068,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.17
+  },
+  {
+   "problem_id": "p03239",
+   "bug_id": 599865,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.24
+  },
+  {
+   "problem_id": "p02256",
+   "bug_id": 67216,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 16,
+    "buggy_passed": 4,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.21
+  },
+  {
+   "problem_id": "p02974",
+   "bug_id": 465897,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "seconds": 1.25
+  },
+  {
+   "problem_id": "p02757",
+   "bug_id": 330720,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 10,
+    "buggy_passed": 10,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.25
+  },
+  {
+   "problem_id": "p02928",
+   "bug_id": 435317,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.28
+  },
+  {
+   "problem_id": "p03069",
+   "bug_id": 518716,
+   "n_tests": 6,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 5,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.84
+  },
+  {
+   "problem_id": "p03731",
+   "bug_id": 808024,
+   "n_tests": 5,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.22
+  },
+  {
+   "problem_id": "p03804",
+   "bug_id": 829637,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.52
+  },
+  {
+   "problem_id": "p03354",
+   "bug_id": 655555,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.3
+  },
+  {
+   "problem_id": "p02600",
+   "bug_id": 194788,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.28
+  },
+  {
+   "problem_id": "p02412",
+   "bug_id": 146444,
+   "exposing_test_id": 676187,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.33
+  },
+  {
+   "problem_id": "p02560",
+   "bug_id": 167572,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.23
+  },
+  {
+   "problem_id": "p03312",
+   "bug_id": 636678,
+   "exposing_test_id": 695291,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.87
+  },
+  {
+   "problem_id": "p03544",
+   "bug_id": 732621,
+   "exposing_test_id": 67224,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.18
+  },
+  {
+   "problem_id": "p02580",
+   "bug_id": 182010,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.19
+  },
+  {
+   "problem_id": "p03613",
+   "bug_id": 759291,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.64
+  },
+  {
+   "problem_id": "p01144",
+   "bug_id": 52504,
+   "exposing_test_id": 43671,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.64
+  },
+  {
+   "problem_id": "p02770",
+   "bug_id": 343074,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.17
+  },
+  {
+   "problem_id": "p03163",
+   "bug_id": 566095,
+   "n_tests": 3,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.73
+  },
+  {
+   "problem_id": "p02920",
+   "bug_id": 426954,
+   "n_tests": 4,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 0.74
+  },
+  {
+   "problem_id": "p03738",
+   "bug_id": 809326,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 6,
+    "buggy_passed": 14,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p00429",
+   "bug_id": 36388,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.24
+  },
+  {
+   "problem_id": "p03821",
+   "bug_id": 836218,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 7,
+    "buggy_passed": 13,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p03456",
+   "bug_id": 700362,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.26
+  },
+  {
+   "problem_id": "p02923",
+   "bug_id": 429956,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.22
+  },
+  {
+   "problem_id": "p01448",
+   "bug_id": 56713,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 8,
+    "buggy_passed": 12,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 2.02
+  },
+  {
+   "problem_id": "p02293",
+   "bug_id": 85584,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.3
+  },
+  {
+   "problem_id": "p03050",
+   "bug_id": 511622,
+   "exposing_test_id": 755312,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 6.8
+  },
+  {
+   "problem_id": "p03067",
+   "bug_id": 517865,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.27
+  },
+  {
+   "problem_id": "p03194",
+   "bug_id": 580457,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.35
+  },
+  {
+   "problem_id": "p03890",
+   "bug_id": 851772,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.21
+  },
+  {
+   "problem_id": "p04030",
+   "bug_id": 875980,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": false,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "seconds": 1.4
+  },
+  {
+   "problem_id": "p00027",
+   "bug_id": 18237,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.74
+  },
+  {
+   "problem_id": "p02763",
+   "bug_id": 336871,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 12,
+    "buggy_passed": 8,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.84
+  },
+  {
+   "problem_id": "p03165",
+   "bug_id": 570573,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 14,
+    "buggy_passed": 6,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.71
+  },
+  {
+   "problem_id": "p02947",
+   "bug_id": 443842,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.42
+  },
+  {
+   "problem_id": "p02824",
+   "bug_id": 378157,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.37
+  },
+  {
+   "problem_id": "p02965",
+   "bug_id": 458466,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 16,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 6.07
+  },
+  {
+   "problem_id": "p01171",
+   "bug_id": 52961,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 17,
+    "buggy_passed": 3,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.53
+  },
+  {
+   "problem_id": "p02570",
+   "bug_id": 168166,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.47
+  },
+  {
+   "problem_id": "p02789",
+   "bug_id": 358589,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.24
+  },
+  {
+   "problem_id": "p03013",
+   "bug_id": 487851,
+   "exposing_test_id": 801971,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.2
+  },
+  {
+   "problem_id": "p03175",
+   "bug_id": 576535,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 19,
+    "buggy_passed": 1,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.22
+  },
+  {
+   "problem_id": "p03964",
+   "bug_id": 860120,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 18,
+    "buggy_passed": 2,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.2
+  },
+  {
+   "problem_id": "p03238",
+   "bug_id": 599158,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.19
+  },
+  {
+   "problem_id": "p03419",
+   "bug_id": 680195,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 2,
+    "buggy_passed": 18,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.09
+  },
+  {
+   "problem_id": "p03602",
+   "bug_id": 754081,
+   "n_tests": 4,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 4,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 0.72
+  },
+  {
+   "problem_id": "p02747",
+   "bug_id": 320861,
+   "exposing_test_id": 801947,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.02
+  },
+  {
+   "problem_id": "p03156",
+   "bug_id": 557451,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.29
+  },
+  {
+   "problem_id": "p02846",
+   "bug_id": 391333,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.22
+  },
+  {
+   "problem_id": "p03963",
+   "bug_id": 859644,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": false,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": false,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 3,
+    "buggy_passed": 17,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.14
+  },
+  {
+   "problem_id": "p02661",
+   "bug_id": 241943,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 5,
+    "buggy_passed": 15,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 3.83
+  },
+  {
+   "problem_id": "p02888",
+   "bug_id": 411524,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.21
+  },
+  {
+   "problem_id": "p02572",
+   "bug_id": 174092,
+   "exposing_test_id": 801780,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 4.26
+  },
+  {
+   "problem_id": "p03164",
+   "bug_id": 569765,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.19
+  },
+  {
+   "problem_id": "p02922",
+   "bug_id": 427703,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 1,
+    "buggy_passed": 19,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.24
+  },
+  {
+   "problem_id": "p03543",
+   "bug_id": 731348,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 20,
+    "buggy_passed": 0,
+    "fidelity": true,
+    "bank_clean": false
+   },
+   "seconds": 1.28
+  },
+  {
+   "problem_id": "p03548",
+   "bug_id": 736151,
+   "n_tests": 20,
+   "exact": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 9,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "float": {
+    "fixed_all_pass": true,
+    "buggy_failed": 11,
+    "buggy_passed": 9,
+    "fidelity": true,
+    "bank_clean": true
+   },
+   "seconds": 1.04
+  }
+ ]
+}

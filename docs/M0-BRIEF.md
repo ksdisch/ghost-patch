@@ -238,8 +238,15 @@ Kyle with the per-model post-mortem. (KICKOFF success criteria need ≥2 subject
   scan the remaining tests in id order (batched) and swap the first behaviorally-failing
   test in for the highest-id candidate; a problem with no exposing test anywhere stays a
   fidelity failure. Selection stays deterministic, per-trial grading stays ≤20 tests, and
-  the swap maximizes damage headroom (baseline starts at 1 failed). Re-smoke result is
-  recorded below the table in this section.
+  the swap maximizes damage headroom (baseline starts at 1 failed).
+
+  **Re-smoke (2026-07-10, same 300 problems): T-E PASS — 95.0% (S-exact) / 98.0%
+  (S-float), 0 infra errors. Adopted semantics: S-exact** (stricter, clears the gate,
+  preferred per D4). 29 exposure swaps performed. **Bank frozen at 186 problems**
+  (`data/bank.json`, self-contained: code + description + final test set + buggy
+  baseline per problem; pool order preserved). Side-finding worth knowing: ~⅓ of
+  smoked problems have the buggy patch failing *every* selected test — catastrophic
+  bugs with no damage headroom — so D3 is doing real funnel work by excluding them.
 - **T-F · Generator/verifier viability (risk 3) — 20 T2 drafts (12 pilot + 8 next-in-bank):**
   green: verifier acceptance ≥ 70% · amber 40–70% (one template/prompt revision;
   regenerate rejects; recount) · **kill < 40% after revision → the frozen-bank
