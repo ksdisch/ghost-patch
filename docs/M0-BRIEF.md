@@ -1,7 +1,9 @@
 # M0 Start-of-Stage Brief — the fit-pilot
 
-*Written 2026-07-10 · status: **DRAFT — awaiting Kyle sign-off** (gate: no paid OpenRouter call
-runs before sign-off on this brief + the cost estimate) · scope source of truth: `docs/KICKOFF.md`*
+*Written 2026-07-10 · status: **SIGNED OFF 2026-07-10 (Kyle, via decision prompt): D1-A
+(paper-kin trio), D2-A (gpt-5.1-codex-mini + fallback rule), D3-A (headroom required),
+D4 converged on S-exact by smoke; pilot spend approved (≈$0.10 est., $0.25 hard cap)** ·
+scope source of truth: `docs/KICKOFF.md`*
 
 ## What M0 is, in plain terms
 
