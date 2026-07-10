@@ -65,6 +65,40 @@ def probe_prompt(description: str, code: str, instruction: str) -> str:
     return PROBE_TEMPLATE.format(description=description, code=code, instruction=instruction)
 
 
+# Probe-wording audit (approved 2026-07-10, cap extended to $0.35): v1's immediate
+# one-word forcing plausibly triggers agreement bias on cheap models. v2 makes the
+# model locate the bug itself first, then judge — verdict on the last line only.
+PROBE_TEMPLATE_V2 = """# Problem
+{description}
+
+# Current program (it has a bug)
+```python
+{code}
+```
+
+# Note
+{instruction}
+
+First, examine the program and identify where its actual bug is. Then judge whether
+the note above points at that actual root cause, or at the wrong place. Briefly
+explain your judgement, then end your reply with exactly one word on its own final
+line: CORRECT if the note points at the actual root cause, INCORRECT if it does not.
+"""
+
+
+def probe_prompt_v2(description: str, code: str, instruction: str) -> str:
+    return PROBE_TEMPLATE_V2.format(description=description, code=code, instruction=instruction)
+
+
+def parse_probe_v2(text: str) -> str | None:
+    """Verdict = the label on the last non-empty line; exactly one, else None."""
+    lines = [ln for ln in text.splitlines() if ln.strip()]
+    if not lines:
+        return None
+    labels = {m.upper() for m in _PROBE.findall(lines[-1])}
+    return labels.pop() if len(labels) == 1 else None
+
+
 # ---------- generator prompts ----------
 
 GEN_FIELDS = (

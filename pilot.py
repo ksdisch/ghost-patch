@@ -19,9 +19,9 @@ from client import (
 )
 from grading import compare_outputs
 from prompts import (
-    extract_patch, parse_draft, parse_probe, probe_prompt, render_instruction,
-    repair_prompt, t1_generator_prompt, t2_generator_prompt, t2_generator_prompt_v2,
-    verify_draft,
+    extract_patch, parse_draft, parse_probe, parse_probe_v2, probe_prompt,
+    probe_prompt_v2, render_instruction, repair_prompt, t1_generator_prompt,
+    t2_generator_prompt, t2_generator_prompt_v2, verify_draft,
 )
 from regions import fix_added_lines, pick_wrong_target, region_compliance, true_fix_region
 from sandbox import run_tests
@@ -31,7 +31,7 @@ PILOT_DIR = DATA / "pilot"
 BANK_PATH = DATA / "bank.json"
 SPOTREAD = Path(__file__).parent / "docs" / "M0-SPOTREAD.md"
 
-HARD_CAP = 0.25
+HARD_CAP = 0.35  # 0.25 original; extended to 0.35 for the probe audit (Kyle, 2026-07-10)
 PILOT_N = 12
 EXTRA_T2 = 8
 GEN_ATTEMPTS = 3          # 1 first draft + 2 regenerations
@@ -363,10 +363,68 @@ def cmd_pilot(models: list[str] | None = None) -> int:
     return 0
 
 
+PROBE_AUDIT_MODELS = ROSTER + BENCH  # all six pilot-tested models
+
+
+def cmd_probe_audit() -> int:
+    """Re-probe all pilot models with the v2 wording; re-render T-C per model."""
+    from m0 import t_c
+
+    m = _meter()
+    bank = _bank()
+    instr = json.loads((PILOT_DIR / "instructions.json").read_text())["results"]
+    accepted = {(r["kind"], r["problem_id"]): r["render"] for r in instr if r["final"]}
+    v1 = json.loads((DATA / "pilot_results.json").read_text())["models"]
+
+    records, summary = [], {}
+    try:
+        for model in PROBE_AUDIT_MODELS:
+            print(f"— {model}", flush=True)
+            counts = {"T2": {"INCORRECT": 0, "CORRECT": 0, None: 0},
+                      "T1": {"INCORRECT": 0, "CORRECT": 0, None: 0}}
+            for e in bank[:PILOT_N]:
+                for kind in ("T2", "T1"):
+                    render = accepted.get((kind, e["problem_id"]))
+                    if render is None:
+                        continue
+                    r = chat(model, probe_prompt_v2(e["description"], e["buggy_code"], render),
+                             max_tokens=600, reasoning=SUBJECT_REASONING, meter=m)
+                    label = parse_probe_v2(r["text"])
+                    counts[kind][label] += 1
+                    records.append({"model": model, "problem_id": e["problem_id"],
+                                    "kind": kind, "label": label, "cost": r["cost"],
+                                    "tail": r["text"][-120:]})
+            summary[model] = {
+                "t2_incorrect_v2": counts["T2"]["INCORRECT"],
+                "t1_correct_v2": counts["T1"]["CORRECT"],
+                "invalid_v2": counts["T2"][None] + counts["T1"][None],
+                "t2_incorrect_v1": v1[model]["probe_t2_incorrect"],
+                "t1_correct_v1": v1[model]["probe_t1_correct"],
+            }
+    except BudgetExceeded as e:
+        print(f"HALT: {e}")
+    _save_meter(m)
+    (PILOT_DIR / "probe_audit.json").write_text(json.dumps(
+        {"summary": summary, "records": records}, indent=1))
+
+    print(f"\n{'model':42s} {'T-C v1':>12s} {'T-C v2':>12s}  verdict(v2)")
+    survivors = 0
+    for model, s in summary.items():
+        v = t_c(s["t2_incorrect_v2"], s["t1_correct_v2"])
+        alive = v.verdict != "kill"
+        survivors += alive
+        print(f"{model:42s} {s['t2_incorrect_v1']:2d}/{s['t1_correct_v1']:2d}"
+              f"{'':>6s}{s['t2_incorrect_v2']:2d}/{s['t1_correct_v2']:2d}"
+              f"{'':>6s}{v.verdict}  {v.detail}")
+    print(f"\nT-C v2 non-kill models: {survivors}/{len(summary)}")
+    print(f"meter: ${m.total:.4f} of ${m.cap:.2f}")
+    return 0
+
+
 if __name__ == "__main__":
     PILOT_DIR.mkdir(parents=True, exist_ok=True)
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("wave", choices=["ping", "generate", "pilot"])
+    ap.add_argument("wave", choices=["ping", "generate", "pilot", "probe-audit"])
     ap.add_argument("--revise", action="store_true",
                     help="generate: v2 protocol over uncovered drafts only")
     ap.add_argument("--models", help="pilot: comma-separated slugs (merge into results)")
@@ -375,4 +433,6 @@ if __name__ == "__main__":
         raise SystemExit(cmd_generate(revise=args.revise))
     if args.wave == "pilot":
         raise SystemExit(cmd_pilot(args.models.split(",") if args.models else None))
+    if args.wave == "probe-audit":
+        raise SystemExit(cmd_probe_audit())
     raise SystemExit(cmd_ping())
