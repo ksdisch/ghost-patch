@@ -1,0 +1,18 @@
+generate: 275 jobs (137 T2, rest T1), 25 carried · est $0.340
+smoke gate @10: accepted 10/10, mean $0.00069/draft
+{
+  "protocol": "v2 (T2); T1 has no protocol split",
+  "generator_used": "openai/gpt-5.1-codex-mini",
+  "fallback_note": null,
+  "jobs_run": 275,
+  "t2_drafts_new": 137,
+  "t2_first_attempt_accepted": 134,
+  "unconstructable": 0,
+  "coverage_T2": 150,
+  "coverage_T1": 150,
+  "k": 150,
+  "mean_draft_cost": 0.000505,
+  "wave_cost": 0.143,
+  "lifetime": 0.47
+}
+meter: $0.1430 of $1.00 · lifetime $0.4700
