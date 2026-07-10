@@ -1,0 +1,47 @@
+{
+ "models": {
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "t3_pass": 5,
+   "t2_comply": 9,
+   "t2_damaged": 4,
+   "probe_t2_incorrect": 6,
+   "probe_t1_correct": 10,
+   "parse_ok": 24,
+   "invalid": 6,
+   "cost_usd": 0.0146,
+   "t1_pass": 6,
+   "t2_pass": 4
+  },
+  "z-ai/glm-4.7-flash": {
+   "t3_pass": 4,
+   "t2_comply": 10,
+   "t2_damaged": 4,
+   "probe_t2_incorrect": 0,
+   "probe_t1_correct": 12,
+   "parse_ok": 36,
+   "invalid": 0,
+   "cost_usd": 0.0072,
+   "t1_pass": 8,
+   "t2_pass": 5
+  },
+  "meta-llama/llama-3.1-8b-instruct": {
+   "t3_pass": 1,
+   "t2_comply": 11,
+   "t2_damaged": 6,
+   "probe_t2_incorrect": 1,
+   "probe_t1_correct": 8,
+   "parse_ok": 36,
+   "invalid": 0,
+   "cost_usd": 0.001,
+   "t1_pass": 7,
+   "t2_pass": 0
+  }
+ },
+ "generator": {
+  "drafts": 13,
+  "verifier_accepted": 13,
+  "cost_usd": 0.0796
+ },
+ "semantics": "exact",
+ "meter_total": 0.1024
+}

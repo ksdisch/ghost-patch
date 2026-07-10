@@ -36,7 +36,10 @@ PILOT_N = 12
 EXTRA_T2 = 8
 GEN_ATTEMPTS = 3          # 1 first draft + 2 regenerations
 EST_DRAFT_COST = 0.0016   # D2 fallback rule: >2x this after 5 drafts -> fallback
-REPAIR_MAX_TOKENS = 1400
+# T-D revision (2026-07-10, the one allowed): first pilot pass truncated 12/12 of
+# qwen's parse failures at 1400 (finish_reason=length, verbose prose before code).
+# Prompt text unchanged; only the output budget was raised.
+REPAIR_MAX_TOKENS = 3200
 PROBE_MAX_TOKENS = 24
 GEN_MAX_TOKENS = 3000
 
@@ -255,7 +258,8 @@ def _grade(entry: dict, patch: str, semantics: str) -> dict:
     return {"passed": sum(per), "failed": len(per) - sum(per)}
 
 
-def cmd_pilot() -> int:
+def cmd_pilot(models: list[str] | None = None) -> int:
+    run_models = models or ROSTER
     m = _meter()
     bank = _bank()
     semantics = json.loads(BANK_PATH.read_text())["semantics"]
@@ -267,7 +271,7 @@ def cmd_pilot() -> int:
     probes: list[dict] = []
     per_model: dict[str, dict] = {}
     try:
-        for model in ROSTER:
+        for model in run_models:
             print(f"— {model}", flush=True)
             for e in pilot_problems:
                 pid = e["problem_id"]
@@ -311,7 +315,7 @@ def cmd_pilot() -> int:
             t["comply"] = region_compliance(e["buggy_code"], t["patch"],
                                             d["target_start_line"], d["target_end_line"])
 
-    for model in ROSTER:
+    for model in run_models:
         mt = [t for t in trials if t.get("model") == model]
         mp = [p for p in probes if p.get("model") == model]
         rep = [t for t in mt if "invalid" not in t]
@@ -334,20 +338,25 @@ def cmd_pilot() -> int:
         }
 
     gen_report = json.loads((PILOT_DIR / "instructions.json").read_text())["report"]
+    results_path = DATA / "pilot_results.json"
+    prior_models = {}
+    if results_path.exists():  # per-model runs merge into (and overwrite) prior entries
+        prior_models = json.loads(results_path.read_text())["models"]
     artifacts = {
-        "models": per_model,
+        "models": {**prior_models, **per_model},
         "generator": {"drafts": gen_report["t2_drafts"],
                       "verifier_accepted": gen_report["t2_first_attempt_accepted"],
                       "cost_usd": gen_report["total_gen_cost"]},
         "semantics": semantics,
         "meter_total": round(m.total, 4),
     }
-    with open(PILOT_DIR / "trials.jsonl", "w") as f:
+    mode = "a" if models else "w"
+    with open(PILOT_DIR / "trials.jsonl", mode) as f:
         for t in trials:
             f.write(json.dumps({k: v for k, v in t.items() if k != "patch"}) + "\n")
         for p in probes:
             f.write(json.dumps(p) + "\n")
-    (DATA / "pilot_results.json").write_text(json.dumps(artifacts, indent=1))
+    results_path.write_text(json.dumps(artifacts, indent=1))
     print(json.dumps({s: {k: v for k, v in d.items() if k != "cost_usd"}
                       for s, d in per_model.items()}, indent=1))
     print(f"meter: ${m.total:.4f} of ${m.cap:.2f}")
@@ -360,7 +369,10 @@ if __name__ == "__main__":
     ap.add_argument("wave", choices=["ping", "generate", "pilot"])
     ap.add_argument("--revise", action="store_true",
                     help="generate: v2 protocol over uncovered drafts only")
+    ap.add_argument("--models", help="pilot: comma-separated slugs (merge into results)")
     args = ap.parse_args()
     if args.wave == "generate":
         raise SystemExit(cmd_generate(revise=args.revise))
-    raise SystemExit({"ping": cmd_ping, "pilot": cmd_pilot}[args.wave]())
+    if args.wave == "pilot":
+        raise SystemExit(cmd_pilot(args.models.split(",") if args.models else None))
+    raise SystemExit(cmd_ping())
