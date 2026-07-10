@@ -66,6 +66,36 @@ def newcombe_diff(
     return (d, lo, hi)
 
 
+def newcombe_paired_diff(
+    both: int, mech_only: int, base_only: int, neither: int, z: float = Z_95
+) -> tuple[float, float, float]:
+    """Newcombe (1998) interval for a *paired* difference d = p_mech - p_base.
+
+    Args are the 2x2 discordance table over pairs: `both` succeed in both arms,
+    `mech_only` succeeds only in the mech arm, `base_only` only in the base arm,
+    `neither` in neither. Square-and-add on each arm's Wilson interval, with the
+    cross-term scaled by phi-hat (the table's correlation); a degenerate marginal
+    sets phi-hat to 0, which reduces exactly to the unpaired square-and-add.
+    M1's gate passes mech = T3 (no instruction), base = T2 (wrong location), so
+    a positive d with (lo, hi) above 0 is a real T2 drop. Returns (d, lo, hi).
+    """
+    e, f, g, h = both, mech_only, base_only, neither
+    n = e + f + g + h
+    if n <= 0:
+        return (0.0, -1.0, 1.0)
+    p_mech, p_base = (e + f) / n, (e + g) / n
+    d = p_mech - p_base
+    marginals = (e + f) * (g + h) * (e + g) * (f + h)
+    phi = (e * h - f * g) / math.sqrt(marginals) if marginals > 0 else 0.0
+    l_mech, u_mech = wilson(e + f, n, z)
+    l_base, u_base = wilson(e + g, n, z)
+    dl_mech, du_mech = p_mech - l_mech, u_mech - p_mech
+    dl_base, du_base = p_base - l_base, u_base - p_base
+    lo = d - math.sqrt(max(0.0, dl_mech**2 - 2 * phi * dl_mech * du_base + du_base**2))
+    hi = d + math.sqrt(max(0.0, du_mech**2 - 2 * phi * du_mech * dl_base + dl_base**2))
+    return (d, max(-1.0, lo), min(1.0, hi))
+
+
 def excludes_zero(lo: float, hi: float) -> bool:
     """True iff the difference interval (lo, hi) does NOT straddle 0 — a real effect.
 

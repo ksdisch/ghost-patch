@@ -5,7 +5,7 @@ Golden values computed by hand from the Wilson formula at z = 1.96.
 """
 import pytest
 
-from stats import wilson, newcombe_diff, excludes_zero
+from stats import wilson, newcombe_diff, newcombe_paired_diff, excludes_zero
 
 
 class TestWilson:
@@ -58,6 +58,60 @@ class TestNewcombeDiff:
         assert d == pytest.approx(0.5)
         assert lo < 0.0  # base arm knows nothing, interval must be wide
         assert 0.0 <= hi <= 1.0 + 1e-9
+
+
+class TestNewcombePairedDiff:
+    """Newcombe (1998) paired difference — square-and-add Wilson with phi-hat
+    correction. Table args: (both, mech_only, base_only, neither); M1 passes
+    mech = T3, base = T2, so d = pass(T3) - pass(T2) = (mech_only - base_only)/n.
+    """
+
+    def test_zero_phi_reduces_to_unpaired(self):
+        # e*h == f*g -> phi-hat = 0 -> must equal the unpaired square-and-add
+        # on the same marginals. e=6 f=3 g=2 h=1: eh=6=fg; n=12, mech 9/12, base 8/12.
+        d, lo, hi = newcombe_paired_diff(6, 3, 2, 1)
+        d_u, lo_u, hi_u = newcombe_diff(8, 12, 9, 12)
+        assert d == pytest.approx(d_u)
+        assert lo == pytest.approx(lo_u)
+        assert hi == pytest.approx(hi_u)
+
+    def test_positive_correlation_narrows_the_interval(self):
+        # e=8 f=3 g=1 h=8: eh=64 >> fg=3 -> phi-hat > 0 -> tighter than unpaired.
+        d, lo, hi = newcombe_paired_diff(8, 3, 1, 8)
+        d_u, lo_u, hi_u = newcombe_diff(9, 20, 11, 20)
+        assert d == pytest.approx(d_u)
+        assert (hi - lo) < (hi_u - lo_u)
+
+    def test_degenerate_marginal_falls_back_to_zero_phi(self):
+        # base arm never succeeds (e=g=0) -> a marginal product is 0 -> phi-hat 0.
+        d, lo, hi = newcombe_paired_diff(0, 5, 0, 5)
+        d_u, lo_u, hi_u = newcombe_diff(0, 10, 5, 10)
+        assert d == pytest.approx(d_u)
+        assert lo == pytest.approx(lo_u)
+        assert hi == pytest.approx(hi_u)
+
+    def test_all_concordant_pairs_collapse_to_zero_width(self):
+        # Perfect agreement (f=g=0, phi-hat=1) with symmetric Wilson bounds:
+        # no discordance, no evidence of any difference.
+        d, lo, hi = newcombe_paired_diff(10, 0, 0, 10)
+        assert d == pytest.approx(0.0)
+        assert lo == pytest.approx(0.0, abs=1e-9)
+        assert hi == pytest.approx(0.0, abs=1e-9)
+
+    def test_reverse_direction_excludes_zero_from_below(self):
+        # base strictly better: d negative, interval fully below zero.
+        d, lo, hi = newcombe_paired_diff(0, 0, 10, 10)
+        assert d == pytest.approx(-0.5)
+        assert hi < 0.0
+
+    def test_no_pairs_means_no_knowledge(self):
+        d, lo, hi = newcombe_paired_diff(0, 0, 0, 0)
+        assert (d, lo, hi) == (0.0, -1.0, 1.0)
+
+    def test_interval_stays_inside_difference_range(self):
+        for table in [(1, 1, 1, 1), (0, 12, 0, 0), (5, 0, 7, 3), (2, 9, 1, 8)]:
+            d, lo, hi = newcombe_paired_diff(*table)
+            assert -1.0 <= lo <= d <= hi <= 1.0
 
 
 class TestExcludesZero:
