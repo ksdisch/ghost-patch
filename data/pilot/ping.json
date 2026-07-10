@@ -1,0 +1,74 @@
+{
+ "qwen/qwen3-coder-30b-a3b-instruct": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 1,
+  "reasoning_tokens": 0,
+  "cost": 1e-06,
+  "seconds": 10.82,
+  "reasoning_dropped": false
+ },
+ "z-ai/glm-4.7-flash": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 1,
+  "reasoning_tokens": 0,
+  "cost": 1e-06,
+  "seconds": 0.36,
+  "reasoning_dropped": false
+ },
+ "meta-llama/llama-3.1-8b-instruct": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 2,
+  "reasoning_tokens": 0,
+  "cost": 1e-06,
+  "seconds": 0.11,
+  "reasoning_dropped": false
+ },
+ "deepseek/deepseek-chat-v3.1": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 3,
+  "reasoning_tokens": 0,
+  "cost": 4e-06,
+  "seconds": 2.07,
+  "reasoning_dropped": false
+ },
+ "mistralai/mistral-small-3.2-24b-instruct": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 3,
+  "reasoning_tokens": 0,
+  "cost": 1e-06,
+  "seconds": 0.27,
+  "reasoning_dropped": false
+ },
+ "moonshotai/kimi-k2.5": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 5,
+  "reasoning_tokens": 1,
+  "cost": 1.5e-05,
+  "seconds": 0.7,
+  "reasoning_dropped": false
+ },
+ "openai/gpt-5.1-codex-mini": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 26,
+  "reasoning_tokens": 0,
+  "cost": 5.5e-05,
+  "seconds": 0.91,
+  "reasoning_dropped": false
+ },
+ "openai/gpt-4o-mini": {
+  "ok": true,
+  "text": "pong",
+  "completion_tokens": 2,
+  "reasoning_tokens": 0,
+  "cost": 3e-06,
+  "seconds": 1.09,
+  "reasoning_dropped": false
+ }
+}

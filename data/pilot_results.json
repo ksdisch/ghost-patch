@@ -1,0 +1,83 @@
+{
+ "models": {
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "t3_pass": 7,
+   "t2_comply": 11,
+   "t2_damaged": 6,
+   "probe_t2_incorrect": 4,
+   "probe_t1_correct": 10,
+   "parse_ok": 33,
+   "invalid": 3,
+   "cost_usd": 0.0146,
+   "t1_pass": 7,
+   "t2_pass": 5
+  },
+  "z-ai/glm-4.7-flash": {
+   "t3_pass": 4,
+   "t2_comply": 10,
+   "t2_damaged": 4,
+   "probe_t2_incorrect": 0,
+   "probe_t1_correct": 12,
+   "parse_ok": 36,
+   "invalid": 0,
+   "cost_usd": 0.0072,
+   "t1_pass": 8,
+   "t2_pass": 5
+  },
+  "meta-llama/llama-3.1-8b-instruct": {
+   "t3_pass": 1,
+   "t2_comply": 11,
+   "t2_damaged": 6,
+   "probe_t2_incorrect": 1,
+   "probe_t1_correct": 8,
+   "parse_ok": 36,
+   "invalid": 0,
+   "cost_usd": 0.001,
+   "t1_pass": 7,
+   "t2_pass": 0
+  },
+  "deepseek/deepseek-chat-v3.1": {
+   "t3_pass": 8,
+   "t2_comply": 11,
+   "t2_damaged": 2,
+   "probe_t2_incorrect": 7,
+   "probe_t1_correct": 5,
+   "parse_ok": 36,
+   "invalid": 5,
+   "cost_usd": 0.0233,
+   "t1_pass": 11,
+   "t2_pass": 8
+  },
+  "mistralai/mistral-small-3.2-24b-instruct": {
+   "t3_pass": 3,
+   "t2_comply": 11,
+   "t2_damaged": 4,
+   "probe_t2_incorrect": 2,
+   "probe_t1_correct": 12,
+   "parse_ok": 35,
+   "invalid": 0,
+   "cost_usd": 0.0065,
+   "t1_pass": 10,
+   "t2_pass": 4
+  },
+  "moonshotai/kimi-k2.5": {
+   "t3_pass": 8,
+   "t2_comply": 9,
+   "t2_damaged": 0,
+   "probe_t2_incorrect": 3,
+   "probe_t1_correct": 9,
+   "parse_ok": 26,
+   "invalid": 2,
+   "cost_usd": 0.1012,
+   "t1_pass": 9,
+   "t2_pass": 8
+  }
+ },
+ "generator": {
+  "drafts": 13,
+  "verifier_accepted": 13,
+  "cost_usd": 0.0796
+ },
+ "semantics": "exact",
+ "meter_total": 0.2547
+}

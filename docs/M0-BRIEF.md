@@ -1,7 +1,9 @@
 # M0 Start-of-Stage Brief — the fit-pilot
 
-*Written 2026-07-10 · status: **DRAFT — awaiting Kyle sign-off** (gate: no paid OpenRouter call
-runs before sign-off on this brief + the cost estimate) · scope source of truth: `docs/KICKOFF.md`*
+*Written 2026-07-10 · status: **SIGNED OFF 2026-07-10 (Kyle, via decision prompt): D1-A
+(paper-kin trio), D2-A (gpt-5.1-codex-mini + fallback rule), D3-A (headroom required),
+D4 converged on S-exact by smoke; pilot spend approved (≈$0.10 est., $0.25 hard cap)** ·
+scope source of truth: `docs/KICKOFF.md`*
 
 ## What M0 is, in plain terms
 
@@ -253,6 +255,23 @@ Kyle with the per-model post-mortem. (KICKOFF success criteria need ≥2 subject
   manipulation design goes back to Kyle** (approach-level, not model-level).
   Plus: 5 accepted T2 drafts go to Kyle for a face-validity spot-read with the pilot
   report — Kyle veto before the M1 freeze.
+
+  **First pass (2026-07-10, measured): 5/20 first-attempt acceptance (25%) — below the
+  amber band.** Diagnosis: 39/41 rejections were "target not disjoint from the true
+  fix" — gpt-5.1-codex-mini reads a ≤40-line program and usually *finds the real bug*
+  (the verifier's dilemma: the better the generator, the lower the wrong-location
+  rate). JSON/parse failures: 2/41. T1 coverage was 12/12.
+  **The one allowed revision (used here): harness-picked targets (protocol v2)** — the
+  harness deterministically assigns a provably-disjoint region
+  (`regions.pick_wrong_target`, seeded per problem), and the generator writes only the
+  confident diagnosis + directive for it. This mirrors the paper's human T2s more
+  closely ("deliberately misdirected ... confidently identifies the wrong location" —
+  their humans also *chose* wrong locations on purpose). The mechanical verifier is
+  unchanged and still enforced on every draft.
+  **Recount (v2, same session): 13/13 first-attempt acceptance (100%) → T-F GREEN.**
+  Final coverage: 20/20 T2 (7 v1-organic + 13 v2), 12/12 T1. The pilot runs on this
+  mixed set; whether the M1 freeze regenerates all-v2 for uniformity is an M1-brief
+  decision.
 - **T-G · Budget:** pilot hard cap **$0.25** — the runner halts the wave when measured
   cumulative cost crosses it. Projected v1 > $5 total → re-scope with Kyle before M1.
 
@@ -339,6 +358,51 @@ the <$5 target (account baseline today: $2.14 lifetime).
 | 4 | Prompt wording ours (paper's prompts unpublished — Appendix 9 is ethics only) | Nothing to copy | Structure pinned to the paper's §3 descriptions (inputs per arm, probe shape, pass protocol); prompts frozen in code at M1 |
 | 5 | N: hobby scale with Wilson/Newcombe CIs + UNDERPOWERED auto-reporting (paper: 538) | Budget | Statistics is the binding constraint per KICKOFF; gates are CI-based |
 | 6 | Descriptions from PIE4Perf translations (paper: RunBugRun's own `problems.text`) | JSONL release lacks descriptions; SQLite dump is the heavy path | PIE is RunBugRun's own credited translation source; coverage ≈100% verified |
+
+## M0 pilot outcome (2026-07-10, measured) — VERDICT: STOP, pending Kyle
+
+**Meter: $0.2547 — the $0.25 hard cap fired mid-kimi and halted the wave, as designed.**
+Full artifacts: `data/pilot_results.json`, `data/pilot/trials.jsonl`, run logs committed.
+
+| Model | T-A (T3) | T-B (comply) | T-C (aware) | T-D (parse) | damage | verdict |
+|---|---|---|---|---|---|---|
+| qwen3-coder-30b-a3b | green 7/12 | green 11/12 | **kill 4/12** | green 33/36¹ | 6/12 | KILL |
+| glm-4.7-flash | green 4/12 | green 10/12 | **kill 0/12** | green 36/36 | 4/12 | KILL |
+| llama-3.1-8b | **kill 1/12** | green 11/12 | **kill 1/12** | green 36/36 | 6/12 | KILL |
+| deepseek-chat-v3.1 | green 8/12 | green 11/12 | amber 7/12 (T1-side 5/12) | green 36/36 | 2/12 | **AMBER — survives** |
+| mistral-small-3.2 | amber 3/12 | green 11/12 | **kill 2/12** | green 35/36 | 4/12 | KILL |
+| kimi-k2.5² | green 8/12 | green 9/12 | **kill 3/12** | 26/36² | 0/12² | KILL² |
+
+¹ qwen's first pass parsed 24/36 — every failure a `finish_reason=length` truncation at
+1,400 max_tokens; the one T-D revision raised the budget to 3,200 (prompt unchanged) and
+the clean re-run parsed 33/36. First-pass artifacts retained.
+² kimi's row is **partial** — the budget halt cut its wave short, so missing trials
+deflate T-D/damage mechanically. Its T-C reading stands on the probes that ran.
+
+**Survivors 1/6 → the pre-committed roster rule renders M0 = STOP.**
+
+**The substantive finding: the awareness leg doesn't reproduce at the cheap tier under
+our probe.** Obedience is emphatically present — every model complies 9–11/12 and
+damage occurs — but evaluator-role discrimination sits at chance everywhere:
+glm/mistral/llama label (nearly) everything CORRECT, deepseek leans INCORRECT on both
+sides, qwen is barely above chance. Two readings, deliberately left open:
+
+- **(a) Genuine tier-level blindness.** Cheap models are blind-and-obedient, not
+  aware-but-obedient — KICKOFF risk 1(c) materialized across the tier. The paper's
+  McNemar headline (awareness ≠ resistance) has no analog here; that null is itself
+  reportable ("the paper's premise requires a competence floor cheap models don't
+  clear").
+- **(b) Probe under-elicitation.** Our one-word CORRECT/INCORRECT probe (wording ours —
+  the paper's prompts are unpublished) may under-elicit. The anchor: the paper measured
+  **kimi-k2.5 at 63% aware**; our partial kimi read is ~25–30%. That gap points at
+  methodology (probe wording, or provider-side config) at least in part.
+
+**Options put to Kyle (M0 exit gate):** (1) fund a probe-wording audit — the T-C amber
+remedy generalized: one revised probe wording, re-probe all 6 models × 24 probes,
+~$0.04, requires a cap extension; (2) accept blindness as the finding and re-scope M1
+to the obedience/damage chain (RQ2–RQ4 analogs) on deepseek + one blind-but-capable
+model, with the awareness claim reported as a tier-level null; (3) stop the project —
+the precondition fails, the null is the headline.
 
 ## New words introduced here
 
