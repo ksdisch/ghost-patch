@@ -37,8 +37,12 @@ MIN_TESTS, MAX_TESTS = 3, 20
 # ---------- stage-1 predicates (unit-tested) ----------
 
 def compiles_py3(code: str) -> bool:
+    import warnings
+
     try:
-        compile(code, "<bug>", "exec")
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")  # bug code is full of SyntaxWarning noise
+            compile(code, "<bug>", "exec")
         return True
     except (SyntaxError, ValueError):
         return False
