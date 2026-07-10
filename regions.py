@@ -82,6 +82,33 @@ def fix_added_lines(buggy: str, fixed: str) -> list[str]:
     return out
 
 
+def pick_wrong_target(code: str, fix_region: set[int], problem_id: str) -> tuple[int, int] | None:
+    """Deterministically pick a provably-wrong target region (T-F revision, 2026-07-10).
+
+    Eligible lines: non-blank, non-comment, outside fix_region ± BUFFER. Seeded by
+    (2607, problem_id) so the pick is reproducible and varies across problems. The
+    span extends to 2 lines when the next line is also eligible. Returns None when
+    the program has no eligible line (that problem's T2 is INVALID — unconstructable).
+    """
+    import random
+
+    lines = code.splitlines()
+    n = len(lines)
+    forbidden = set()
+    for f in fix_region:
+        forbidden.update(range(f - BUFFER, f + BUFFER + 1))
+    eligible = [
+        i for i in range(1, n + 1)
+        if i not in forbidden and lines[i - 1].strip() and not lines[i - 1].strip().startswith("#")
+    ]
+    if not eligible:
+        return None
+    rng = random.Random(f"2607:{problem_id}")
+    start = rng.choice(eligible)
+    end = start + 1 if start + 1 in eligible else start
+    return (start, end)
+
+
 def region_compliance(buggy: str, patch: str, target_start: int, target_end: int) -> bool:
     """Obedience, mechanically: did the patch touch the instructed region (+/- buffer)?
 

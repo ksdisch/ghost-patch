@@ -20,9 +20,10 @@ from client import (
 from grading import compare_outputs
 from prompts import (
     extract_patch, parse_draft, parse_probe, probe_prompt, render_instruction,
-    repair_prompt, t1_generator_prompt, t2_generator_prompt, verify_draft,
+    repair_prompt, t1_generator_prompt, t2_generator_prompt, t2_generator_prompt_v2,
+    verify_draft,
 )
-from regions import fix_added_lines, region_compliance, true_fix_region
+from regions import fix_added_lines, pick_wrong_target, region_compliance, true_fix_region
 from sandbox import run_tests
 
 DATA = Path(__file__).parent / "data"
@@ -90,18 +91,39 @@ def _ping_one(slug: str, reasoning: dict, max_tokens: int, m: CostMeter) -> dict
 
 # ---------- wave 2: generate + verify ----------
 
-def _gen_one(kind: str, entry: dict, gen_model: str, m: CostMeter) -> dict:
-    """Draft + mechanically verify one instruction, with pre-committed retries."""
+def _gen_one(kind: str, entry: dict, gen_model: str, m: CostMeter, *,
+             protocol: str = "v1") -> dict:
+    """Draft + mechanically verify one instruction, with pre-committed retries.
+
+    protocol "v1": generator picks the location (code-only). Measured 25% T2
+    acceptance — the generator keeps finding the real bug. protocol "v2" (the one
+    allowed T-F revision): harness assigns a provably-disjoint target; generator
+    writes only the confident rationale. Verifier identical in both.
+    """
     buggy, fixed = entry["buggy_code"], entry["fixed_code"]
     fr = true_fix_region(buggy, fixed)
     added = fix_added_lines(buggy, fixed)
-    prompt = (t2_generator_prompt(buggy) if kind == "T2"
-              else t1_generator_prompt(buggy, fixed))
+    target = None
+    if kind == "T2" and protocol == "v2":
+        target = pick_wrong_target(buggy, fr, entry["problem_id"])
+        if target is None:
+            return {"kind": kind, "problem_id": entry["problem_id"], "protocol": protocol,
+                    "attempts": [], "final": None, "render": None,
+                    "unconstructable": True}
+        prompt = t2_generator_prompt_v2(buggy, *target)
+    elif kind == "T2":
+        prompt = t2_generator_prompt(buggy)
+    else:
+        prompt = t1_generator_prompt(buggy, fixed)
     attempts = []
-    for i in range(GEN_ATTEMPTS):
+    for _ in range(GEN_ATTEMPTS):
         r = chat(gen_model, prompt, max_tokens=GEN_MAX_TOKENS,
                  reasoning=GENERATOR_REASONING, meter=m)
         d = parse_draft(r["text"])
+        if d is not None and target is not None:
+            lines = buggy.splitlines()
+            d = {"target_start_line": target[0], "target_end_line": target[1],
+                 "anchor_excerpt": lines[target[0] - 1].strip(), **d}
         if d is None:
             attempts.append({"accepted": False, "reason": "unparseable JSON",
                              "cost": r["cost"], "raw": r["text"][:400]})
@@ -110,24 +132,31 @@ def _gen_one(kind: str, entry: dict, gen_model: str, m: CostMeter) -> dict:
         attempts.append({"accepted": ok, "reason": reason, "cost": r["cost"],
                          "draft": d, "reasoning_tokens": r["reasoning_tokens"]})
         if ok:
-            return {"kind": kind, "problem_id": entry["problem_id"], "attempts": attempts,
-                    "final": d, "render": render_instruction(d)}
-    return {"kind": kind, "problem_id": entry["problem_id"], "attempts": attempts,
-            "final": None, "render": None}
+            return {"kind": kind, "problem_id": entry["problem_id"], "protocol": protocol,
+                    "attempts": attempts, "final": d, "render": render_instruction(d)}
+    return {"kind": kind, "problem_id": entry["problem_id"], "protocol": protocol,
+            "attempts": attempts, "final": None, "render": None}
 
 
-def cmd_generate() -> int:
+def cmd_generate(revise: bool = False) -> int:
     m = _meter()
     bank = _bank()
     gen_model = GENERATOR
     results: list[dict] = []
     jobs = ([("T1", e) for e in bank[:PILOT_N]] + [("T2", e) for e in bank[:PILOT_N]]
             + [("T2", e) for e in bank[PILOT_N:PILOT_N + EXTRA_T2]])
+    protocol = "v2" if revise else "v1"
+    prior: dict = {}
+    if revise:  # regenerate only the problems that lack an accepted instruction
+        prior_doc = json.loads((PILOT_DIR / "instructions.json").read_text())
+        prior = {(r["kind"], r["problem_id"]): r for r in prior_doc["results"]}
+        jobs = [(k, e) for k, e in jobs if not prior.get((k, e["problem_id"]), {}).get("final")]
+        print(f"revision pass (v2 protocol) over {len(jobs)} uncovered drafts")
     try:
         for i, (kind, entry) in enumerate(jobs):
-            results.append(_gen_one(kind, entry, gen_model, m))
+            results.append(_gen_one(kind, entry, gen_model, m, protocol=protocol))
             # D2 fallback rule, evaluated once after the first 5 drafts:
-            if i == 4 and gen_model == GENERATOR:
+            if i == 4 and gen_model == GENERATOR and not revise:
                 per_draft = m.total / max(1, m.calls)
                 if per_draft > 2 * EST_DRAFT_COST:
                     gen_model = GENERATOR_FALLBACK
@@ -136,20 +165,31 @@ def cmd_generate() -> int:
         print(f"HALT: {e}")
     _save_meter(m)
 
-    t2_first = [r for r in results if r["kind"] == "T2"]
-    first_accepted = sum(1 for r in t2_first if r["attempts"] and r["attempts"][0]["accepted"])
-    coverage = sum(1 for r in results if r["final"])
+    if revise:  # merge: revised drafts fill the gaps, v1 acceptances stand
+        merged = dict(prior)
+        for r in results:
+            merged[(r["kind"], r["problem_id"])] = r
+        all_results = list(merged.values())
+    else:
+        all_results = results
+
+    t2_new = [r for r in results if r["kind"] == "T2"]
+    new_first = sum(1 for r in t2_new if r["attempts"] and r["attempts"][0]["accepted"])
+    t2_all = [r for r in all_results if r["kind"] == "T2"]
+    coverage = sum(1 for r in all_results if r["final"])
     report = {
         "generator_used": gen_model,
-        "t2_drafts": len(t2_first),
-        "t2_first_attempt_accepted": first_accepted,
-        "t_f_rate": round(first_accepted / len(t2_first), 3) if t2_first else 0.0,
-        "coverage_after_retries": f"{coverage}/{len(jobs)}",
+        "protocol": protocol,
+        "t2_drafts": len(t2_new),
+        "t2_first_attempt_accepted": new_first,
+        "t_f_rate": round(new_first / len(t2_new), 3) if t2_new else 0.0,
+        "t2_coverage": f"{sum(1 for r in t2_all if r['final'])}/{len(t2_all)}",
+        "coverage_after_retries": f"{coverage}/{len(all_results)}",
         "total_gen_cost": round(m.total, 4),
     }
     (PILOT_DIR / "instructions.json").write_text(json.dumps(
-        {"report": report, "results": results}, indent=1))
-    _write_spotread([r for r in t2_first if r["final"]][:5], bank)
+        {"report": report, "results": all_results}, indent=1))
+    _write_spotread([r for r in t2_all if r["final"] and r.get("protocol") != "v1"][:5], bank)
     print(json.dumps(report, indent=2))
     print(f"meter: ${m.total:.4f} of ${m.cap:.2f}")
     return 0
@@ -318,5 +358,9 @@ if __name__ == "__main__":
     PILOT_DIR.mkdir(parents=True, exist_ok=True)
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("wave", choices=["ping", "generate", "pilot"])
+    ap.add_argument("--revise", action="store_true",
+                    help="generate: v2 protocol over uncovered drafts only")
     args = ap.parse_args()
-    raise SystemExit({"ping": cmd_ping, "generate": cmd_generate, "pilot": cmd_pilot}[args.wave]())
+    if args.wave == "generate":
+        raise SystemExit(cmd_generate(revise=args.revise))
+    raise SystemExit({"ping": cmd_ping, "pilot": cmd_pilot}[args.wave]())

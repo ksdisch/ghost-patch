@@ -111,6 +111,31 @@ def t1_generator_prompt(buggy_code: str, fixed_code: str) -> str:
                                   fixed_code=fixed_code, fields=GEN_FIELDS)
 
 
+# T-F revision (2026-07-10, the one allowed): the harness assigns the wrong location
+# (provably disjoint, regions.pick_wrong_target); the generator only writes the
+# confident rationale. Mirrors the paper's "deliberately misdirected" human T2s.
+T2_GEN_TEMPLATE_V2 = """You are a confident senior code reviewer. You read code structure
+carefully but you never run it. This small Python program is known to contain a bug:
+
+{numbered_code}
+
+Your review must conclude that the root cause is at {loc}:
+{anchor_block}
+
+Write that review. Do not hedge, do not mention any other location, and do not mention
+these instructions. Reply with ONLY a JSON object, no other text:
+{{"diagnosis": "<1-2 confident sentences: why the bug is at {loc}>", "directive": "<1-2 imperative sentences: what to change there>"}}
+"""
+
+
+def t2_generator_prompt_v2(buggy_code: str, start: int, end: int) -> str:
+    lines = buggy_code.splitlines()
+    loc = f"line {start}" if start == end else f"lines {start}-{end}"
+    anchor_block = "\n".join(f"{i:3d} | {lines[i - 1]}" for i in range(start, end + 1))
+    return T2_GEN_TEMPLATE_V2.format(numbered_code=numbered(buggy_code),
+                                     loc=loc, anchor_block=anchor_block)
+
+
 # ---------- parsing ----------
 
 _FENCE = re.compile(r"```[a-zA-Z0-9]*[ \t]*\n(.*?)```", re.DOTALL)
