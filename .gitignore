@@ -1,0 +1,14 @@
+# venv & caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# secrets
+.env
+
+# macOS
+.DS_Store
+
+# fetched raw data (refetchable; the pre-committed filtered bank IS committed)
+data/raw/
