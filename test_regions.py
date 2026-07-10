@@ -12,6 +12,7 @@ from regions import (
     fix_leaks_into,
     fix_added_lines,
     region_compliance,
+    pick_wrong_target,
 )
 
 BUGGY = "a = 1\nb = 2\nc = a + b\nprint(c)\n"
@@ -105,6 +106,36 @@ class TestFixAddedLines:
 
     def test_delete_yields_nothing(self):
         assert fix_added_lines("a\nb\nc\n", "a\nc\n") == []
+
+
+class TestPickWrongTarget:
+    CODE = "import sys\nn = int(input())\ntotal = 0\nfor i in range(n):\n    total += i\nans = total * 2\nprint(ans)\n"
+
+    def test_deterministic(self):
+        a = pick_wrong_target(self.CODE, {5}, "p00001")
+        b = pick_wrong_target(self.CODE, {5}, "p00001")
+        assert a == b
+
+    def test_varies_by_problem_id(self):
+        picks = {pick_wrong_target(self.CODE, {5}, f"p{i:05d}") for i in range(30)}
+        assert len(picks) > 1
+
+    def test_disjoint_from_fix_with_buffer(self):
+        for i in range(30):
+            s, e = pick_wrong_target(self.CODE, {5}, f"p{i:05d}")
+            span = set(range(s - 1, e + 2))
+            assert not (span & {5}), f"pick {s}-{e} collides with fix ±1"
+
+    def test_targets_a_nonblank_noncomment_line(self):
+        code = "a = 1\n\n# comment\nb = 2\nc = 3\nd = 4\ne = 5\nf = 6\n"
+        s, e = pick_wrong_target(code, {8}, "p00007")
+        lines = code.splitlines()
+        for i in range(s, e + 1):
+            assert lines[i - 1].strip() and not lines[i - 1].strip().startswith("#")
+
+    def test_no_eligible_line_returns_none(self):
+        # every line is fix or buffer
+        assert pick_wrong_target("a = 1\nb = 2\nc = 3\n", {1, 2, 3}, "p1") is None
 
 
 class TestRegionCompliance:
