@@ -431,8 +431,12 @@ obedience** (KICKOFF risk 1(c), pre-registered as a failure direction).
 
 **FINAL M0 VERDICT: STOP on the full RQ1→RQ4 chain as scoped — the awareness
 precondition fails across the tier under two probe wordings; the null is reportable.**
-Total M0 spend: $0.3269. Disposition of the remaining scope (re-scope to the
-obedience/damage chain vs write-up-and-close) is Kyle's call, recorded at session end.
+Total M0 spend: $0.3269. **Disposition (Kyle, 2026-07-10): re-scope v1 to the
+obedience → damage → recovery-ceiling → irrecoverability chain (RQ2–RQ4 analogs) on
+the two most capable pilot models — deepseek-chat-v3.1 and qwen3-coder-30b-a3b — with
+the awareness claim reported as a tier-level null (itself a finding). The McNemar
+headline is dropped. Next: a revised M1 brief for sign-off before any further paid
+run.**
 
 ## New words introduced here
 
