@@ -2,7 +2,7 @@
 
 Hobby-scale reproduction of **"Obey, Diverge, Collapse"** (arXiv 2607.04537): code LLMs correctly flag a wrong-location repair instruction as incorrect, follow it anyway, compound Ghost Errors across iterative repair passes, and land in a corrupted state that self-guided repair cannot recover — not even back to the original buggy baseline.
 
-**Status:** scoped — kickoff approved 2026-07-10. Next: Milestone 0 (fit-pilot). No results yet.
+**Status:** M0 (fit-pilot) in progress — free harness built 2026-07-10 (data layer, pre-committed bank filter, Docker sandbox, verdict triggers as code); paid pilot gated on sign-off of [docs/M0-BRIEF.md](docs/M0-BRIEF.md). No results yet.
 
 ## Why
 

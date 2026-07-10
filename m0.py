@@ -119,21 +119,49 @@ def _load_pool_tests(pids: set[str]) -> dict[str, dict[int, dict]]:
     return by_pid
 
 
-def _smoke_one(entry: dict, tests: list[dict]) -> dict:
+def _passes(run, test: dict, mode: str) -> bool:
+    return run.rc == 0 and not run.timed_out and compare_outputs(test["output"], run.stdout, mode)
+
+
+def _find_exposing_test(buggy: str, extra_tests: list[dict]) -> tuple[dict, object] | None:
+    """Scan tests beyond the candidate set (id order, batches of 20) for the first
+    test the buggy program *behaviorally* fails (S-float). T-E tightening, 2026-07-10."""
+    for i in range(0, len(extra_tests), 20):
+        chunk = extra_tests[i : i + 20]
+        runs = run_tests(buggy, [t["input"] for t in chunk])
+        for run, test in zip(runs, chunk):
+            if not _passes(run, test, "float"):
+                return test, run
+    return None
+
+
+def _smoke_one(entry: dict, tests: list[dict], extra_tests: list[dict]) -> tuple[dict, list[dict]]:
+    """Grade one problem under both semantics. Returns (record, final_test_set)."""
     t0 = time.monotonic()
-    inputs = [t["input"] for t in tests]
-    out: dict = {"problem_id": entry["problem_id"], "bug_id": entry["bug_id"], "n_tests": len(tests)}
+    tests = list(tests)
+    out: dict = {"problem_id": entry["problem_id"], "bug_id": entry["bug_id"]}
     try:
-        fixed_runs = run_tests(entry["fixed_code"], inputs)
-        buggy_runs = run_tests(entry["buggy_code"], inputs)
+        fixed_runs = run_tests(entry["fixed_code"], [t["input"] for t in tests])
+        buggy_runs = run_tests(entry["buggy_code"], [t["input"] for t in tests])
+
+        # Exposure-aware selection (the one T-E tightening): candidate set shows no
+        # behavioral failure -> swap the first exposing test in for the last candidate.
+        if all(_passes(r, t, "float") for r, t in zip(buggy_runs, tests)) and extra_tests:
+            found = _find_exposing_test(entry["buggy_code"], extra_tests)
+            if found:
+                exposing, exposing_buggy_run = found
+                fixed_on_exposing = run_tests(entry["fixed_code"], [exposing["input"]])[0]
+                tests = tests[:-1] + [exposing]
+                fixed_runs = fixed_runs[:-1] + [fixed_on_exposing]
+                buggy_runs = buggy_runs[:-1] + [exposing_buggy_run]
+                out["exposing_test_id"] = int(exposing["id"])
     except SandboxError as e:
         out["infra_error"] = str(e)
-        return out
+        return out, tests
+    out["n_tests"] = len(tests)
     for mode in ("exact", "float"):
-        fx = [r.rc == 0 and not r.timed_out and compare_outputs(t["output"], r.stdout, mode)
-              for r, t in zip(fixed_runs, tests)]
-        bg = [r.rc == 0 and not r.timed_out and compare_outputs(t["output"], r.stdout, mode)
-              for r, t in zip(buggy_runs, tests)]
+        fx = [_passes(r, t, mode) for r, t in zip(fixed_runs, tests)]
+        bg = [_passes(r, t, mode) for r, t in zip(buggy_runs, tests)]
         out[mode] = {
             "fixed_all_pass": all(fx),
             "buggy_failed": len(bg) - sum(bg),
@@ -142,20 +170,25 @@ def _smoke_one(entry: dict, tests: list[dict]) -> dict:
             "bank_clean": all(fx) and (len(bg) - sum(bg)) >= 1 and sum(bg) >= 1,
         }
     out["seconds"] = round(time.monotonic() - t0, 2)
-    return out
+    return out, tests
 
 
 def cmd_smoke(sample: int, workers: int) -> int:
     pool_doc = json.loads(POOL_PATH.read_text())
     pool = pool_doc["pool"][:sample]
     tests_by_pid = _load_pool_tests({e["problem_id"] for e in pool})
-    sel = {
-        e["problem_id"]: [tests_by_pid[e["problem_id"]][tid] for tid in e["test_ids"]]
-        for e in pool
-    }
+    sel, extra = {}, {}
+    for e in pool:
+        pid = e["problem_id"]
+        sel[pid] = [tests_by_pid[pid][tid] for tid in e["test_ids"]]
+        in_sel = set(e["test_ids"])
+        extra[pid] = [t for tid, t in sorted(tests_by_pid[pid].items()) if tid not in in_sel]
     print(f"smoking {len(pool)} problems ({workers} workers) …", flush=True)
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        results = list(ex.map(lambda e: _smoke_one(e, sel[e["problem_id"]]), pool))
+        pairs = list(ex.map(
+            lambda e: _smoke_one(e, sel[e["problem_id"]], extra[e["problem_id"]]), pool))
+    results = [rec for rec, _ in pairs]
+    final_tests = {rec["problem_id"]: tests for rec, tests in pairs}
 
     graded = [r for r in results if "infra_error" not in r]
     infra = len(results) - len(graded)
@@ -176,8 +209,9 @@ def cmd_smoke(sample: int, workers: int) -> int:
         bank = []
         for e in pool:  # pool order preserved — the bank is a filtered prefix
             if e["problem_id"] in clean_pids:
-                bank.append({**e, "tests": [
-                    {"input": t["input"], "output": t["output"]} for t in sel[e["problem_id"]]
+                fin = final_tests[e["problem_id"]]
+                bank.append({**e, "test_ids": [int(t["id"]) for t in fin], "tests": [
+                    {"input": t["input"], "output": t["output"]} for t in fin
                 ], "buggy_failed_baseline": baseline[e["problem_id"]]})
         BANK_PATH.write_text(json.dumps(
             {"semantics": chosen, "seed": pool_doc["seed"], "smoked": len(results),

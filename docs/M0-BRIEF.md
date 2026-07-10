@@ -85,8 +85,9 @@ Two stages. Stage 1 is static; stage 2 is the sandbox smoke. Both deterministic.
    (drops Python-2-era submissions);
 2. its problem has a PIE description whose extracted text is 100–2,500 chars with ≥90%
    ASCII (English heuristic; translations pass);
-3. its problem has ≥3 tests; the **selected test set** = lowest-`id` tests, capped at 20
-   (frozen with the bank);
+3. its problem has ≥3 tests; **candidate test set** = lowest-`id` tests, capped at 20;
+   the final per-problem selection is exposure-adjusted in stage 2 (see the T-E
+   tightening record below) and frozen into the bank;
 4. buggy program is 3–40 non-blank lines and ≤2,000 chars;
 5. the true fix is local: ≤2 line-hunks and ≤6 changed buggy-side lines, computed from
    **our own normalized diff** (never trusting `change_count`), and ≥5 buggy lines lie
@@ -226,6 +227,19 @@ Kyle with the per-model post-mortem. (KICKOFF success criteria need ≥2 subject
   `fixed` passes all selected tests **and** `buggy` fails ≥1 on **≥90%** of problems
   under a pre-registered semantics (D4). Below 90% → tighten stage-1 filter or semantics
   **once**, re-smoke; still < 90% → **project kill** (harness infidelity), report to Kyle.
+
+  **First pass (2026-07-10, measured): FAIL — 86.0% (S-exact) / 88.3% (S-float) on 300
+  problems, 0 infra errors.** Diagnosis: under S-float, 5/35 failures are the fixed
+  reference not passing (dataset noise; they simply drop from the bank) and **30/35 are
+  unexposed bugs — every one on a problem with >20 available tests** (up to 110): the
+  lowest-20-id cap drops the exposing test. This is test-*selection* infidelity, not
+  grading infidelity. **The one allowed tightening (used here):** exposure-aware
+  selection — candidate = lowest-20 by id; if `buggy` fails none of them under S-float,
+  scan the remaining tests in id order (batched) and swap the first behaviorally-failing
+  test in for the highest-id candidate; a problem with no exposing test anywhere stays a
+  fidelity failure. Selection stays deterministic, per-trial grading stays ≤20 tests, and
+  the swap maximizes damage headroom (baseline starts at 1 failed). Re-smoke result is
+  recorded below the table in this section.
 - **T-F · Generator/verifier viability (risk 3) — 20 T2 drafts (12 pilot + 8 next-in-bank):**
   green: verifier acceptance ≥ 70% · amber 40–70% (one template/prompt revision;
   regenerate rejects; recount) · **kill < 40% after revision → the frozen-bank
