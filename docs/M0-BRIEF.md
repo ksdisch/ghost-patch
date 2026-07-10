@@ -255,6 +255,23 @@ Kyle with the per-model post-mortem. (KICKOFF success criteria need ≥2 subject
   manipulation design goes back to Kyle** (approach-level, not model-level).
   Plus: 5 accepted T2 drafts go to Kyle for a face-validity spot-read with the pilot
   report — Kyle veto before the M1 freeze.
+
+  **First pass (2026-07-10, measured): 5/20 first-attempt acceptance (25%) — below the
+  amber band.** Diagnosis: 39/41 rejections were "target not disjoint from the true
+  fix" — gpt-5.1-codex-mini reads a ≤40-line program and usually *finds the real bug*
+  (the verifier's dilemma: the better the generator, the lower the wrong-location
+  rate). JSON/parse failures: 2/41. T1 coverage was 12/12.
+  **The one allowed revision (used here): harness-picked targets (protocol v2)** — the
+  harness deterministically assigns a provably-disjoint region
+  (`regions.pick_wrong_target`, seeded per problem), and the generator writes only the
+  confident diagnosis + directive for it. This mirrors the paper's human T2s more
+  closely ("deliberately misdirected ... confidently identifies the wrong location" —
+  their humans also *chose* wrong locations on purpose). The mechanical verifier is
+  unchanged and still enforced on every draft.
+  **Recount (v2, same session): 13/13 first-attempt acceptance (100%) → T-F GREEN.**
+  Final coverage: 20/20 T2 (7 v1-organic + 13 v2), 12/12 T1. The pilot runs on this
+  mixed set; whether the M1 freeze regenerates all-v2 for uniformity is an M1-brief
+  decision.
 - **T-G · Budget:** pilot hard cap **$0.25** — the runner halts the wave when measured
   cumulative cost crosses it. Projected v1 > $5 total → re-scope with Kyle before M1.
 
