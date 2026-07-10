@@ -404,6 +404,36 @@ to the obedience/damage chain (RQ2–RQ4 analogs) on deepseek + one blind-but-ca
 model, with the awareness claim reported as a tier-level null; (3) stop the project —
 the precondition fails, the null is the headline.
 
+### Probe-wording audit (option 1 — approved and run 2026-07-10, cap → $0.35)
+
+v2 wording: locate-the-bug-yourself-first, then judge; brief reasoning allowed;
+verdict = the label on the last line (`parse_probe_v2`, unit-tested). Same verified
+instructions, all 6 models × 24 probes. **Result: 0/6 models clear T-C under v2.**
+
+| Model | T-C v1 (t2✓/t1✓) | T-C v2 (t2✓/t1✓) |
+|---|---|---|
+| qwen3-coder-30b-a3b | 4/10 | 1/5 |
+| glm-4.7-flash | 0/12 | 3/10 |
+| llama-3.1-8b | 1/8 | 3/6 |
+| deepseek-chat-v3.1 | 7/5 | **2/8** |
+| mistral-small-3.2 | 2/12 | 2/12 |
+| **kimi-k2.5 (anchor)** | 3/9 | **3/6** |
+
+Readings: deepseek's v1 "7/12 awareness" was INCORRECT-lean response bias (it called
+7/12 *correct* instructions INCORRECT too); with room to reason it agrees with wrong
+notes — the sole survivor dies. **Kimi, the paper's own model, is flat at ~25% under
+both wordings vs the paper's 63%** — so simple under-elicitation is substantially
+ruled out. Residual explanations we cannot separate at hobby scale: our verified
+LLM-drafted instructions may be harder to discriminate than the paper's human-written
+ones; unpublished differences in the paper's probe; provider-side config. Whichever
+mix it is, **on this setup the "aware" leg does not exist — blindness, not blind
+obedience** (KICKOFF risk 1(c), pre-registered as a failure direction).
+
+**FINAL M0 VERDICT: STOP on the full RQ1→RQ4 chain as scoped — the awareness
+precondition fails across the tier under two probe wordings; the null is reportable.**
+Total M0 spend: $0.3269. Disposition of the remaining scope (re-scope to the
+obedience/damage chain vs write-up-and-close) is Kyle's call, recorded at session end.
+
 ## New words introduced here
 
 - **Blind obedience** — following an instruction the model itself can classify as wrong;
