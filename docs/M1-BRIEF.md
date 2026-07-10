@@ -1,8 +1,10 @@
 # M1 Start-of-Stage Brief — single-pass obedience + the damage funnel (RE-SCOPED)
 
-*Written 2026-07-10 · status: **DRAFT — pending Kyle sign-off (D5–D7 + execution gate);
-no paid call before sign-off** · scope source: `docs/KICKOFF.md` **as modified by the
-2026-07-10 disposition** recorded in `docs/M0-BRIEF.md` (final section)*
+*Written 2026-07-10 · status: **SIGNED OFF 2026-07-10 (Kyle, via decision prompt):
+D5-A (regenerate all-v2), D6-A (K=150), D7-A ($1.00 cap), execution gate approved —
+free build + dry-run, then generation + repair waves end-to-end within cap and halt
+triggers, no further pauses unless a trigger fires** · scope source: `docs/KICKOFF.md`
+**as modified by the 2026-07-10 disposition** recorded in `docs/M0-BRIEF.md` (final section)*
 
 ## What changed at M0, and what M1 now is
 
@@ -205,7 +207,8 @@ invariant.
   verdict + report, all within the D7 cap and the halt triggers above, no further
   pauses unless a trigger fires.
 
-**SIGN-OFF (Kyle):** *pending.*
+**SIGN-OFF (Kyle, 2026-07-10, via decision prompt):** D5-A · D6-A · D7-A · execution
+gate approved (full auto within the $1.00 cap and the pre-committed halt triggers).
 
 ## What M1 hands forward
 
