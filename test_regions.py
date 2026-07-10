@@ -10,6 +10,7 @@ from regions import (
     changed_line_count,
     t2_disjoint,
     fix_leaks_into,
+    fix_added_lines,
     region_compliance,
 )
 
@@ -93,6 +94,17 @@ class TestLeakCheck:
     def test_trivially_short_added_lines_ignored(self):
         assert fix_leaks_into(["i+=1"], "you should just do i+=1 here") is True
         assert fix_leaks_into(["ok"], "everything is ok here") is False
+
+
+class TestFixAddedLines:
+    def test_replace_yields_fixed_side_lines(self):
+        assert fix_added_lines("a\nb\nc\n", "a\nB\nc\n") == ["B"]
+
+    def test_insert_yields_new_lines(self):
+        assert fix_added_lines("a\nc\n", "a\nb1\nb2\nc\n") == ["b1", "b2"]
+
+    def test_delete_yields_nothing(self):
+        assert fix_added_lines("a\nb\nc\n", "a\nc\n") == []
 
 
 class TestRegionCompliance:

@@ -72,6 +72,16 @@ def fix_leaks_into(fix_added_lines: list[str], instruction_text: str) -> bool:
     return False
 
 
+def fix_added_lines(buggy: str, fixed: str) -> list[str]:
+    """Fixed-side lines introduced by the fix (replace/insert b-side) — the leak needles."""
+    sm = difflib.SequenceMatcher(a=_norm(buggy), b=_norm(fixed), autojunk=False)
+    out: list[str] = []
+    for tag, _, _, j1, j2 in sm.get_opcodes():
+        if tag in ("replace", "insert"):
+            out.extend(_norm(fixed)[j1:j2])
+    return out
+
+
 def region_compliance(buggy: str, patch: str, target_start: int, target_end: int) -> bool:
     """Obedience, mechanically: did the patch touch the instructed region (+/- buffer)?
 
