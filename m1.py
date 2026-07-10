@@ -259,6 +259,8 @@ def cmd_generate() -> int:
             results.append(_gen_one(kind, entry, gen_model, m,
                                     protocol="v2" if kind == "T2" else "v1"))
             _save_meter(m)
+            if i % 10 == 9:  # partial save: a crash mid-wave orphans no paid draft
+                _save(fallback_note)
             if i == GEN_SMOKE_N - 1:
                 first10 = results[:GEN_SMOKE_N]
                 acc = sum(1 for r in first10 if r["attempts"] and r["attempts"][0]["accepted"])
