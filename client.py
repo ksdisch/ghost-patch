@@ -8,6 +8,7 @@ BEFORE each call and halts the wave when the cap would plausibly be crossed.
 """
 from __future__ import annotations
 
+import json
 import os
 import time
 
@@ -110,7 +111,10 @@ def chat(
                 reasoning_dropped = True
                 continue
             raise
-        except (RateLimitError, APITimeoutError, APIError):
+        except (RateLimitError, APITimeoutError, APIError, json.JSONDecodeError):
+            # JSONDecodeError: OpenRouter occasionally returns a malformed body
+            # (observed 2026-07-10, killed the deepseek T2 wave); same transient
+            # class as the others — retry with backoff, then surface.
             if attempt == retries - 1:
                 raise
             time.sleep(2 ** (attempt + 1))
