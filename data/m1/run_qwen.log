@@ -1,0 +1,13 @@
+— qwen/qwen3-coder-30b-a3b-instruct T3: 150 to run · est $0.084
+  smoke gate @5: parse 4/5, mean $0.00060/trial
+grading 140 patches …
+  T3 complete: parse 128/150, meter $0.4976, lifetime $0.8245
+— qwen/qwen3-coder-30b-a3b-instruct T2: 150 to run · est $0.037
+  smoke gate @5: parse 5/5, mean $0.00015/trial
+grading 146 patches …
+  T2 complete: parse 137/150, meter $0.5493, lifetime $0.8763
+— qwen/qwen3-coder-30b-a3b-instruct T1: 150 to run · est $0.046
+  smoke gate @5: parse 5/5, mean $0.00011/trial
+grading 146 patches …
+  T1 complete: parse 144/150, meter $0.5840, lifetime $0.9110
+qwen/qwen3-coder-30b-a3b-instruct: all arms complete

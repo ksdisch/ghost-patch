@@ -1,0 +1,134 @@
+{
+ "models": {
+  "deepseek/deepseek-chat-v3.1": {
+   "label": "NULL",
+   "reverse": false,
+   "drop": 0.04,
+   "ci": [
+    -0.0218,
+    0.1029
+   ],
+   "pairs": {
+    "both": 113,
+    "mech_only": 14,
+    "base_only": 8,
+    "neither": 15,
+    "n_pairs": 150
+   },
+   "arms": {
+    "T1": {
+     "n": 150,
+     "valid": 150,
+     "pass": 141,
+     "rate": 0.94,
+     "wilson": [
+      0.8899,
+      0.9681
+     ],
+     "invalid": 0,
+     "cost": 0.0556
+    },
+    "T2": {
+     "n": 150,
+     "valid": 150,
+     "pass": 121,
+     "rate": 0.8067,
+     "wilson": [
+      0.7361,
+      0.8619
+     ],
+     "invalid": 0,
+     "cost": 0.0922
+    },
+    "T3": {
+     "n": 150,
+     "valid": 150,
+     "pass": 127,
+     "rate": 0.8467,
+     "wilson": [
+      0.7804,
+      0.8956
+     ],
+     "invalid": 0,
+     "cost": 0.1246
+    }
+   },
+   "t2_comply": 129,
+   "t2_damaged": 18,
+   "failed_t3": 23
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "label": "NULL",
+   "reverse": false,
+   "drop": 0.0362,
+   "ci": [
+    -0.0343,
+    0.1062
+   ],
+   "pairs": {
+    "both": 76,
+    "mech_only": 15,
+    "base_only": 10,
+    "neither": 37,
+    "n_pairs": 138
+   },
+   "arms": {
+    "T1": {
+     "n": 150,
+     "valid": 146,
+     "pass": 114,
+     "rate": 0.7808,
+     "wilson": [
+      0.707,
+      0.8403
+     ],
+     "invalid": 4,
+     "cost": 0.0347
+    },
+    "T2": {
+     "n": 150,
+     "valid": 146,
+     "pass": 87,
+     "rate": 0.5959,
+     "wilson": [
+      0.5148,
+      0.672
+     ],
+     "invalid": 4,
+     "cost": 0.0517
+    },
+    "T3": {
+     "n": 150,
+     "valid": 140,
+     "pass": 91,
+     "rate": 0.65,
+     "wilson": [
+      0.5679,
+      0.724
+     ],
+     "invalid": 10,
+     "cost": 0.0822
+    }
+   },
+   "t2_comply": 127,
+   "t2_damaged": 35,
+   "failed_t3": 49
+  }
+ },
+ "cost": {
+  "m1_total": 0.584,
+  "lifetime": 0.911
+ },
+ "projection_upper_bounds": {
+  "deepseek/deepseek-chat-v3.1": {
+   "m2_max": 0.07,
+   "m3_max": 0.14,
+   "m4_max": 0.054
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "m2_max": 0.096,
+   "m3_max": 0.235,
+   "m4_max": 0.068
+  }
+ }
+}
