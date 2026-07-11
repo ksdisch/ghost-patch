@@ -1,0 +1,3 @@
+— qwen/qwen3-coder-30b-a3b-instruct: 49 loops to run/resume · est $0.167 (upper bound)
+  smoke gate @5: parse 5/5, mean $0.00039/pass
+qwen/qwen3-coder-30b-a3b-instruct: wave complete — recovered 20/49 · parse 116/144 · meter $0.1874 · lifetime $1.0984
