@@ -172,3 +172,188 @@ print(ans)
 
 > The bug is in lines 8-9 (`P_end = 1`). The pointers P_end and R_end are initialized once at lines 8-9 to fixed values that assume specific Q_end and array sizes, so the while loops never scan from the needed start positions and carry over stale offsets across iterations, breaking correctness. Initialize P_end and R_end inside the Q_end loop (e.g., reset them based on Q_end each iteration) so the search for optimal split points always starts from the correct relative positions.
 
+## M3 loop wave (deepseek/deepseek-chat-v3.1)
+
+### Sample 1 — problem p03132 (pass 1, drift 0.4783)
+
+```python
+l = int(input())
+a = [int(input()) for _ in range(l)]
+
+dp = [[0] * 5 for _ in range(l+1)]
+
+def cost(s, a_val):
+    if s == 0 or s == 4:
+        return a_val
+    elif s == 1 or s == 3:
+        return a_val % 2
+    else:
+        return (a_val + 1) % 2
+
+for i in range(l):
+    dp[i+1][0] = min(dp[i][0]) + cost(0, a[i])
+    dp[i+1][1] = min(dp[i][0], dp[i][1]) + cost(1, a[i])
+    dp[i+1][2] = min(dp[i][0], dp[i][1], dp[i][2]) + cost(2, a[i])
+    dp[i+1][3] = min(dp[i][0], dp[i][1], dp[i][2], dp[i][3]) + cost(3, a[i])
+    dp[i+1][4] = min(dp[i][0], dp[i][1], dp[i][2], dp[i][3], dp[i][4]) + cost(4, a[i])
+
+print(min(dp[l]))
+```
+
+> The bug is in lines 15-16 (`dp[i+1][0] = min(dp[i][0]) + cost(0, a[i])`). Lines 15-16 incorrectly call min with scalar arguments instead of iterables, so dp[i+1][0] and dp[i+1][1] are computed from single values rather than the intended prefixes. Wrap the inputs to min() in lists (e.g. min([dp[i][0]]) and min([dp[i][0], dp[i][1]]) or simply use direct comparisons) so the correct minimum is used for those states.
+
+### Sample 2 — problem p03894 (pass 1, drift 0.1818)
+
+```python
+import sys
+
+def main():
+    data = sys.stdin.read().split()
+    if not data:
+        return
+    n = int(data[0])
+    q = int(data[1])
+    swaps = []
+    index = 2
+    for i in range(q):
+        a = int(data[index]); b = int(data[index+1]); index += 2
+        swaps.append((a, b))
+    
+    ball = 1
+    for a, b in swaps:
+        if a == ball:
+            ball = b
+        elif b == ball:
+            ball = a
+            
+    can = [0] * (n+1)
+    can[ball] = 1
+    for i in range(q-1, -1, -1):
+        a, b = swaps[i]
+        if can[a] or can[b]:
+            can[a] = 1
+            can[b] = 1
+            
+    answer = sum(can[1:])
+    print(answer)
+
+if __name__ == '__main__':
+    main()
+```
+
+> The bug is in lines 25-26 (`a, b = swaps[i]`). The reason the result is wrong is because the backward pass at lines 25-26 only checks whether either endpoint was previously reachable, but it never propagates the reachability of the other endpoint once one becomes reachable, so you fail to mark all nodes that could have sent the ball. Change lines 25-26 to ensure that once either a or b is reachable you mark both as reachable, without depending on a stale can[] value; replace the condition with a direct reachability union so both indexes get set when one is known good.
+
+### Sample 3 — problem p02863 (pass 1, drift 0.2857)
+
+```python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    T = int(data[1])
+    
+    AB = []
+    index = 2
+    for i in range(n):
+        a = int(data[index])
+        b = int(data[index+1])
+        index += 2
+        AB.append((a, b))
+    
+    # Initialize DP array with -1 (unreachable states)
+    dp = [-1] * (T + 3001)
+    dp[0] = 0
+    
+    # Process each dish
+    for a, b in AB:
+        # Create temporary DP to avoid using same dish multiple times
+        tmp_dp = dp[:]
+        for j in range(T):
+            if dp[j] != -1:
+                if j + a < len(tmp_dp):
+                    tmp_dp[j + a] = max(tmp_dp[j + a], dp[j] + b)
+        dp = tmp_dp
+    
+    # Find the maximum happiness achievable within the valid time range
+    print(max(dp[:T+1]))
+
+if __name__ == '__main__':
+    main()
+```
+
+> The bug is in lines 13-14 (`b = int(data[index+1])`). The bug stems from lines 13-14 where `b` is read from `data[index+1]` while `index` still points to the previous dish; this misaligns the pairs so each happiness value is taken from the next tuple instead of the current one. Fix the indexing there by reading both values sequentially before updating the pointer, e.g. capture `a=data[index]` and `b=data[index+1]` and only then do `index += 2` so each tuple is aligned correctly.
+
+### Sample 4 — problem p01751 (pass 1, drift 0.2979)
+
+```python
+a, b, c = map(int, input().split())
+
+canArrive = False
+arrival_time = -1
+
+# Check each possible cycle
+for t in range(60):
+    # Calculate the time in the current cycle
+    cycle_time = 60 * t + c
+    
+    # Check if we're in a wake period at this time
+    # The pattern repeats every (a+b) minutes
+    # A is awake when: cycle_time % (a+b) < a
+    # This means the time modulo the sleep-wake cycle is less than the wake duration
+    
+    if cycle_time % (a + b) < a:
+        canArrive = True
+        arrival_time = cycle_time
+        break
+
+if canArrive:
+    print(arrival_time)
+else:
+    print(-1)
+```
+
+> The bug is in lines 18-19 (`arrival_time = cycle_time`). The loop exits on the first wake period found, but by returning the cycle_time itself we report the start of the cycle rather than the actual arrival moment c minutes into it, so lines 18-19 misreport the arrival time. Assign arrival_time = cycle_time + c (or otherwise incorporate the offset) before breaking so you output the real arrival minute instead of the cycle base time.
+
+### Sample 5 — problem p03393 (pass 1, drift 0.1408)
+
+```python
+def next_permutation(arr):
+    n = len(arr)
+    i = n-2
+    while i>=0 and arr[i] >= arr[i+1]:
+        i -= 1
+    if i < 0:
+        return False
+    j = n-1
+    while arr[j] <= arr[i]:
+        j -= 1
+    arr[i], arr[j] = arr[j], arr[i]
+    left = i+1
+    right = n-1
+    while left < right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+    return True
+
+s = input().strip()
+if len(s) < 26:
+    used = [False] * 26
+    for c in s:
+        used[ord(c)-ord('a')] = True
+    for i in range(26):
+        if not used[i]:
+            print(s + chr(ord('a')+i))
+            break
+else:
+    arr = list(s)
+    if next_permutation(arr):
+        print(''.join(arr))
+    else:
+        print(-1)
+```
+
+> The bug is in line 28 (`break`). The logic stops after printing the first missing character because the loop breaks at line 28, so we never ensure the rest of the alphabet is considered; this makes the output wrong whenever you need to append a higher-letter successor rather than the smallest missing one. Remove the break so the loop can continue to the last missing letter that should be appended.
+
