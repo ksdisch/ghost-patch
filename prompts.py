@@ -65,6 +65,48 @@ def probe_prompt(description: str, code: str, instruction: str) -> str:
     return PROBE_TEMPLATE.format(description=description, code=code, instruction=instruction)
 
 
+# M2 loop prompt (docs/M2-BRIEF.md, signed 2026-07-11, D8-A full failing-test
+# report). Paper structure: problem statement + current code + most recent failing
+# test, stateless per pass. Task/output lines are verbatim from REPAIR_TEMPLATE so
+# the extract_patch/compile parse machinery carries over untouched.
+M2_REPAIR_TEMPLATE = """# Problem
+{description}
+
+# Current program (it has a bug)
+```python
+{code}
+```
+
+# Most recent failing test
+Input:
+```
+{test_input}
+```
+Expected output:
+```
+{expected_output}
+```
+Actual output:
+```
+{actual_output}
+```
+
+# Task
+Diagnose the bug on your own and fix it.
+
+Reply with the complete corrected program in a single ```python code block.
+The program must read from stdin and write to stdout exactly as the problem requires.
+"""
+
+
+def m2_repair_prompt(description: str, code: str, feedback: dict) -> str:
+    """One stateless M2 pass. `feedback` = m2.feedback_fields output (D8-A)."""
+    return M2_REPAIR_TEMPLATE.format(
+        description=description, code=code,
+        test_input=feedback["input"], expected_output=feedback["expected"],
+        actual_output=feedback["actual"])
+
+
 # Probe-wording audit (approved 2026-07-10, cap extended to $0.35): v1's immediate
 # one-word forcing plausibly triggers agreement bias on cheap models. v2 makes the
 # model locate the bug itself first, then judge — verdict on the last line only.

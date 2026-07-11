@@ -1,0 +1,72 @@
+{
+ "models": {
+  "deepseek/deepseek-chat-v3.1": {
+   "clean_n": 23,
+   "recovered": 18,
+   "rate": 0.7826,
+   "wilson": [
+    0.581,
+    0.9034
+   ],
+   "label": "REPORTED",
+   "floor": false,
+   "curve": [
+    14,
+    17,
+    18,
+    18,
+    18
+   ],
+   "pass1_recovered": 14,
+   "mean_passes": 2.087,
+   "damaged_final": 4,
+   "ever_below": 7,
+   "invalid": 0,
+   "unfinished": 0,
+   "pass_calls": 48,
+   "first_parse": 44,
+   "cost": 0.0744
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "clean_n": 38,
+   "recovered": 20,
+   "rate": 0.5263,
+   "wilson": [
+    0.3726,
+    0.6752
+   ],
+   "label": "REPORTED",
+   "floor": false,
+   "curve": [
+    14,
+    16,
+    18,
+    20,
+    20
+   ],
+   "pass1_recovered": 14,
+   "mean_passes": 3.2105,
+   "damaged_final": 12,
+   "ever_below": 18,
+   "invalid": 11,
+   "unfinished": 0,
+   "pass_calls": 144,
+   "first_parse": 116,
+   "cost": 0.113
+  }
+ },
+ "cost": {
+  "m2_total": 0.1874,
+  "lifetime": 1.0984
+ },
+ "projection_upper_bounds": {
+  "deepseek/deepseek-chat-v3.1": {
+   "m3_max": 0.225,
+   "m4_max": 0.139
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "m3_max": 0.304,
+   "m4_max": 0.137
+  }
+ }
+}

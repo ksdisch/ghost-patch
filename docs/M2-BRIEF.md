@@ -264,3 +264,76 @@ including the pass-1 start-state pinning).
   diff-anchor-after-code-drift verifier design (KICKOFF open question).
 - **M2 RESULTS** will also hand the M3 brief re-projected M3/M4 costs from measured
   per-pass rates.
+
+---
+
+## RESULTS (2026-07-11, `m2.py verdict` over data/m2/trials.jsonl; machine copy data/m2_results.json)
+
+Executed same-day under the sign-off: free build (28 new tests, 201 total green) +
+synthetic dry-run + frozen subsets, then the deepseek wave (23 loops, zero incidents)
+and the qwen wave (49 loops; one slow-provider phase rode past the 420 s watchdog and
+was correctly held, not killed — records kept advancing with an ESTABLISHED call in
+flight; zero loss, zero resume needed). 264 records: 72 grade-0 + 192 paid passes.
+**Grade-0 integrity 72/72** — every loop's buggy original reproduced its frozen bank
+baseline exactly; the harness-drift halt never fired. Both smoke gates passed
+(deepseek 5/5 parse @ $0.00109/pass; qwen 5/5 @ $0.00039/pass).
+
+### Primary — the recovery ceiling (all-tests-pass within ≤5 passes)
+
+| Model | ceiling | Wilson 95% | clean N | label | FLOOR? |
+|---|---|---|---|---|---|
+| deepseek-chat-v3.1 | 18/23 = **78.3%** | [58.1, 90.3] | 23 | **REPORTED** | no |
+| qwen3-coder-30b | 20/38 = **52.6%** | [37.3, 67.5] | 38 | **REPORTED** | no |
+
+Recovery curves (cumulative by pass): deepseek **[14, 17, 18, 18, 18]** · qwen
+**[14, 16, 18, 20, 20]**. Both are front-loaded: pass 1 — the same T3 task plus one
+failing test — delivers 14/18 and 14/20 of all recovery. **Feedback, not iteration
+depth, is the active ingredient**; passes 4–5 add one recovery (qwen) or none
+(deepseek). **The M4 anchor is ALIVE on both models:** Wilson lower bounds (0.581 /
+0.373) sit far above the 0.05 FLOOR line, so M4's directional gate (M4 < M2) has
+room on both.
+
+### Secondaries
+
+| Model | pass-1 recovery | mean passes | self-damage (final) | ever-below-baseline | INVALID loops | first-parse |
+|---|---|---|---|---|---|---|
+| deepseek | 14/23 | 2.09 | 4/23 = 17.4% | 7/23 = 30.4% | 0/23 | 44/48 = 91.7% |
+| qwen | 14/38 | 3.21 | 12/38 = 31.6% | 18/38 = 47.4% | 11/49 = 22.4% | 116/144 = 80.6% |
+
+- **Self-damage base rate (the stat M3 reads against):** with no wrong instruction at
+  all, self-guided repair on these problems leaves the final state *worse than the
+  buggy baseline* in 17.4% / 31.6% of clean loops (and dips below baseline at some
+  point in 30.4% / 47.4%). M3's ghost-error damage claim must clear this
+  no-instruction base rate, not zero.
+- **The qwen finding: loop-protocol parse fragility.** 11/49 loops (22.4%) went
+  INVALID on a mid-loop double parse failure — proportionally far above its M1
+  single-pass INVALID rate (10/150). Clean-N 38 ≥ 20 held (the pre-committed slack
+  absorbed it), and first-parse 116/144 = **80.6% cleared the 80% floor by 0.6 pts**
+  — had it dipped below, the wave halts and qwen has no format revisions left
+  (spent in M0). Flagged forward: M4 runs this same loop on qwen's M3 finals.
+- deepseek: zero INVALID loops, zero incidents, parse 91.7%.
+
+### Cost record
+
+| Ledger | spent | cap |
+|---|---|---|
+| M2 meter (data/m2/cost_ledger.json) | **$0.1874** (224 calls) | $0.45 |
+| — deepseek wave | $0.0744 | |
+| — qwen wave | $0.1130 | |
+| Lifetime (M0 + M1 + M2) | **$1.0984** | $5.00 guard |
+
+54% of the $0.35 no-early-stop bound — early stops did the work. M3–M4
+re-projection from measured M2 per-pass rates (5-pass upper bounds): deepseek m3
+$0.225 / m4 $0.139, qwen m3 $0.304 / m4 $0.137 → chain remainder ≲ $0.81, lifetime
+ceiling ≈ $1.91.
+
+---
+
+**FINAL M2 VERDICT: REPORTED × 2 — the recovery-ceiling anchor is ALIVE.**
+Self-guided repair with failing-test feedback recovers 78% / 53% of single-pass
+failures within 5 passes, front-loaded at pass 1, on the two models whose M1
+primary was NULL. No FLOOR flag on either model, so the M4 contrast has room.
+Proceed to the M3 brief (ghost-error compounding on the T2-damaged subsets), which
+owes first: the deepseek T2-only extension machinery (`bank[150:186]`, needs ≥2
+more damaged) and the diff-anchor-after-code-drift verifier design — plus reading
+M3 damage against the self-damage base rates measured here.
