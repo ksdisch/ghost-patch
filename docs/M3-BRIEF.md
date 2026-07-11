@@ -1,7 +1,9 @@
 # M3 Start-of-Stage Brief — ghost-error compounding (RQ3 analog)
 
-*Written 2026-07-11 · status: **DRAFT — awaiting Kyle's sign-off (D10 + execution
-gate); no paid call before it** · scope source: `docs/KICKOFF.md` M3 ("confirmed-damage
+*Written 2026-07-11 · status: **SIGNED OFF 2026-07-11 (Kyle, via decision prompt):
+D10-A ($1.00 cap), execution gate approved — free build + dry-run, then extension →
+entry freeze → deepseek → qwen loop waves end-to-end within cap and halt triggers,
+no further pauses unless a trigger fires** · scope source: `docs/KICKOFF.md` M3 ("confirmed-damage
 subset → 5 passes of live-generated, per-pass-verified wrong instructions; escape-rate
 curve (descriptive); hands corrupted states to M4") + the paper-protocol notes in
 `docs/M0-BRIEF.md` ("What the paper settles", item 5) · entry data: `docs/M1-BRIEF.md`
@@ -330,6 +332,11 @@ cross it. Lifetime worst case after M3 at the recommended cap: $1.0984 + $1.00 =
   patch, not the buggy original), the per-pass fresh-target seeding, the
   all-36 extension scope, the extension living in `m3.py` on M3's ledger, and the
   UNDERPOWERED dispositions exactly as pre-declared.
+
+**SIGN-OFF (Kyle, 2026-07-11, via decision prompt):** D10-A · execution gate approved
+(full auto within the $1.00 cap and the pre-committed halt triggers, including the
+damaged-T2-patch start-state pinning, per-pass fresh-target seeding, all-36 extension
+scope, `m3.py`/M3-ledger placement, and the UNDERPOWERED dispositions as pre-declared).
 
 ## What M3 hands forward
 
