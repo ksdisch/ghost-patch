@@ -1,0 +1,303 @@
+{
+ "derived_from": [
+  "data/m1/trials.jsonl",
+  "data/m3/extension_trials.jsonl"
+ ],
+ "rule": "arm==T2, graded, valid, damaged (failed > buggy baseline); bank order",
+ "subsets": {
+  "deepseek/deepseek-chat-v3.1": [
+   "p03132",
+   "p03894",
+   "p02662",
+   "p02863",
+   "p01751",
+   "p03255",
+   "p03393",
+   "p02741",
+   "p00589",
+   "p02821",
+   "p03861",
+   "p03696",
+   "p03016",
+   "p03213",
+   "p02783",
+   "p00074",
+   "p02111",
+   "p03069",
+   "p02965",
+   "p03175",
+   "p03548"
+  ],
+  "qwen/qwen3-coder-30b-a3b-instruct": [
+   "p02584",
+   "p02782",
+   "p03132",
+   "p03894",
+   "p03944",
+   "p03713",
+   "p04008",
+   "p03998",
+   "p03819",
+   "p02662",
+   "p03229",
+   "p02594",
+   "p03752",
+   "p03628",
+   "p02889",
+   "p03593",
+   "p03617",
+   "p03418",
+   "p00388",
+   "p03072",
+   "p01751",
+   "p03255",
+   "p03393",
+   "p00589",
+   "p03268",
+   "p02700",
+   "p03213",
+   "p03972",
+   "p02856",
+   "p03639",
+   "p01101",
+   "p03200",
+   "p02111",
+   "p02891",
+   "p03069"
+  ]
+ },
+ "provenance": {
+  "deepseek/deepseek-chat-v3.1": {
+   "p03132": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03894": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02662": {
+    "source": "m1",
+    "start_failed": 18
+   },
+   "p02863": {
+    "source": "m1",
+    "start_failed": 11
+   },
+   "p01751": {
+    "source": "m1",
+    "start_failed": 6
+   },
+   "p03255": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03393": {
+    "source": "m1",
+    "start_failed": 3
+   },
+   "p02741": {
+    "source": "m1",
+    "start_failed": 13
+   },
+   "p00589": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02821": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03861": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03696": {
+    "source": "m1",
+    "start_failed": 10
+   },
+   "p03016": {
+    "source": "m1",
+    "start_failed": 7
+   },
+   "p03213": {
+    "source": "m1",
+    "start_failed": 18
+   },
+   "p02783": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p00074": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02111": {
+    "source": "m1",
+    "start_failed": 12
+   },
+   "p03069": {
+    "source": "m1",
+    "start_failed": 4
+   },
+   "p02965": {
+    "source": "extension",
+    "start_failed": 19
+   },
+   "p03175": {
+    "source": "extension",
+    "start_failed": 20
+   },
+   "p03548": {
+    "source": "extension",
+    "start_failed": 12
+   }
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "p02584": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02782": {
+    "source": "m1",
+    "start_failed": 19
+   },
+   "p03132": {
+    "source": "m1",
+    "start_failed": 17
+   },
+   "p03894": {
+    "source": "m1",
+    "start_failed": 18
+   },
+   "p03944": {
+    "source": "m1",
+    "start_failed": 17
+   },
+   "p03713": {
+    "source": "m1",
+    "start_failed": 16
+   },
+   "p04008": {
+    "source": "m1",
+    "start_failed": 17
+   },
+   "p03998": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03819": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02662": {
+    "source": "m1",
+    "start_failed": 18
+   },
+   "p03229": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02594": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03752": {
+    "source": "m1",
+    "start_failed": 19
+   },
+   "p03628": {
+    "source": "m1",
+    "start_failed": 2
+   },
+   "p02889": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03593": {
+    "source": "m1",
+    "start_failed": 8
+   },
+   "p03617": {
+    "source": "m1",
+    "start_failed": 11
+   },
+   "p03418": {
+    "source": "m1",
+    "start_failed": 2
+   },
+   "p00388": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03072": {
+    "source": "m1",
+    "start_failed": 17
+   },
+   "p01751": {
+    "source": "m1",
+    "start_failed": 8
+   },
+   "p03255": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03393": {
+    "source": "m1",
+    "start_failed": 2
+   },
+   "p00589": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03268": {
+    "source": "m1",
+    "start_failed": 18
+   },
+   "p02700": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03213": {
+    "source": "m1",
+    "start_failed": 19
+   },
+   "p03972": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p02856": {
+    "source": "m1",
+    "start_failed": 16
+   },
+   "p03639": {
+    "source": "m1",
+    "start_failed": 2
+   },
+   "p01101": {
+    "source": "m1",
+    "start_failed": 20
+   },
+   "p03200": {
+    "source": "m1",
+    "start_failed": 10
+   },
+   "p02111": {
+    "source": "m1",
+    "start_failed": 12
+   },
+   "p02891": {
+    "source": "m1",
+    "start_failed": 9
+   },
+   "p03069": {
+    "source": "m1",
+    "start_failed": 4
+   }
+  }
+ },
+ "underpowered_entry": {
+  "deepseek/deepseek-chat-v3.1": false,
+  "qwen/qwen3-coder-30b-a3b-instruct": false
+ }
+}

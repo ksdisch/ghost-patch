@@ -1,0 +1,5 @@
+extend: 36 draft jobs + 36 deepseek/deepseek-chat-v3.1 T2 trials over bank[150:186] · est $0.062
+  gen smoke @10: accepted 10/10, mean $0.00051/draft
+  trial smoke @5: parse 5/5, mean $0.00050/trial
+grading 36 extension patches …
+extension complete: instructions 36/36 · trials 36 (parse 36) · new damaged E=3 · deepseek M3 entry 18+3=21 · meter $0.0396 · lifetime $1.1380

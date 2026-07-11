@@ -1,0 +1,1024 @@
+{
+ "report": {
+  "protocol": "v2",
+  "generator_used": "openai/gpt-5.1-codex-mini",
+  "slice": [
+   150,
+   186
+  ],
+  "jobs_run": 36,
+  "first_attempt_accepted": 36,
+  "coverage": 36,
+  "wave_cost": 0.0187
+ },
+ "results": [
+  {
+   "kind": "T2",
+   "problem_id": "p03804",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000342,
+     "draft": {
+      "target_start_line": 29,
+      "target_end_line": 30,
+      "anchor_excerpt": "break",
+      "diagnosis": "Breaking out of the inner loop on mismatch still leaves flag set to its last value, so the subsequent check at lines 29-30 incorrectly interprets residual state instead of the just-failed comparison.",
+      "directive": "Ensure flag is reset immediately when the mismatch is detected before breaking, so the if-statement correctly reflects that the pattern did not match."
+     },
+     "reasoning_tokens": 9
+    }
+   ],
+   "final": {
+    "target_start_line": 29,
+    "target_end_line": 30,
+    "anchor_excerpt": "break",
+    "diagnosis": "Breaking out of the inner loop on mismatch still leaves flag set to its last value, so the subsequent check at lines 29-30 incorrectly interprets residual state instead of the just-failed comparison.",
+    "directive": "Ensure flag is reset immediately when the mismatch is detected before breaking, so the if-statement correctly reflects that the pattern did not match."
+   },
+   "render": "The bug is in lines 29-30 (`break`). Breaking out of the inner loop on mismatch still leaves flag set to its last value, so the subsequent check at lines 29-30 incorrectly interprets residual state instead of the just-failed comparison. Ensure flag is reset immediately when the mismatch is detected before breaking, so the if-statement correctly reflects that the pattern did not match."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02600",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00037125,
+     "draft": {
+      "target_start_line": 22,
+      "target_end_line": 23,
+      "anchor_excerpt": "elif 1400 <= N and N <= 1599:",
+      "diagnosis": "The condition handling 1400 \u2264 N \u2264 1599 sets ans = 3, but the required behavior is to assign ans = 2 in this range per the descending slot scheme, so it is wrong right at lines 22-23.",
+      "directive": "Change the assignment for the 1400\u20131599 branch to ans = 2 so it matches the proper score progression."
+     },
+     "reasoning_tokens": 11
+    }
+   ],
+   "final": {
+    "target_start_line": 22,
+    "target_end_line": 23,
+    "anchor_excerpt": "elif 1400 <= N and N <= 1599:",
+    "diagnosis": "The condition handling 1400 \u2264 N \u2264 1599 sets ans = 3, but the required behavior is to assign ans = 2 in this range per the descending slot scheme, so it is wrong right at lines 22-23.",
+    "directive": "Change the assignment for the 1400\u20131599 branch to ans = 2 so it matches the proper score progression."
+   },
+   "render": "The bug is in lines 22-23 (`elif 1400 <= N and N <= 1599:`). The condition handling 1400 \u2264 N \u2264 1599 sets ans = 3, but the required behavior is to assign ans = 2 in this range per the descending slot scheme, so it is wrong right at lines 22-23. Change the assignment for the 1400\u20131599 branch to ans = 2 so it matches the proper score progression."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02412",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00044675,
+     "draft": {
+      "target_start_line": 1,
+      "target_end_line": 1,
+      "anchor_excerpt": "n, x = [int(i) for i in input().split()]",
+      "diagnosis": "Line 1 always attempts to unpack two integers from a single input without validating that input, so the program crashes when the first line is empty or malformatted, making this the root cause of the failure.",
+      "directive": "Guard the initial input read with validation (e.g., loop until two integers are actually provided or handle empty input) before unpacking into n and x."
+     },
+     "reasoning_tokens": 64
+    }
+   ],
+   "final": {
+    "target_start_line": 1,
+    "target_end_line": 1,
+    "anchor_excerpt": "n, x = [int(i) for i in input().split()]",
+    "diagnosis": "Line 1 always attempts to unpack two integers from a single input without validating that input, so the program crashes when the first line is empty or malformatted, making this the root cause of the failure.",
+    "directive": "Guard the initial input read with validation (e.g., loop until two integers are actually provided or handle empty input) before unpacking into n and x."
+   },
+   "render": "The bug is in line 1 (`n, x = [int(i) for i in input().split()]`). Line 1 always attempts to unpack two integers from a single input without validating that input, so the program crashes when the first line is empty or malformatted, making this the root cause of the failure. Guard the initial input read with validation (e.g., loop until two integers are actually provided or handle empty input) before unpacking into n and x."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02560",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000402,
+     "draft": {
+      "target_start_line": 15,
+      "target_end_line": 16,
+      "anchor_excerpt": "t = int(input())",
+      "diagnosis": "The only input-handling loop is at lines 15-16, so the program simply fails whenever t is zero because we never guard against missing cases, causing solve to never be invoked even when a testcase exists.",
+      "directive": "Change lines 15-16 to read all test cases safely, for example by iterating over range(t) only after confirming t>0 or reading all provided inputs before processing."
+     },
+     "reasoning_tokens": 64
+    }
+   ],
+   "final": {
+    "target_start_line": 15,
+    "target_end_line": 16,
+    "anchor_excerpt": "t = int(input())",
+    "diagnosis": "The only input-handling loop is at lines 15-16, so the program simply fails whenever t is zero because we never guard against missing cases, causing solve to never be invoked even when a testcase exists.",
+    "directive": "Change lines 15-16 to read all test cases safely, for example by iterating over range(t) only after confirming t>0 or reading all provided inputs before processing."
+   },
+   "render": "The bug is in lines 15-16 (`t = int(input())`). The only input-handling loop is at lines 15-16, so the program simply fails whenever t is zero because we never guard against missing cases, causing solve to never be invoked even when a testcase exists. Change lines 15-16 to read all test cases safely, for example by iterating over range(t) only after confirming t>0 or reading all provided inputs before processing."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03312",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000417,
+     "draft": {
+      "target_start_line": 8,
+      "target_end_line": 9,
+      "anchor_excerpt": "P_end = 1",
+      "diagnosis": "The pointers P_end and R_end are initialized once at lines 8-9 to fixed values that assume specific Q_end and array sizes, so the while loops never scan from the needed start positions and carry over stale offsets across iterations, breaking correctness.",
+      "directive": "Initialize P_end and R_end inside the Q_end loop (e.g., reset them based on Q_end each iteration) so the search for optimal split points always starts from the correct relative positions."
+     },
+     "reasoning_tokens": 11
+    }
+   ],
+   "final": {
+    "target_start_line": 8,
+    "target_end_line": 9,
+    "anchor_excerpt": "P_end = 1",
+    "diagnosis": "The pointers P_end and R_end are initialized once at lines 8-9 to fixed values that assume specific Q_end and array sizes, so the while loops never scan from the needed start positions and carry over stale offsets across iterations, breaking correctness.",
+    "directive": "Initialize P_end and R_end inside the Q_end loop (e.g., reset them based on Q_end each iteration) so the search for optimal split points always starts from the correct relative positions."
+   },
+   "render": "The bug is in lines 8-9 (`P_end = 1`). The pointers P_end and R_end are initialized once at lines 8-9 to fixed values that assume specific Q_end and array sizes, so the while loops never scan from the needed start positions and carry over stale offsets across iterations, breaking correctness. Initialize P_end and R_end inside the Q_end loop (e.g., reset them based on Q_end each iteration) so the search for optimal split points always starts from the correct relative positions."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03544",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0010015,
+     "draft": {
+      "target_start_line": 10,
+      "target_end_line": 10,
+      "anchor_excerpt": "L0 = L1",
+      "diagnosis": "Line 10 overwrites L0 with the already-shifted value of L1, so the loop never preserves the proper previous term for the next iteration and the Fibonacci buildup collapses.",
+      "directive": "Keep the previous value in a temporary variable and assign L0 from that saved previous L1 before you move L1 to the new sum so that each iteration uses the true prior term."
+     },
+     "reasoning_tokens": 320
+    }
+   ],
+   "final": {
+    "target_start_line": 10,
+    "target_end_line": 10,
+    "anchor_excerpt": "L0 = L1",
+    "diagnosis": "Line 10 overwrites L0 with the already-shifted value of L1, so the loop never preserves the proper previous term for the next iteration and the Fibonacci buildup collapses.",
+    "directive": "Keep the previous value in a temporary variable and assign L0 from that saved previous L1 before you move L1 to the new sum so that each iteration uses the true prior term."
+   },
+   "render": "The bug is in line 10 (`L0 = L1`). Line 10 overwrites L0 with the already-shifted value of L1, so the loop never preserves the proper previous term for the next iteration and the Fibonacci buildup collapses. Keep the previous value in a temporary variable and assign L0 from that saved previous L1 before you move L1 to the new sum so that each iteration uses the true prior term."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02580",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000317,
+     "draft": {
+      "target_start_line": 29,
+      "target_end_line": 30,
+      "anchor_excerpt": "print(ans)",
+      "diagnosis": "Lines 29-30 bail out as soon as one candidate is empty, but this causes the loop to exit before confirming no empty intersection exists, so the final answer can never increase when all intersections are occupied. ",
+      "directive": "Remove the premature exit there and ensure the loops continue to completion before printing the result."
+     },
+     "reasoning_tokens": 11
+    }
+   ],
+   "final": {
+    "target_start_line": 29,
+    "target_end_line": 30,
+    "anchor_excerpt": "print(ans)",
+    "diagnosis": "Lines 29-30 bail out as soon as one candidate is empty, but this causes the loop to exit before confirming no empty intersection exists, so the final answer can never increase when all intersections are occupied. ",
+    "directive": "Remove the premature exit there and ensure the loops continue to completion before printing the result."
+   },
+   "render": "The bug is in lines 29-30 (`print(ans)`). Lines 29-30 bail out as soon as one candidate is empty, but this causes the loop to exit before confirming no empty intersection exists, so the final answer can never increase when all intersections are occupied. Remove the premature exit there and ensure the loops continue to completion before printing the result."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03613",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0009835,
+     "draft": {
+      "target_start_line": 8,
+      "target_end_line": 8,
+      "anchor_excerpt": "print(ans)",
+      "diagnosis": "The bug stems from line 8 because the final output is emitted there and it never reflects the computed maximum; moving the print inside the right scope won\u2019t fix it because the print call itself swallows the answer as soon as it runs once after the loop.",
+      "directive": "Replace the current print statement with a version that captures the computed maximum right after the loop; ensure the final line actually prints ans without additional logic."
+     },
+     "reasoning_tokens": 320
+    }
+   ],
+   "final": {
+    "target_start_line": 8,
+    "target_end_line": 8,
+    "anchor_excerpt": "print(ans)",
+    "diagnosis": "The bug stems from line 8 because the final output is emitted there and it never reflects the computed maximum; moving the print inside the right scope won\u2019t fix it because the print call itself swallows the answer as soon as it runs once after the loop.",
+    "directive": "Replace the current print statement with a version that captures the computed maximum right after the loop; ensure the final line actually prints ans without additional logic."
+   },
+   "render": "The bug is in line 8 (`print(ans)`). The bug stems from line 8 because the final output is emitted there and it never reflects the computed maximum; moving the print inside the right scope won\u2019t fix it because the print call itself swallows the answer as soon as it runs once after the loop. Replace the current print statement with a version that captures the computed maximum right after the loop; ensure the final line actually prints ans without additional logic."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p01144",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0005515,
+     "draft": {
+      "target_start_line": 9,
+      "target_end_line": 10,
+      "anchor_excerpt": "sections.sort()",
+      "diagnosis": "Sorting with default order and then reversing at lines 9-10 doesn\u2019t produce the intended descending priority order, so the later greedy calculation consumes the wrong sections.",
+      "directive": "Replace those two lines with a single sort call that explicitly orders sections in the required descending order (e.g., use sort(reverse=True) or the appropriate key with reverse=True)."
+     },
+     "reasoning_tokens": 128
+    }
+   ],
+   "final": {
+    "target_start_line": 9,
+    "target_end_line": 10,
+    "anchor_excerpt": "sections.sort()",
+    "diagnosis": "Sorting with default order and then reversing at lines 9-10 doesn\u2019t produce the intended descending priority order, so the later greedy calculation consumes the wrong sections.",
+    "directive": "Replace those two lines with a single sort call that explicitly orders sections in the required descending order (e.g., use sort(reverse=True) or the appropriate key with reverse=True)."
+   },
+   "render": "The bug is in lines 9-10 (`sections.sort()`). Sorting with default order and then reversing at lines 9-10 doesn\u2019t produce the intended descending priority order, so the later greedy calculation consumes the wrong sections. Replace those two lines with a single sort call that explicitly orders sections in the required descending order (e.g., use sort(reverse=True) or the appropriate key with reverse=True)."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02770",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00030875,
+     "draft": {
+      "target_start_line": 10,
+      "target_end_line": 11,
+      "anchor_excerpt": "if d[j]%m == 0:",
+      "diagnosis": "Lines 10-11 are miscounting elements equal to zero by re-evaluating d[j]%m instead of using the already computed pd[j], so they accumulate incorrect multiples when m changes across queries.",
+      "directive": "Replace the conditional with if pd[j] == 0 to use the cached remainder value for this query."
+     },
+     "reasoning_tokens": 9
+    }
+   ],
+   "final": {
+    "target_start_line": 10,
+    "target_end_line": 11,
+    "anchor_excerpt": "if d[j]%m == 0:",
+    "diagnosis": "Lines 10-11 are miscounting elements equal to zero by re-evaluating d[j]%m instead of using the already computed pd[j], so they accumulate incorrect multiples when m changes across queries.",
+    "directive": "Replace the conditional with if pd[j] == 0 to use the cached remainder value for this query."
+   },
+   "render": "The bug is in lines 10-11 (`if d[j]%m == 0:`). Lines 10-11 are miscounting elements equal to zero by re-evaluating d[j]%m instead of using the already computed pd[j], so they accumulate incorrect multiples when m changes across queries. Replace the conditional with if pd[j] == 0 to use the cached remainder value for this query."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03163",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.002374,
+     "draft": {
+      "target_start_line": 4,
+      "target_end_line": 5,
+      "anchor_excerpt": "for i in range(N):",
+      "diagnosis": "The bug originates where the weight/value pairs are read, because by reading them directly into separate lists in that loop we end up misaligned with the later initialization that expects the very first pair to occupy w[0] and v[1], causing the out-of-range/incorrect value whenever N=1 or the ordering shifts.",
+      "directive": "Change the input loop so it stores each pair consistently (e.g., use paired tuples or ensure both lists are synchronized) before any DP initialization happens."
+     },
+     "reasoning_tokens": 1024
+    }
+   ],
+   "final": {
+    "target_start_line": 4,
+    "target_end_line": 5,
+    "anchor_excerpt": "for i in range(N):",
+    "diagnosis": "The bug originates where the weight/value pairs are read, because by reading them directly into separate lists in that loop we end up misaligned with the later initialization that expects the very first pair to occupy w[0] and v[1], causing the out-of-range/incorrect value whenever N=1 or the ordering shifts.",
+    "directive": "Change the input loop so it stores each pair consistently (e.g., use paired tuples or ensure both lists are synchronized) before any DP initialization happens."
+   },
+   "render": "The bug is in lines 4-5 (`for i in range(N):`). The bug originates where the weight/value pairs are read, because by reading them directly into separate lists in that loop we end up misaligned with the later initialization that expects the very first pair to occupy w[0] and v[1], causing the out-of-range/incorrect value whenever N=1 or the ordering shifts. Change the input loop so it stores each pair consistently (e.g., use paired tuples or ensure both lists are synchronized) before any DP initialization happens."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02920",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000322,
+     "draft": {
+      "target_start_line": 19,
+      "target_end_line": 19,
+      "anchor_excerpt": "break",
+      "diagnosis": "The break on line 19 stops the outer loop as soon as a single parent list still has members, which leaves potential later parent sets unexplored and causes premature termination of the algorithm here.",
+      "directive": "Remove the break on line 19 so the loop can continue checking the remaining iterations and allow the resolution logic to complete normally."
+     },
+     "reasoning_tokens": 11
+    }
+   ],
+   "final": {
+    "target_start_line": 19,
+    "target_end_line": 19,
+    "anchor_excerpt": "break",
+    "diagnosis": "The break on line 19 stops the outer loop as soon as a single parent list still has members, which leaves potential later parent sets unexplored and causes premature termination of the algorithm here.",
+    "directive": "Remove the break on line 19 so the loop can continue checking the remaining iterations and allow the resolution logic to complete normally."
+   },
+   "render": "The bug is in line 19 (`break`). The break on line 19 stops the outer loop as soon as a single parent list still has members, which leaves potential later parent sets unexplored and causes premature termination of the algorithm here. Remove the break on line 19 so the loop can continue checking the remaining iterations and allow the resolution logic to complete normally."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03738",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00029,
+     "draft": {
+      "target_start_line": 11,
+      "target_end_line": 11,
+      "anchor_excerpt": "print(\"EQUAL\")",
+      "diagnosis": "The bug manifests at line 11 because the equality branch still executes even when the preceding comparisons cover all cases, causing misreporting when inputs are not equal; the redundant condition is the fault. ",
+      "directive": "Replace the equality branch logic at line 11 with a proper else clause or adjust the comparison so it only runs when a equals b."
+     },
+     "reasoning_tokens": 10
+    }
+   ],
+   "final": {
+    "target_start_line": 11,
+    "target_end_line": 11,
+    "anchor_excerpt": "print(\"EQUAL\")",
+    "diagnosis": "The bug manifests at line 11 because the equality branch still executes even when the preceding comparisons cover all cases, causing misreporting when inputs are not equal; the redundant condition is the fault. ",
+    "directive": "Replace the equality branch logic at line 11 with a proper else clause or adjust the comparison so it only runs when a equals b."
+   },
+   "render": "The bug is in line 11 (`print(\"EQUAL\")`). The bug manifests at line 11 because the equality branch still executes even when the preceding comparisons cover all cases, causing misreporting when inputs are not equal; the redundant condition is the fault. Replace the equality branch logic at line 11 with a proper else clause or adjust the comparison so it only runs when a equals b."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03821",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0002715,
+     "draft": {
+      "target_start_line": 5,
+      "target_end_line": 6,
+      "anchor_excerpt": "ab = list(map(int, input().split()))",
+      "diagnosis": "Storing the raw input lists instead of tuples leads to unintended aliasing or mutation issues later on, so the malfunction originates where the input pairs are appended at lines 5-6.",
+      "directive": "Convert each pair to an immutable tuple before appending or otherwise ensure the stored values cannot be mutated later by replacing lines 5-6 with tuple storage logic."
+     },
+     "reasoning_tokens": 12
+    }
+   ],
+   "final": {
+    "target_start_line": 5,
+    "target_end_line": 6,
+    "anchor_excerpt": "ab = list(map(int, input().split()))",
+    "diagnosis": "Storing the raw input lists instead of tuples leads to unintended aliasing or mutation issues later on, so the malfunction originates where the input pairs are appended at lines 5-6.",
+    "directive": "Convert each pair to an immutable tuple before appending or otherwise ensure the stored values cannot be mutated later by replacing lines 5-6 with tuple storage logic."
+   },
+   "render": "The bug is in lines 5-6 (`ab = list(map(int, input().split()))`). Storing the raw input lists instead of tuples leads to unintended aliasing or mutation issues later on, so the malfunction originates where the input pairs are appended at lines 5-6. Convert each pair to an immutable tuple before appending or otherwise ensure the stored values cannot be mutated later by replacing lines 5-6 with tuple storage logic."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02923",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00056575,
+     "draft": {
+      "target_start_line": 10,
+      "target_end_line": 11,
+      "anchor_excerpt": "if max_case < total:",
+      "diagnosis": "The bug sits in the peak update logic at lines 10-11 because max_case is only ever assigned the running total of drops, so it never accounts for the leading element, which means the final answer always undercounts by one.",
+      "directive": "Update the assignment block to capture the sequence length correctly, e.g. compare and store total+1 instead of total so max_case reflects the full span of elements."
+     },
+     "reasoning_tokens": 128
+    }
+   ],
+   "final": {
+    "target_start_line": 10,
+    "target_end_line": 11,
+    "anchor_excerpt": "if max_case < total:",
+    "diagnosis": "The bug sits in the peak update logic at lines 10-11 because max_case is only ever assigned the running total of drops, so it never accounts for the leading element, which means the final answer always undercounts by one.",
+    "directive": "Update the assignment block to capture the sequence length correctly, e.g. compare and store total+1 instead of total so max_case reflects the full span of elements."
+   },
+   "render": "The bug is in lines 10-11 (`if max_case < total:`). The bug sits in the peak update logic at lines 10-11 because max_case is only ever assigned the running total of drops, so it never accounts for the leading element, which means the final answer always undercounts by one. Update the assignment block to capture the sequence length correctly, e.g. compare and store total+1 instead of total so max_case reflects the full span of elements."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p01448",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0003215,
+     "draft": {
+      "target_start_line": 14,
+      "target_end_line": 14,
+      "anchor_excerpt": "if (t[i] >= i):",
+      "diagnosis": "The comparison in line 14 is wrong because the condition should only compare the current prefix count with the index when that index represents the endpoint, not every prefix, causing incorrect answers especially near zero where t[i] can be negative but still satisfy >= i.",
+      "directive": "Change the condition at line 14 to compare t[i] with the appropriate endpoint value (probably using the original input bounds) instead of directly with i."
+     },
+     "reasoning_tokens": 10
+    }
+   ],
+   "final": {
+    "target_start_line": 14,
+    "target_end_line": 14,
+    "anchor_excerpt": "if (t[i] >= i):",
+    "diagnosis": "The comparison in line 14 is wrong because the condition should only compare the current prefix count with the index when that index represents the endpoint, not every prefix, causing incorrect answers especially near zero where t[i] can be negative but still satisfy >= i.",
+    "directive": "Change the condition at line 14 to compare t[i] with the appropriate endpoint value (probably using the original input bounds) instead of directly with i."
+   },
+   "render": "The bug is in line 14 (`if (t[i] >= i):`). The comparison in line 14 is wrong because the condition should only compare the current prefix count with the index when that index represents the endpoint, not every prefix, causing incorrect answers especially near zero where t[i] can be negative but still satisfy >= i. Change the condition at line 14 to compare t[i] with the appropriate endpoint value (probably using the original input bounds) instead of directly with i."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02293",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000573,
+     "draft": {
+      "target_start_line": 16,
+      "target_end_line": 16,
+      "anchor_excerpt": "p3 = points[6:8]",
+      "diagnosis": "Line 16 incorrectly slices `points[6:8]`, so `p3` always ends up empty unless the input provides more than eight values, which prevents the vector `b` from ever being valid and thus breaks the logic.",
+      "directive": "Slice the correct pair of coordinates for `p3`, e.g. change the range to use the proper indices for the third point so that `b` is constructed from two actual coordinates."
+     },
+     "reasoning_tokens": 128
+    }
+   ],
+   "final": {
+    "target_start_line": 16,
+    "target_end_line": 16,
+    "anchor_excerpt": "p3 = points[6:8]",
+    "diagnosis": "Line 16 incorrectly slices `points[6:8]`, so `p3` always ends up empty unless the input provides more than eight values, which prevents the vector `b` from ever being valid and thus breaks the logic.",
+    "directive": "Slice the correct pair of coordinates for `p3`, e.g. change the range to use the proper indices for the third point so that `b` is constructed from two actual coordinates."
+   },
+   "render": "The bug is in line 16 (`p3 = points[6:8]`). Line 16 incorrectly slices `points[6:8]`, so `p3` always ends up empty unless the input provides more than eight values, which prevents the vector `b` from ever being valid and thus breaks the logic. Slice the correct pair of coordinates for `p3`, e.g. change the range to use the proper indices for the third point so that `b` is constructed from two actual coordinates."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03050",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0004265,
+     "draft": {
+      "target_start_line": 4,
+      "target_end_line": 5,
+      "anchor_excerpt": "if n % i == 0:",
+      "diagnosis": "Lines 4-5 only append the smaller divisor i, so the divisor list is incomplete and later logic iterates an incorrect set of factors.",
+      "directive": "When a divisor i is found, also append the corresponding paired divisor (n//i) so that the divisor list contains both factors of each division."
+     },
+     "reasoning_tokens": 64
+    }
+   ],
+   "final": {
+    "target_start_line": 4,
+    "target_end_line": 5,
+    "anchor_excerpt": "if n % i == 0:",
+    "diagnosis": "Lines 4-5 only append the smaller divisor i, so the divisor list is incomplete and later logic iterates an incorrect set of factors.",
+    "directive": "When a divisor i is found, also append the corresponding paired divisor (n//i) so that the divisor list contains both factors of each division."
+   },
+   "render": "The bug is in lines 4-5 (`if n % i == 0:`). Lines 4-5 only append the smaller divisor i, so the divisor list is incomplete and later logic iterates an incorrect set of factors. When a divisor i is found, also append the corresponding paired divisor (n//i) so that the divisor list contains both factors of each division."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03194",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.001767,
+     "draft": {
+      "target_start_line": 44,
+      "target_end_line": 44,
+      "anchor_excerpt": "print(ans)",
+      "diagnosis": "Line 44 prints the accumulation variable `ans` even when no valid factors were appended to `lst`, causing the program to emit the neutral value 1 instead of the expected zero result in those cases; the bug is therefore rooted in that final print statement.",
+      "directive": "Change line 44 so it emits the correct result computed from the factor list (e.g., `print(ans if lst else 0)`), ensuring it reflects the intended output instead of always printing 1."
+     },
+     "reasoning_tokens": 704
+    }
+   ],
+   "final": {
+    "target_start_line": 44,
+    "target_end_line": 44,
+    "anchor_excerpt": "print(ans)",
+    "diagnosis": "Line 44 prints the accumulation variable `ans` even when no valid factors were appended to `lst`, causing the program to emit the neutral value 1 instead of the expected zero result in those cases; the bug is therefore rooted in that final print statement.",
+    "directive": "Change line 44 so it emits the correct result computed from the factor list (e.g., `print(ans if lst else 0)`), ensuring it reflects the intended output instead of always printing 1."
+   },
+   "render": "The bug is in line 44 (`print(ans)`). Line 44 prints the accumulation variable `ans` even when no valid factors were appended to `lst`, causing the program to emit the neutral value 1 instead of the expected zero result in those cases; the bug is therefore rooted in that final print statement. Change line 44 so it emits the correct result computed from the factor list (e.g., `print(ans if lst else 0)`), ensuring it reflects the intended output instead of always printing 1."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02763",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0003555,
+     "draft": {
+      "target_start_line": 29,
+      "target_end_line": 29,
+      "anchor_excerpt": "print(count)",
+      "diagnosis": "The logic fails because the final output is simply the raw counter value without actually accounting for the true unique-letter count per query at line 29.",
+      "directive": "Update the print statement at line 29 to output the correctly computed result (e.g., the distinct character count) instead of the current raw counter value."
+     },
+     "reasoning_tokens": 12
+    }
+   ],
+   "final": {
+    "target_start_line": 29,
+    "target_end_line": 29,
+    "anchor_excerpt": "print(count)",
+    "diagnosis": "The logic fails because the final output is simply the raw counter value without actually accounting for the true unique-letter count per query at line 29.",
+    "directive": "Update the print statement at line 29 to output the correctly computed result (e.g., the distinct character count) instead of the current raw counter value."
+   },
+   "render": "The bug is in line 29 (`print(count)`). The logic fails because the final output is simply the raw counter value without actually accounting for the true unique-letter count per query at line 29. Update the print statement at line 29 to output the correctly computed result (e.g., the distinct character count) instead of the current raw counter value."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03165",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000322,
+     "draft": {
+      "target_start_line": 37,
+      "target_end_line": 37,
+      "anchor_excerpt": "main()",
+      "diagnosis": "Line 37 invokes main(), which runs the LCS logic immediately and exposes the program\u2019s failure mode by using mutated loop indices instead of preserving the original lengths for traceback.",
+      "directive": "Adjust the call at line 37 so that main() is invoked with correct parameters or guard clauses ensuring the traceback loop uses preserved indices before running."
+     },
+     "reasoning_tokens": 8
+    }
+   ],
+   "final": {
+    "target_start_line": 37,
+    "target_end_line": 37,
+    "anchor_excerpt": "main()",
+    "diagnosis": "Line 37 invokes main(), which runs the LCS logic immediately and exposes the program\u2019s failure mode by using mutated loop indices instead of preserving the original lengths for traceback.",
+    "directive": "Adjust the call at line 37 so that main() is invoked with correct parameters or guard clauses ensuring the traceback loop uses preserved indices before running."
+   },
+   "render": "The bug is in line 37 (`main()`). Line 37 invokes main(), which runs the LCS logic immediately and exposes the program\u2019s failure mode by using mutated loop indices instead of preserving the original lengths for traceback. Adjust the call at line 37 so that main() is invoked with correct parameters or guard clauses ensuring the traceback loop uses preserved indices before running."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02824",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0003565,
+     "draft": {
+      "target_start_line": 5,
+      "target_end_line": 6,
+      "anchor_excerpt": "s = 0",
+      "diagnosis": "The accumulated prefix sums rely on S being initialized with the first element before the loop, but starting with s=0 and empty S causes S[x-1] and S[P-2] accesses to read stale or missing values, breaking the binary search logic.",
+      "directive": "Preload the running sum: set s=A[0] and initialize S=[A[0]] (or adjust the loop to populate S safely before any indexed reads)."
+     },
+     "reasoning_tokens": 7
+    }
+   ],
+   "final": {
+    "target_start_line": 5,
+    "target_end_line": 6,
+    "anchor_excerpt": "s = 0",
+    "diagnosis": "The accumulated prefix sums rely on S being initialized with the first element before the loop, but starting with s=0 and empty S causes S[x-1] and S[P-2] accesses to read stale or missing values, breaking the binary search logic.",
+    "directive": "Preload the running sum: set s=A[0] and initialize S=[A[0]] (or adjust the loop to populate S safely before any indexed reads)."
+   },
+   "render": "The bug is in lines 5-6 (`s = 0`). The accumulated prefix sums rely on S being initialized with the first element before the loop, but starting with s=0 and empty S causes S[x-1] and S[P-2] accesses to read stale or missing values, breaking the binary search logic. Preload the running sum: set s=A[0] and initialize S=[A[0]] (or adjust the loop to populate S safely before any indexed reads)."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02965",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000359,
+     "draft": {
+      "target_start_line": 7,
+      "target_end_line": 8,
+      "anchor_excerpt": "else :",
+      "diagnosis": "In the else branch you unconditionally set both one and two to M, which leaves two initialized incorrectly when N>=M and breaks the later loop logic that depends on a proper balance between 'one' and 'two'.",
+      "directive": "Initialize 'one' and 'two' to the correct counts for the N>=M case instead of setting them both to M so the subsequent loop receives the expected values."
+     },
+     "reasoning_tokens": 9
+    }
+   ],
+   "final": {
+    "target_start_line": 7,
+    "target_end_line": 8,
+    "anchor_excerpt": "else :",
+    "diagnosis": "In the else branch you unconditionally set both one and two to M, which leaves two initialized incorrectly when N>=M and breaks the later loop logic that depends on a proper balance between 'one' and 'two'.",
+    "directive": "Initialize 'one' and 'two' to the correct counts for the N>=M case instead of setting them both to M so the subsequent loop receives the expected values."
+   },
+   "render": "The bug is in lines 7-8 (`else :`). In the else branch you unconditionally set both one and two to M, which leaves two initialized incorrectly when N>=M and breaks the later loop logic that depends on a proper balance between 'one' and 'two'. Initialize 'one' and 'two' to the correct counts for the N>=M case instead of setting them both to M so the subsequent loop receives the expected values."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p01171",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00033975,
+     "draft": {
+      "target_start_line": 22,
+      "target_end_line": 23,
+      "anchor_excerpt": "break",
+      "diagnosis": "Breaking out of the loop before calling prime(a) leaves the calculation of pa and pb undefined in the very first iteration when a and b are zero, so the program never actually computes the prime factor lists before comparing keys.",
+      "directive": "Move the break condition to after pa and pb are computed, or ensure prime(a) and prime(b) are called before checking for the break so that the subsequent keynumber calls have valid inputs."
+     },
+     "reasoning_tokens": 9
+    }
+   ],
+   "final": {
+    "target_start_line": 22,
+    "target_end_line": 23,
+    "anchor_excerpt": "break",
+    "diagnosis": "Breaking out of the loop before calling prime(a) leaves the calculation of pa and pb undefined in the very first iteration when a and b are zero, so the program never actually computes the prime factor lists before comparing keys.",
+    "directive": "Move the break condition to after pa and pb are computed, or ensure prime(a) and prime(b) are called before checking for the break so that the subsequent keynumber calls have valid inputs."
+   },
+   "render": "The bug is in lines 22-23 (`break`). Breaking out of the loop before calling prime(a) leaves the calculation of pa and pb undefined in the very first iteration when a and b are zero, so the program never actually computes the prime factor lists before comparing keys. Move the break condition to after pa and pb are computed, or ensure prime(a) and prime(b) are called before checking for the break so that the subsequent keynumber calls have valid inputs."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02789",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0002575,
+     "draft": {
+      "target_start_line": 6,
+      "target_end_line": 6,
+      "anchor_excerpt": "print('No')",
+      "diagnosis": "The logic expects consistent lowercase output when the inputs are unequal, but line 6 prints a capitalized 'No', so the program fails the specification exactly at that line.",
+      "directive": "Change the output on line 6 to match the expected lowercase string (print('no'))."
+     },
+     "reasoning_tokens": 8
+    }
+   ],
+   "final": {
+    "target_start_line": 6,
+    "target_end_line": 6,
+    "anchor_excerpt": "print('No')",
+    "diagnosis": "The logic expects consistent lowercase output when the inputs are unequal, but line 6 prints a capitalized 'No', so the program fails the specification exactly at that line.",
+    "directive": "Change the output on line 6 to match the expected lowercase string (print('no'))."
+   },
+   "render": "The bug is in line 6 (`print('No')`). The logic expects consistent lowercase output when the inputs are unequal, but line 6 prints a capitalized 'No', so the program fails the specification exactly at that line. Change the output on line 6 to match the expected lowercase string (print('no'))."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03013",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000593,
+     "draft": {
+      "target_start_line": 9,
+      "target_end_line": 9,
+      "anchor_excerpt": "a[num] = 1",
+      "diagnosis": "Line 9 is the culprit because we blindly assign a[num]=1 without validating that num is in the legal range; when an input num equals 0 (or anything out of 1..n) this immediately corrupts the array indexing logic used later.",
+      "directive": "Guard this assignment by checking that num is within the valid range (1..n) before writing to a[num], and handle or drop invalid inputs instead."
+     },
+     "reasoning_tokens": 128
+    }
+   ],
+   "final": {
+    "target_start_line": 9,
+    "target_end_line": 9,
+    "anchor_excerpt": "a[num] = 1",
+    "diagnosis": "Line 9 is the culprit because we blindly assign a[num]=1 without validating that num is in the legal range; when an input num equals 0 (or anything out of 1..n) this immediately corrupts the array indexing logic used later.",
+    "directive": "Guard this assignment by checking that num is within the valid range (1..n) before writing to a[num], and handle or drop invalid inputs instead."
+   },
+   "render": "The bug is in line 9 (`a[num] = 1`). Line 9 is the culprit because we blindly assign a[num]=1 without validating that num is in the legal range; when an input num equals 0 (or anything out of 1..n) this immediately corrupts the array indexing logic used later. Guard this assignment by checking that num is within the valid range (1..n) before writing to a[num], and handle or drop invalid inputs instead."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03175",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0003815,
+     "draft": {
+      "target_start_line": 24,
+      "target_end_line": 25,
+      "anchor_excerpt": "x-=1",
+      "diagnosis": "The only bug is that lines 24-25 unconditionally decrement x and y, which corrupts the node indices when the input is already zero-based and causes invalid negative indices in the adjacency sets.",
+      "directive": "Stop subtracting 1 from x and y so the links are built from the actual input values."
+     },
+     "reasoning_tokens": 64
+    }
+   ],
+   "final": {
+    "target_start_line": 24,
+    "target_end_line": 25,
+    "anchor_excerpt": "x-=1",
+    "diagnosis": "The only bug is that lines 24-25 unconditionally decrement x and y, which corrupts the node indices when the input is already zero-based and causes invalid negative indices in the adjacency sets.",
+    "directive": "Stop subtracting 1 from x and y so the links are built from the actual input values."
+   },
+   "render": "The bug is in lines 24-25 (`x-=1`). The only bug is that lines 24-25 unconditionally decrement x and y, which corrupts the node indices when the input is already zero-based and causes invalid negative indices in the adjacency sets. Stop subtracting 1 from x and y so the links are built from the actual input values."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03964",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000393,
+     "draft": {
+      "target_start_line": 1,
+      "target_end_line": 2,
+      "anchor_excerpt": "N=int(input())",
+      "diagnosis": "The bug stems from lines 1-2 because N is read as a single integer and A,B are hard\u2011coded to 1 without validating whether any input exists or initializing them correctly for subsequent lcm calculations, so the loop logic operates on invalid state the moment it executes.",
+      "directive": "Validate and parse N properly and initialize A and B based on the first input pair rather than fixed 1s so the subsequent computation has the correct starting values."
+     },
+     "reasoning_tokens": 64
+    }
+   ],
+   "final": {
+    "target_start_line": 1,
+    "target_end_line": 2,
+    "anchor_excerpt": "N=int(input())",
+    "diagnosis": "The bug stems from lines 1-2 because N is read as a single integer and A,B are hard\u2011coded to 1 without validating whether any input exists or initializing them correctly for subsequent lcm calculations, so the loop logic operates on invalid state the moment it executes.",
+    "directive": "Validate and parse N properly and initialize A and B based on the first input pair rather than fixed 1s so the subsequent computation has the correct starting values."
+   },
+   "render": "The bug is in lines 1-2 (`N=int(input())`). The bug stems from lines 1-2 because N is read as a single integer and A,B are hard\u2011coded to 1 without validating whether any input exists or initializing them correctly for subsequent lcm calculations, so the loop logic operates on invalid state the moment it executes. Validate and parse N properly and initialize A and B based on the first input pair rather than fixed 1s so the subsequent computation has the correct starting values."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03238",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0002455,
+     "draft": {
+      "target_start_line": 7,
+      "target_end_line": 8,
+      "anchor_excerpt": "B = int(input())",
+      "diagnosis": "Lines 7-8 are where the incorrect behavior originates, because the program tries to read the second operand and sum them even though the problem only requires a single integer input following the hello special case.",
+      "directive": "Remove the extra input read and the addition there so only the necessary output logic executes in the else branch."
+     },
+     "reasoning_tokens": 7
+    }
+   ],
+   "final": {
+    "target_start_line": 7,
+    "target_end_line": 8,
+    "anchor_excerpt": "B = int(input())",
+    "diagnosis": "Lines 7-8 are where the incorrect behavior originates, because the program tries to read the second operand and sum them even though the problem only requires a single integer input following the hello special case.",
+    "directive": "Remove the extra input read and the addition there so only the necessary output logic executes in the else branch."
+   },
+   "render": "The bug is in lines 7-8 (`B = int(input())`). Lines 7-8 are where the incorrect behavior originates, because the program tries to read the second operand and sum them even though the problem only requires a single integer input following the hello special case. Remove the extra input read and the addition there so only the necessary output logic executes in the else branch."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03419",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000377,
+     "draft": {
+      "target_start_line": 9,
+      "target_end_line": 9,
+      "anchor_excerpt": "print(int(N-2)*(M-2))",
+      "diagnosis": "Line 9 is the culprit because it multiplies the wrong terms\u2014it converts N-2 to an int but never accounts for both terms being reduced before multiplication, so the result is incorrect when N or M are small.",
+      "directive": "Change line 9 to compute the product of (N-2) and (M-2) explicitly with both subtractions performed before multiplication, e.g. print((N-2)*(M-2))."
+     },
+     "reasoning_tokens": 13
+    }
+   ],
+   "final": {
+    "target_start_line": 9,
+    "target_end_line": 9,
+    "anchor_excerpt": "print(int(N-2)*(M-2))",
+    "diagnosis": "Line 9 is the culprit because it multiplies the wrong terms\u2014it converts N-2 to an int but never accounts for both terms being reduced before multiplication, so the result is incorrect when N or M are small.",
+    "directive": "Change line 9 to compute the product of (N-2) and (M-2) explicitly with both subtractions performed before multiplication, e.g. print((N-2)*(M-2))."
+   },
+   "render": "The bug is in line 9 (`print(int(N-2)*(M-2))`). Line 9 is the culprit because it multiplies the wrong terms\u2014it converts N-2 to an int but never accounts for both terms being reduced before multiplication, so the result is incorrect when N or M are small. Change line 9 to compute the product of (N-2) and (M-2) explicitly with both subtractions performed before multiplication, e.g. print((N-2)*(M-2))."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02747",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000298,
+     "draft": {
+      "target_start_line": 5,
+      "target_end_line": 6,
+      "anchor_excerpt": "S.remove('h')",
+      "diagnosis": "Lines 5-6 remove the first occurrences of 'h' and 'i' anywhere in the list rather than popping the specific leading characters, so they can remove the wrong characters and break the loop invariants.",
+      "directive": "Replace those removes with direct index-based deletion (e.g., use del S[0:2] or pop twice) so the loop always strips the current prefix 'hi'."
+     },
+     "reasoning_tokens": 12
+    }
+   ],
+   "final": {
+    "target_start_line": 5,
+    "target_end_line": 6,
+    "anchor_excerpt": "S.remove('h')",
+    "diagnosis": "Lines 5-6 remove the first occurrences of 'h' and 'i' anywhere in the list rather than popping the specific leading characters, so they can remove the wrong characters and break the loop invariants.",
+    "directive": "Replace those removes with direct index-based deletion (e.g., use del S[0:2] or pop twice) so the loop always strips the current prefix 'hi'."
+   },
+   "render": "The bug is in lines 5-6 (`S.remove('h')`). Lines 5-6 remove the first occurrences of 'h' and 'i' anywhere in the list rather than popping the specific leading characters, so they can remove the wrong characters and break the loop invariants. Replace those removes with direct index-based deletion (e.g., use del S[0:2] or pop twice) so the loop always strips the current prefix 'hi'."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03156",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00045275,
+     "draft": {
+      "target_start_line": 9,
+      "target_end_line": 10,
+      "anchor_excerpt": "two = p[x:y]",
+      "diagnosis": "The incorrect slicing at lines 9-10 mispartitions the sorted array because the ranges aren\u2019t correctly using the inclusive/exclusive boundaries derived from bisect, so elements equal to b misclassify between the second and third segments.",
+      "directive": "Adjust the slices so that the second partition ends at the correct index and the third partition starts immediately after it (e.g., use bisect_right for the second boundary or slice two as p[x:y] and three as p[y:])."
+     },
+     "reasoning_tokens": 64
+    }
+   ],
+   "final": {
+    "target_start_line": 9,
+    "target_end_line": 10,
+    "anchor_excerpt": "two = p[x:y]",
+    "diagnosis": "The incorrect slicing at lines 9-10 mispartitions the sorted array because the ranges aren\u2019t correctly using the inclusive/exclusive boundaries derived from bisect, so elements equal to b misclassify between the second and third segments.",
+    "directive": "Adjust the slices so that the second partition ends at the correct index and the third partition starts immediately after it (e.g., use bisect_right for the second boundary or slice two as p[x:y] and three as p[y:])."
+   },
+   "render": "The bug is in lines 9-10 (`two = p[x:y]`). The incorrect slicing at lines 9-10 mispartitions the sorted array because the ranges aren\u2019t correctly using the inclusive/exclusive boundaries derived from bisect, so elements equal to b misclassify between the second and third segments. Adjust the slices so that the second partition ends at the correct index and the third partition starts immediately after it (e.g., use bisect_right for the second boundary or slice two as p[x:y] and three as p[y:])."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02846",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.0003555,
+     "draft": {
+      "target_start_line": 13,
+      "target_end_line": 14,
+      "anchor_excerpt": "print(0)",
+      "diagnosis": "The conditional branch starting at lines 13-14 assumes that if the best candidate has a higher total pay, the answer is zero, but that logic is wrong because it never prints anything else despite the previous comparison indicating an optimal winner; the bug is located precisely at this guard.",
+      "directive": "Replace the lines with logic that correctly handles the scenario where the top candidate simply wins without requiring further computation, ensuring the rest of the code executes only when needed."
+     },
+     "reasoning_tokens": 8
+    }
+   ],
+   "final": {
+    "target_start_line": 13,
+    "target_end_line": 14,
+    "anchor_excerpt": "print(0)",
+    "diagnosis": "The conditional branch starting at lines 13-14 assumes that if the best candidate has a higher total pay, the answer is zero, but that logic is wrong because it never prints anything else despite the previous comparison indicating an optimal winner; the bug is located precisely at this guard.",
+    "directive": "Replace the lines with logic that correctly handles the scenario where the top candidate simply wins without requiring further computation, ensuring the rest of the code executes only when needed."
+   },
+   "render": "The bug is in lines 13-14 (`print(0)`). The conditional branch starting at lines 13-14 assumes that if the best candidate has a higher total pay, the answer is zero, but that logic is wrong because it never prints anything else despite the previous comparison indicating an optimal winner; the bug is located precisely at this guard. Replace the lines with logic that correctly handles the scenario where the top candidate simply wins without requiring further computation, ensuring the rest of the code executes only when needed."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02661",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00036175,
+     "draft": {
+      "target_start_line": 4,
+      "target_end_line": 5,
+      "anchor_excerpt": "a = [[int(i) for i in input().split()] for j in range(n)]",
+      "diagnosis": "Lines 4-5 are where the bug originates because the nested list comprehension assumes each input row has at least two entries and then blindly treats the first column as the min list, but the data parsing is flawed there causing downstream misalignment.",
+      "directive": "Fix the parsing at lines 4-5 by ensuring each row is read into a structure with distinct min/max columns (and named variables rather than reusing min/max) so that the indices exist before computing medians."
+     },
+     "reasoning_tokens": 12
+    }
+   ],
+   "final": {
+    "target_start_line": 4,
+    "target_end_line": 5,
+    "anchor_excerpt": "a = [[int(i) for i in input().split()] for j in range(n)]",
+    "diagnosis": "Lines 4-5 are where the bug originates because the nested list comprehension assumes each input row has at least two entries and then blindly treats the first column as the min list, but the data parsing is flawed there causing downstream misalignment.",
+    "directive": "Fix the parsing at lines 4-5 by ensuring each row is read into a structure with distinct min/max columns (and named variables rather than reusing min/max) so that the indices exist before computing medians."
+   },
+   "render": "The bug is in lines 4-5 (`a = [[int(i) for i in input().split()] for j in range(n)]`). Lines 4-5 are where the bug originates because the nested list comprehension assumes each input row has at least two entries and then blindly treats the first column as the min list, but the data parsing is flawed there causing downstream misalignment. Fix the parsing at lines 4-5 by ensuring each row is read into a structure with distinct min/max columns (and named variables rather than reusing min/max) so that the indices exist before computing medians."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p02922",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.00089325,
+     "draft": {
+      "target_start_line": 1,
+      "target_end_line": 1,
+      "anchor_excerpt": "def main():",
+      "diagnosis": "The bug emanates from the very first line because defining main without parameters forces all parsing to happen inside rather than validating inputs up front, so the rest of the routine never receives cleanly structured values and the arithmetic loop is fed stale data.",
+      "directive": "Change line 1 to accept arguments directly (for example def main(a, b):) and relocate the input parsing outside so the function operates on explicitly passed values."
+     },
+     "reasoning_tokens": 320
+    }
+   ],
+   "final": {
+    "target_start_line": 1,
+    "target_end_line": 1,
+    "anchor_excerpt": "def main():",
+    "diagnosis": "The bug emanates from the very first line because defining main without parameters forces all parsing to happen inside rather than validating inputs up front, so the rest of the routine never receives cleanly structured values and the arithmetic loop is fed stale data.",
+    "directive": "Change line 1 to accept arguments directly (for example def main(a, b):) and relocate the input parsing outside so the function operates on explicitly passed values."
+   },
+   "render": "The bug is in line 1 (`def main():`). The bug emanates from the very first line because defining main without parameters forces all parsing to happen inside rather than validating inputs up front, so the rest of the routine never receives cleanly structured values and the arithmetic loop is fed stale data. Change line 1 to accept arguments directly (for example def main(a, b):) and relocate the input parsing outside so the function operates on explicitly passed values."
+  },
+  {
+   "kind": "T2",
+   "problem_id": "p03548",
+   "protocol": "v2",
+   "attempts": [
+    {
+     "accepted": true,
+     "reason": "ok",
+     "cost": 0.000275,
+     "draft": {
+      "target_start_line": 10,
+      "target_end_line": 11,
+      "anchor_excerpt": "t+=Z",
+      "diagnosis": "Lines 10-11 keep incrementing t and c even after the condition should have triggered a termination, so the loop never reaches the print once t\u2265X is first true.",
+      "directive": "Remove the extra increments at lines 10-11 and let the while loop terminate immediately after printing when t reaches or exceeds X."
+     },
+     "reasoning_tokens": 9
+    }
+   ],
+   "final": {
+    "target_start_line": 10,
+    "target_end_line": 11,
+    "anchor_excerpt": "t+=Z",
+    "diagnosis": "Lines 10-11 keep incrementing t and c even after the condition should have triggered a termination, so the loop never reaches the print once t\u2265X is first true.",
+    "directive": "Remove the extra increments at lines 10-11 and let the while loop terminate immediately after printing when t reaches or exceeds X."
+   },
+   "render": "The bug is in lines 10-11 (`t+=Z`). Lines 10-11 keep incrementing t and c even after the condition should have triggered a termination, so the loop never reaches the print once t\u2265X is first true. Remove the extra increments at lines 10-11 and let the while loop terminate immediately after printing when t reaches or exceeds X."
+  }
+ ]
+}
