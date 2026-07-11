@@ -1,0 +1,66 @@
+— deepseek/deepseek-chat-v3.1 T3: 150 to run · est $0.110
+  smoke gate @5: parse 5/5, mean $0.00094/trial
+— deepseek/deepseek-chat-v3.1 T3: 114 to run · est $0.083
+  smoke gate @5: parse 5/5, mean $0.00066/trial
+grading 150 patches …
+  T3 complete: parse 149/150, meter $0.2676, lifetime $0.5946
+— deepseek/deepseek-chat-v3.1 T2: 150 to run · est $0.075
+  smoke gate @5: parse 5/5, mean $0.00031/trial
+Traceback (most recent call last):
+  File "/Users/kyledisch/Projects/ghost-patch/m1.py", line 530, in <module>
+    raise SystemExit(cmd_run(args.model))
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/m1.py", line 338, in cmd_run
+    rec = _repair_trial(model, e, arm, renders.get((arm, pid)), m)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/pilot.py", line 225, in _repair_trial
+    r = chat(model, prompt, max_tokens=REPAIR_MAX_TOKENS,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/client.py", line 105, in chat
+    resp = _OAI.chat.completions.create(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/_utils/_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1281, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1332, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1110, in request
+    return self._process_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1199, in _process_response
+    return api_response.parse()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/_response.py", line 326, in parse
+    parsed = self._parse(to=to)
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/openai/_response.py", line 268, in _parse
+    data = response.json()
+           ^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/Projects/ghost-patch/.venv/lib/python3.12/site-packages/httpx/_models.py", line 832, in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kyledisch/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 685 column 1 (char 3762)
+— deepseek/deepseek-chat-v3.1 T3: 0 to run · est $0.000
+grading 14 patches …
+  T3 complete: parse 149/150, meter $0.2757, lifetime $0.6026
+— deepseek/deepseek-chat-v3.1 T2: 136 to run · est $0.068
+  smoke gate @5: parse 5/5, mean $0.00069/trial
+grading 136 patches …
+  T2 complete: parse 149/150, meter $0.3598, lifetime $0.6867
+— deepseek/deepseek-chat-v3.1 T1: 150 to run · est $0.061
+  smoke gate @5: parse 5/5, mean $0.00030/trial
+grading 150 patches …
+  T1 complete: parse 149/150, meter $0.4154, lifetime $0.7423
+deepseek/deepseek-chat-v3.1: all arms complete

@@ -217,3 +217,91 @@ gate approved (full auto within the $1.00 cap and the pre-committed halt trigger
 - **M3 brief:** confirmed-damage subsets; owes the **diff-anchor-after-code-drift**
   verifier design (KICKOFF open question, standing).
 - **M4:** inherits M3's corrupted finals; gates on the unpaired Newcombe M4-vs-M2 gap.
+
+---
+
+## RESULTS (2026-07-11, `m1.py verdict` over data/m1/trials.jsonl; machine copy data/m1_results.json)
+
+Executed under the 2026-07-10 sign-off: generation wave 2026-07-10 ($0.143,
+300/300 finals frozen, all T2 protocol v2), deepseek repair wave 2026-07-10,
+qwen repair wave 2026-07-11. 900/900 trials (2 models × 3 arms × K=150), every
+parsed patch graded S-exact in the Docker sandbox before verdict. All arm parse
+rates cleared the 80% floor (deepseek 149/150 in each arm; qwen T3 128, T2 137,
+T1 144 of 150 first-parse).
+
+### Primary endpoint — paired T2-vs-T3 pass-rate drop (Newcombe, φ̂-corrected)
+
+| Model | drop d | 95% CI | pairs | label |
+|---|---|---|---|---|
+| deepseek-chat-v3.1 | +0.0400 | [−0.0218, +0.1029] | 150 | **NULL** |
+| qwen3-coder-30b | +0.0362 | [−0.0343, +0.1062] | 138 | **NULL** |
+
+Both CIs cross zero; neither meets the d≥0.10 + lo>0 REPRODUCED bar. Direction is
+consistent (wrong-location instruction sits slightly below no-instruction in both
+models) but the tier-level effect is indistinguishable from noise at N=150.
+
+### Arms (pass / valid, Wilson 95%)
+
+| Model | T1 (correct instr) | T2 (wrong-location) | T3 (no instr) |
+|---|---|---|---|
+| deepseek | 141/150 = 94.0% [89.0, 96.8] | 121/150 = 80.7% [73.6, 86.2] | 127/150 = 84.7% [78.0, 89.6] |
+| qwen | 114/146 = 78.1% [70.7, 84.0] | 87/146 = 59.6% [51.5, 67.2] | 91/140 = 65.0% [56.8, 72.4] |
+
+Structure: the T1 lift over T3 is real in both models (deepseek +9.3 pts, qwen
++13.1 pts) — instructions steer these models. The wrong-location instruction is
+**obeyed** at high rates (comply: deepseek 129/150, qwen 127/146) yet does not
+produce the paper's net repair collapse: the tier-level story is
+**obedience without net damage** — models patch the named wrong location and
+still often fix the real bug anyway.
+
+### Damage + funnel checkpoints (pre-committed at M1 close)
+
+| Model | T2 damaged (rate, Wilson) | M3 entry (≥20) | failed-T3 | M2 entry (≥20) |
+|---|---|---|---|---|
+| deepseek | 18/150 = 12.0% [7.7, 18.2] | **EXTEND** | 23 | OK |
+| qwen | 35/146 = 24.0% [17.8, 31.5] | **OK** | 49 | OK |
+
+- Damage is real at trial level in both models even though the primary is NULL —
+  the M3 ghost-error chain has raw material.
+- **deepseek extension owed (pre-committed, executes pre-M3):** T2-only along the
+  frozen order `bank[150:186]` then pool-smoke, v2 instructions generated as
+  problems enter; extension trials feed M3 entry only, the M1 primary stays frozen
+  at `bank[0:150]`. Needs ≥2 more damaged; at the measured 12.0% rate, 36 bank
+  problems expect ~4.3 (P(≥2) ≈ 0.93). Machinery is a small `m1.py` addition owed
+  in the M3 brief.
+- Pilot-vs-measured damage: deepseek 16.7% (2/12) → 12.0%; qwen 50% (6/12) → 24.0%.
+  The qwen pilot overestimated ~2× — noted for future sizing from N=12 pilots.
+
+### Incidents (zero trial loss)
+
+1. Deepseek T3 trial 36: ~5.5-min silent provider call diagnosed live; the call
+   completed during shutdown — provider tail latency, not a hang. Established the
+   420 s write-age kill+resume rule.
+2. Deepseek T2 trial 14: wave crashed on an OpenRouter malformed-body
+   `json.JSONDecodeError`; added to `client.chat`'s transient retry tuple
+   (tested, committed), resumed with no loss.
+
+### Cost record
+
+| Ledger | spent | cap |
+|---|---|---|
+| M1 meter (data/m1/cost_ledger.json) | **$0.5840** (1,227 calls) | $1.00 |
+| — generation wave | $0.143 | |
+| — deepseek repair wave | ~$0.272 | |
+| — qwen repair wave | ~$0.169 | |
+| Lifetime (M0 + M1) | **$0.9110** | $5.00 guard |
+
+M2–M4 re-projection from measured M1 rates (5-pass upper bounds): deepseek
+$0.07/$0.14/$0.05, qwen $0.10/$0.24/$0.07 — full-chain remainder ≲ $0.67,
+lifetime ceiling ≈ $1.58. Budget is not a constraint on the remaining chain.
+
+---
+
+**FINAL M1 VERDICT: NULL × 2 (primary), funnel ALIVE.** The paper's
+wrong-location repair drop does not reproduce at tier level on either cheap
+model at N=150 — consistent with M0's awareness null, and it is the headline.
+The obedience/damage funnel still feeds the chain: M2 entry is met on both
+models; M3 entry is met on qwen and one pre-committed extension away on
+deepseek. Proceed to the M2 brief (5-pass self-repair on failed-T3 subsets),
+with the deepseek T2 extension and the diff-anchor verifier design owed in the
+M3 brief.
