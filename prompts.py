@@ -107,6 +107,50 @@ def m2_repair_prompt(description: str, code: str, feedback: dict) -> str:
         actual_output=feedback["actual"])
 
 
+# M3 loop prompt (docs/M3-BRIEF.md, signed 2026-07-11). Paper's RQ3 order: problem
+# statement + current code + most recent failing test + the instruction; stateless
+# per pass. The M2 template with its self-diagnose Task block replaced by M1's
+# instruction block (INSTR_HEADER verbatim); every retained line is verbatim so the
+# extract_patch/compile parse machinery carries over untouched.
+M3_REPAIR_TEMPLATE = """# Problem
+{description}
+
+# Current program (it has a bug)
+```python
+{code}
+```
+
+# Most recent failing test
+Input:
+```
+{test_input}
+```
+Expected output:
+```
+{expected_output}
+```
+Actual output:
+```
+{actual_output}
+```
+
+# Reviewer diagnosis
+{instruction}
+
+Reply with the complete corrected program in a single ```python code block.
+The program must read from stdin and write to stdout exactly as the problem requires.
+"""
+
+
+def m3_repair_prompt(description: str, code: str, feedback: dict, instruction: str) -> str:
+    """One stateless M3 pass: M2's feedback fields (D8-A) + the verified wrong
+    instruction rendered for this pass's current code."""
+    return M3_REPAIR_TEMPLATE.format(
+        description=description, code=code,
+        test_input=feedback["input"], expected_output=feedback["expected"],
+        actual_output=feedback["actual"], instruction=instruction)
+
+
 # Probe-wording audit (approved 2026-07-10, cap extended to $0.35): v1's immediate
 # one-word forcing plausibly triggers agreement bias on cheap models. v2 makes the
 # model locate the bug itself first, then judge — verdict on the last line only.

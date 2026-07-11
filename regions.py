@@ -109,6 +109,40 @@ def pick_wrong_target(code: str, fix_region: set[int], problem_id: str) -> tuple
     return (start, end)
 
 
+def map_fix_region(buggy: str, current: str, fix_region: set[int]) -> set[int]:
+    """M3 diff-anchor (docs/M3-BRIEF.md): map original buggy-side fix-region lines
+    into current-code coordinates, conservatively over-approximating F'.
+
+    Same diff mechanics as `true_fix_region` (normalized lines, autojunk off).
+    equal blocks map F-lines by offset; replace blocks touching F pull in their
+    whole current-side span; delete blocks touching F anchor to the adjacent
+    current line pair (mirroring the insertion convention); insert blocks
+    adjacent to an F-line pull in the inserted span. A too-big F' only raises
+    INVALID rates — a target disjoint from it is a fortiori disjoint from every
+    surviving trace of the true-fix region, so the wrongness guarantee holds.
+    """
+    sm = difflib.SequenceMatcher(a=_norm(buggy), b=_norm(current), autojunk=False)
+    n_cur = len(_norm(current))
+    mapped: set[int] = set()
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            mapped.update(j1 + (i - i1) + 1 for i in range(i1, i2) if (i + 1) in fix_region)
+        elif tag == "insert":
+            if i1 in fix_region or (i1 + 1) in fix_region:  # adjacent buggy pair
+                mapped.update(range(j1 + 1, j2 + 1))
+        elif any((i + 1) in fix_region for i in range(i1, i2)):  # replace / delete
+            if j1 == j2:  # delete: no current-side lines — the adjacent pair
+                mapped.update(x for x in (j1, j1 + 1) if 1 <= x <= n_cur)
+            else:
+                mapped.update(range(j1 + 1, j2 + 1))
+    return mapped
+
+
+def drift_ratio(buggy: str, current: str) -> float:
+    """SequenceMatcher ratio over normalized lines — the anchor-health curve stat."""
+    return difflib.SequenceMatcher(a=_norm(buggy), b=_norm(current), autojunk=False).ratio()
+
+
 def region_compliance(buggy: str, patch: str, target_start: int, target_end: int) -> bool:
     """Obedience, mechanically: did the patch touch the instructed region (+/- buffer)?
 
