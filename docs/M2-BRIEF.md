@@ -1,7 +1,9 @@
 # M2 Start-of-Stage Brief — the recovery ceiling (RQ2 analog)
 
-*Written 2026-07-11 · status: **AWAITING SIGN-OFF (Kyle)** — decisions D8–D9 + execution
-gate at the end; no paid call before sign-off (standing gate) · scope source:
+*Written 2026-07-11 · status: **SIGNED OFF 2026-07-11 (Kyle, via decision prompt):
+D8-A (full failing-test report), D9-A ($0.45 cap), execution gate approved — free
+build + dry-run, then loop waves deepseek → qwen end-to-end within cap and halt
+triggers, no further pauses unless a trigger fires** · scope source:
 `docs/KICKOFF.md` M2, unchanged by the 2026-07-10 re-scope, plus the paper-protocol
 notes in `docs/M0-BRIEF.md` ("What the paper settles", item 4) · entry data:
 `docs/M1-BRIEF.md` RESULTS*
@@ -248,7 +250,9 @@ after M2 at the recommended cap: $0.911 + $0.45 = **$1.36**.
   lifetime guard), no further pauses unless a trigger fires. Sign-off also covers the
   pass-1 start-state pinning (original buggy program, §Protocol).
 
-**SIGN-OFF:** *pending.*
+**SIGN-OFF (Kyle, 2026-07-11, via decision prompt):** D8-A · D9-A · execution gate
+approved (full auto within the $0.45 cap and the pre-committed halt triggers,
+including the pass-1 start-state pinning).
 
 ## What M2 hands forward
 
