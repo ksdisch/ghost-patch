@@ -1,0 +1,113 @@
+{
+ "models": {
+  "deepseek/deepseek-chat-v3.1": {
+   "clean_n": 12,
+   "escaped": 10,
+   "rate": 0.8333,
+   "wilson": [
+    0.552,
+    0.953
+   ],
+   "label": "UNDERPOWERED",
+   "curve": [
+    7,
+    8,
+    9,
+    9,
+    10
+   ],
+   "pass1_escaped": 7,
+   "mean_passes": 2.25,
+   "deepened": 1,
+   "held": 0,
+   "improved": 1,
+   "final_below": 1,
+   "ever_below": 5,
+   "invalid": 9,
+   "invalid_by_cause": {
+    "parse failure": 2,
+    "draft rejected": 0,
+    "anchor unresolvable": 7
+   },
+   "unfinished": 0,
+   "pass_calls": 36,
+   "first_parse": 31,
+   "repair_cost": 0.058,
+   "draft_calls": 38,
+   "draft_first_accept": 34,
+   "gen_cost": 0.0211,
+   "mean_failed_by_pass": [
+    7.4667,
+    9.7143,
+    3.2,
+    4.0,
+    5.6667
+   ],
+   "mean_drift": 0.2089
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "clean_n": 23,
+   "escaped": 7,
+   "rate": 0.3043,
+   "wilson": [
+    0.156,
+    0.5087
+   ],
+   "label": "REPORTED",
+   "curve": [
+    7,
+    7,
+    7,
+    7,
+    7
+   ],
+   "pass1_escaped": 7,
+   "mean_passes": 3.7826,
+   "deepened": 3,
+   "held": 9,
+   "improved": 4,
+   "final_below": 15,
+   "ever_below": 16,
+   "invalid": 12,
+   "invalid_by_cause": {
+    "parse failure": 5,
+    "draft rejected": 1,
+    "anchor unresolvable": 6
+   },
+   "unfinished": 0,
+   "pass_calls": 103,
+   "first_parse": 93,
+   "repair_cost": 0.0502,
+   "draft_calls": 109,
+   "draft_first_accept": 100,
+   "gen_cost": 0.0852,
+   "mean_failed_by_pass": [
+    9.4074,
+    13.3158,
+    13.8947,
+    12.5882,
+    12.3125
+   ],
+   "mean_drift": 0.2504
+  }
+ },
+ "extension": {
+  "trials": 36,
+  "damaged": 3,
+  "comply": 33
+ },
+ "cost": {
+  "m3_total": 0.2549,
+  "lifetime": 1.3533
+ },
+ "projection_upper_bounds": {
+  "deepseek/deepseek-chat-v3.1": {
+   "m4_entry": 2,
+   "m4_max": 0.016
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "m4_entry": 16,
+   "m4_max": 0.039
+  }
+ }
+}

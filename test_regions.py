@@ -13,6 +13,8 @@ from regions import (
     fix_added_lines,
     region_compliance,
     pick_wrong_target,
+    map_fix_region,
+    drift_ratio,
 )
 
 BUGGY = "a = 1\nb = 2\nc = a + b\nprint(c)\n"
@@ -153,3 +155,76 @@ class TestRegionCompliance:
 
     def test_unchanged_patch_does_not_comply(self):
         assert region_compliance(BUGGY, BUGGY, 2, 2) is False
+
+
+class TestMapFixRegion:
+    """M3 diff-anchor (docs/M3-BRIEF.md): map F into drifted current-code coords,
+    conservatively over-approximating — a target disjoint from F' is a fortiori
+    disjoint from every surviving trace of the true-fix region."""
+
+    def test_identity_maps_to_itself(self):
+        assert map_fix_region(BUGGY, BUGGY, {2}) == {2}
+
+    def test_equal_block_shifts_by_offset(self):
+        current = "x = 0\ny = 9\na = 1\nb = 2\nc = a + b\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {2}) == {4}
+
+    def test_replace_touching_f_pulls_whole_span(self):
+        current = "a = 1\nB1 = 0\nB2 = 0\nc = a + b\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {2}) == {2, 3}
+
+    def test_replace_partially_overlapping_f_pulls_whole_span(self):
+        current = "a = 1\nR1 = 0\nR2 = 0\nR3 = 0\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {3}) == {2, 3, 4}
+
+    def test_replace_not_touching_f_is_ignored(self):
+        current = "a = 9\nb = 2\nc = a + b\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {3}) == {3}
+
+    def test_deleted_f_line_anchors_to_adjacent_pair(self):
+        current = "a = 1\nc = a + b\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {2}) == {1, 2}
+
+    def test_insert_adjacent_to_f_line_joins_fprime(self):
+        current = "a = 1\nb = 2\nNEW = 0\nc = a + b\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {2}) == {2, 3}
+
+    def test_insert_far_from_f_is_ignored(self):
+        current = "a = 1\nb = 2\nc = a + b\nNEW = 0\nprint(c)\n"
+        assert map_fix_region(BUGGY, current, {1}) == {1}
+
+    def test_wholesale_rewrite_swallows_file_and_kills_targets(self):
+        current = "import sys\nprint(int(sys.stdin.read()) * 2)\n"
+        fprime = map_fix_region(BUGGY, current, {2})
+        assert fprime == {1, 2}
+        assert pick_wrong_target(current, fprime, "p1#p3") is None
+
+    def test_empty_fix_region_maps_empty(self):
+        assert map_fix_region(BUGGY, BUGGY, set()) == set()
+
+
+class TestDriftRatio:
+    def test_identical_is_one(self):
+        assert drift_ratio(BUGGY, BUGGY) == 1.0
+
+    def test_disjoint_is_low(self):
+        assert drift_ratio(BUGGY, "import sys\nq = [1]\nwhile q: q.pop()\n") < 0.5
+
+    def test_trailing_whitespace_is_no_drift(self):
+        assert drift_ratio("a = 1 \nb\n", "a = 1\nb\n") == 1.0
+
+
+class TestPerPassSeeding:
+    """M3 per-pass targets: seed suffix '#p{k}' gives a fresh deterministic pick
+    per pass without touching pick_wrong_target's signature."""
+
+    CODE = TestPickWrongTarget.CODE
+
+    def test_pass_seeds_are_deterministic(self):
+        a = pick_wrong_target(self.CODE, {5}, "p00001#p2")
+        b = pick_wrong_target(self.CODE, {5}, "p00001#p2")
+        assert a == b
+
+    def test_pass_seeds_vary_across_passes(self):
+        picks = {pick_wrong_target(self.CODE, {5}, f"p00001#p{k}") for k in range(1, 20)}
+        assert len(picks) > 1
