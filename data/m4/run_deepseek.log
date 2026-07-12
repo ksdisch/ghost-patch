@@ -1,0 +1,3 @@
+— deepseek/deepseek-chat-v3.1: 2 loops to run/resume · est $0.016 (upper bound)
+  smoke gate @5: parse 4/5, mean $0.00148/pass
+deepseek/deepseek-chat-v3.1: wave complete — recovered 1/2 · re-crossed (pass ≥1) 1 · parse 5/6 · meter $0.0078 · lifetime $1.3611

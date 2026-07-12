@@ -1,0 +1,2 @@
+— qwen/qwen3-coder-30b-a3b-instruct: 16 loops to run/resume · est $0.062 (upper bound)
+  smoke gate @5: parse 4/5, mean $0.00102/pass

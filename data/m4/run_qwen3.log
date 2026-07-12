@@ -1,0 +1,5 @@
+— qwen/qwen3-coder-30b-a3b-instruct: 8 loops to run/resume · est $0.030 (upper bound)
+  smoke gate @5: parse 3/5, mean $0.00107/pass
+  parse leg below 4/5 — disposed 2026-07-11 (Kyle): finish under frozen protocol; truncation attrition is reported
+parse floor breached — 42/61 < 80%; disposed 2026-07-11 (Kyle): reported in docs/M4-BRIEF.md RESULTS
+qwen/qwen3-coder-30b-a3b-instruct: wave complete — recovered 4/16 · re-crossed (pass ≥1) 6 · parse 42/61 · meter $0.0711 · lifetime $1.4244
