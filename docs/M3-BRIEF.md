@@ -349,3 +349,109 @@ scope, `m3.py`/M3-ledger placement, and the UNDERPOWERED dispositions as pre-dec
 - **The paper-trail:** extension damage rate (deepseek), per-pass generator
   acceptance on drifted code, and the drift_ratio curve — the feasibility record for
   anyone re-running RQ3 with mechanical verification.
+
+---
+
+## RESULTS (2026-07-11, `m3.py verdict` over data/m3/trials.jsonl; machine copy data/m3_results.json)
+
+Executed same-day under the sign-off: free build (32 new tests, 233 total green) +
+synthetic dry-run, the extension wave, entry freeze, then the deepseek and qwen loop
+waves. **Every pre-committed gate passed; no halt fired.** Extension: 36/36
+instructions (gen smoke 10/10 @ $0.00051/draft), 36/36 trials (parse 36/36, comply
+33/36), **E = 3 new damaged (8.3% vs M1's 12.0%) → deepseek entry 21, no pool-smoke
+fallback needed**. Grade-0 integrity 56/56 — every loop's damaged start state
+reproduced its recorded M1/extension grade exactly and re-verified failed > baseline.
+One ops incident (qwen wave): a ~18-minute silent call was killed + resumed loss-free
+after the >900 s no-advance rule fired; note for the ops file — an ESTABLISHED socket
+is weak in-flight evidence, httpx keeps pooled keep-alive connections ESTABLISHED
+while idle. The generator held up on drifted code: first-attempt acceptance 34/36
+(deepseek wave) and 100/104 (qwen wave) at mean drift 0.21/0.25 — the brief's one
+untested rate was fine.
+
+### Primary (descriptive) — the escape-rate curve
+
+| Model | escape | Wilson 95% | curve (cum by pass) | clean N | label |
+|---|---|---|---|---|---|
+| deepseek-chat-v3.1 | 10/12 = **83.3%** | [55.2, 95.3] | [7, 8, 9, 9, 10] | 12 | **UNDERPOWERED** |
+| qwen3-coder-30b | 7/23 = **30.4%** | [15.6, 50.9] | **[7, 7, 7, 7, 7]** | 23 | **REPORTED** |
+
+The powered cell shows the paper's shape: **qwen's escapes are entirely pass-1**
+(feedback beats the sabotage immediately or never), and the curve is **flat at zero
+for passes 2–5** — 16/23 clean loops stay corrupted through four more verified wrong
+instructions. deepseek's cell is UNDERPOWERED (clean 12 < 20, rule stands) but its
+direction is the M1-null propagating: among loops that stayed verifiable, it escaped
+83% of the time, front-loaded (7/10 at pass 1).
+
+### Ghost-error compounding (qwen, the powered cell)
+
+- **Trajectory (clean loops):** escaped 7 · deepened 3 · held 9 · improved 4 —
+  corruption *persists* (12/16 non-escaped end at or above their damaged start).
+- **Mean failed by pass (active loops):** 9.4 → 13.3 → 13.9 → 12.6 → 12.3 — damage
+  jumps in passes 1–2 and stays pinned high; no recovery drift.
+- **Final-below-baseline 15/23 = 65.2% [44.9, 81.2]** vs M2's no-instruction base
+  rate 31.6% [19.1, 47.5]: **delta +33.6 pts, Newcombe 95% CI [+7.8, +53.9]** —
+  descriptive per the brief (start states differ: M3 starts damaged), but the
+  direction is loud. deepseek: 1/12 = 8.3% vs base 17.4% (delta −9.1 pts, CI
+  [−30.0, +19.9], no signal — the cell mostly escaped). Ever-below: qwen 16/23 =
+  69.6%, deepseek 5/12.
+- **Obedience under iteration:** qwen complies with the wrong instruction against a
+  contradicting failing test at 25/27 = 93% (pass 1), eroding to 11/16 = 69% (pass
+  5) — obedience persists but decays under repeated feedback. deepseek: 60% at pass
+  1 (the escaping majority ignores the reviewer), high among the loops that stayed
+  damaged.
+
+### INVALID taxonomy — the verifier's dilemma, iterative edition
+
+| Model | INVALID loops | parse | draft-rejected | anchor-unresolvable | first-parse |
+|---|---|---|---|---|---|
+| deepseek | 9/21 = 42.9% | 2 | 0 | **7** | 31/36 = 86.1% |
+| qwen | 12/35 = 34.3% | 5 | 1 | **6** | 93/103 = 90.3% |
+
+The dominant INVALID cause is **anchor-unresolvable — the pre-committed graceful
+degradation of the diff-anchor design**: when a model corrupts by *rewriting
+wholesale* (drift → 0), F′ swallows the file and no provably-wrong target exists.
+deepseek's corruption mode is exactly that (7/9 of its INVALIDs; mean drift 0.21),
+which is why its cell starved: **the more destructive the obedience, the less
+verifiable the manipulation**. This is the honest cost of per-pass mechanical
+verification — the paper's unverified generator has no such attrition (and no such
+guarantee). qwen's profile inverts (parse-dominant, 5/12): it corrupts incrementally
+(anchors survive) but trips the format contract — its M2 loop-parse fragility
+recurring at 34.3% loop-INVALID vs the 15-loop slack; clean-N 23 held.
+
+### Cost record
+
+| Ledger | spent | cap |
+|---|---|---|
+| M3 meter (data/m3/cost_ledger.json) | **$0.2549** (374 calls) | $1.00 |
+| — extension wave | $0.0396 | |
+| — deepseek loop wave | $0.0791 | |
+| — qwen loop wave | $0.1362 | |
+| Lifetime (M0 + M1 + M2 + M3) | **$1.3533** | $5.00 guard |
+
+33% of the $0.78 no-escape bound — early escapes and INVALID-terminal loops did the
+work. **M4 re-projection (measured M3 pass rates): deepseek m4_max $0.016 at entry
+2, qwen m4_max $0.039 at entry 16.**
+
+### The funnel consequence M4 inherits (pre-declared here)
+
+M4 entry = clean non-escaped finals: **deepseek 2, qwen 16 — both < 20**, so the
+KICKOFF's chain gate (M4-vs-M2 recovery, Newcombe) is **pre-declared UNDERPOWERED on
+both models** by the standing N-rule; no rescue exists (deepseek's pool could not
+supply corrupted finals faster than it escapes, and qwen's attrition is
+INVALID-driven). M4 remains nearly free (≈ $0.06 upper) and still delivers the
+descriptive Irrecoverable-Damage-Rate read on 18 corrupted states plus the M2
+protocol contrast — whether to run it descriptively is the M4 brief's opening
+decision.
+
+---
+
+**FINAL M3 VERDICT: REPORTED (qwen) · UNDERPOWERED (deepseek, pre-declared
+no-rescue).** On the powered cell, ghost-error compounding is visible and
+structured: escape collapses to pass-1-only (30.4%, curve flat at zero after),
+final-below-baseline runs double the no-instruction base rate (+33.6 pts, CI
+excluding 0, start-confounded), and wrong-location obedience persists at 93→69%
+against contradicting tests. On deepseek the M1 null propagates — 83% escape among
+verifiable loops — but its wholesale-rewrite corruption mode shreds the diff-anchor
+(7/21 unverifiable), starving both its M3 cell and M4's entry. Proceed to the M4
+brief (self-repair from corrupted finals) carrying the pre-declared UNDERPOWERED×2
+chain-gate disposition and the $0.055 descriptive-run option.
