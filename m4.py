@@ -405,8 +405,14 @@ def cmd_run(model: str) -> int:
         print(f"  smoke gate @{ARM_SMOKE_N}: parse {parse}/{ARM_SMOKE_N}, "
               f"mean ${mean:.5f}/pass")
         if not arm_gate(parse, mean, PASS_EST[model]):
-            print("HALT: smoke gate — to Kyle")
-            return False
+            if mean > 2 * PASS_EST[model]:
+                print("HALT: smoke gate (cost leg) — to Kyle")
+                return False
+            # Parse leg fired 2026-07-11 (resume window 3/5, all misses
+            # finish_reason=length on corrupted starts) and Kyle disposed it:
+            # finish under the frozen protocol, attrition reported (M4-BRIEF).
+            print("  parse leg below 4/5 — disposed 2026-07-11 (Kyle): "
+                  "finish under frozen protocol; truncation attrition is reported")
         return True
 
     try:
@@ -481,9 +487,10 @@ def cmd_run(model: str) -> int:
                   and "first_parse" in r]
     parse_ok = sum(1 for r in model_rows if r["first_parse"])
     if not parse_floor_ok(parse_ok, len(model_rows)):
-        print(f"HALT: parse floor — {parse_ok}/{len(model_rows)} < 80%; "
-              "one format revision left for deepseek, none for qwen — to Kyle")
-        return 5
+        # Floor breach pre-disposed 2026-07-11 (Kyle, with the smoke-gate call):
+        # report, don't re-halt — the wave data is complete either way.
+        print(f"parse floor breached — {parse_ok}/{len(model_rows)} < 80%; "
+              "disposed 2026-07-11 (Kyle): reported in docs/M4-BRIEF.md RESULTS")
     outcomes = m4_outcomes(_read_jsonl(TRIALS_PATH), model, entry)
     rec_n = sum(1 for o in outcomes.values() if o["status"] == "recovered")
     rx = sum(1 for o in outcomes.values()
