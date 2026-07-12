@@ -1,7 +1,9 @@
 # M4 Start-of-Stage Brief — irrecoverability (RQ4 analog)
 
-*Written 2026-07-11 · status: **AWAITING SIGN-OFF — no paid call before Kyle's
-decision** · scope source: `docs/KICKOFF.md` M4 ("same repair protocol as M2,
+*Written 2026-07-11 · status: **SIGNED OFF 2026-07-11 (Kyle, via decision prompt):
+D11-A (run descriptively), D12-A (all 18 run, IDR primary over the damaged 16),
+D13-A ($0.10 cap), execution gate approved end-to-end — no further pauses unless a
+trigger fires** · scope source: `docs/KICKOFF.md` M4 ("same repair protocol as M2,
 starting from M3's corrupted final states. Primary: **Irrecoverable Damage Rate**
 (paper's definition verbatim: fails to re-cross the buggy-patch baseline within 5
 passes) vs the M2 ceiling") · gate disposition inherited from `docs/M3-BRIEF.md`
@@ -271,6 +273,13 @@ recommended cap: $1.3533 + $0.10 = **$1.4533** of $5.00.
   (M3 final patch, byte-frozen), the transient-re-cross verbatim reading with the
   durable-recovery secondary, the M2-verbatim prompt/feedback reuse (D8-A), the
   no-spot-read disposition, and the UNDERPOWERED labels exactly as pre-declared.
+
+**SIGN-OFF (Kyle, 2026-07-11, via decision prompt):** D11-A · D12-A · D13-A ·
+execution gate approved (full auto within the $0.10 cap and the pre-committed halt
+triggers, including the byte-frozen M3-final start states, the transient-re-cross
+verbatim reading with the durable-recovery secondary, the M2-verbatim
+prompt/feedback reuse, the no-spot-read disposition, and the UNDERPOWERED labels
+exactly as pre-declared).
 
 ## What M4 hands forward
 
