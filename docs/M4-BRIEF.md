@@ -294,3 +294,101 @@ exactly as pre-declared).
 - **The lineage lesson, already banked at M3:** diff-anchor attrition scales with
   the subject's rewrite radius — budget ≥40% INVALID slack for wholesale-rewriter
   models in any M3-like design.
+
+---
+
+## RESULTS (2026-07-11, `m4.py verdict` over data/m4/trials.jsonl; machine copy data/m4_results.json)
+
+Executed same-day under the sign-off: free build (23 new tests, 256 total green) +
+synthetic dry-run + entry freeze (2/16, classes 1+1 / 15+1, start patches
+byte-verified against the M3 record), then the deepseek wave (2 loops, zero
+incidents) and the qwen wave (16 loops; one ~19-minute pooled-connection stall
+killed + resumed loss-free under the >900 s no-advance rule — the third proven
+loss-free kill+resume of the project). **Grade-0 integrity 18/18** — every
+corrupted start reproduced its recorded M3 final grade exactly and matched its
+frozen D12 class.
+
+**One trigger fired (the milestone's only non-pre-committed decision):** the
+resumed qwen wave's smoke gate re-read parse 3/5 — every miss
+`finish_reason=length` (qwen overruns the frozen 3,200-token budget on heavily
+corrupted starts; truncated responses ran 9–13k chars) — and Kyle disposed it
+mid-wave: **finish under the frozen protocol, cost leg still enforced, floor
+breach reported rather than re-halted** (recorded in `m4.py` at the gate). The
+completed wave duly read first-parse 42/61 = **68.9% < the 80% floor** — the
+M2-flagged qwen loop-parse fragility (80.6% there), worsened by
+corruption-length responses; 4 loops INVALID (all parse-length), including the
+qwen pass-0 loop p03593. The attrition is the finding: **response length scales
+with corruption depth**, and M4's saboteur-free prompts make qwen ramble where
+M3's targeted instructions kept it terse (90.3% first-parse there).
+
+### Primary — Irrecoverable Damage Rate (verbatim: never re-crosses the buggy baseline within 5 passes)
+
+| Model | IDR (damaged clean) | Wilson 95% | re-cross curve (cum) | sensitivity (all clean) | label |
+|---|---|---|---|---|---|
+| deepseek-chat-v3.1 | 0/1 = 0% | [0, 79.4] | [1, 1, 1, 1, 1] | 0/2 | **UNDERPOWERED** (pre-declared) |
+| qwen3-coder-30b | **6/12 = 50.0%** | [25.4, 74.6] | **[2, 3, 4, 6, 6]** | 6/12 | **UNDERPOWERED** (pre-declared) |
+
+The qwen cell splits clean in half, and the halves are structurally distinct:
+
+- **The irrecoverable six:** four never improve by a single test across five
+  feedback passes (p03894, p03628, p00589, p03213 — best == start), two move but
+  never near baseline (p03713 18→16, p02856 20→13). **Deepened: 0/12** — with
+  the saboteur silenced the damage stops compounding (M3's mean-failed rose and
+  pinned; M4 leaves no loop worse than its start), it just doesn't heal.
+- **The recovering six:** every re-cross is **durable** (final ≤ baseline; zero
+  transient re-crosses), four are full fixes, and p03752 fell 19→1 failed in a
+  single pass. Unlike M2's pass-1 front-load (14/20 of its recoveries), M4's
+  re-crosses accrue through pass 4 (curve [2, 3, 4, 6]) — **from corrupted
+  states, iteration depth does real work that clean-start repair never needed.**
+
+deepseek propagates its M1 null to the chain's last link: its one damaged final
+(p02863, 16 failed vs baseline 1) full-fixed at pass 1; the pass-0 loop p03069
+held at 1 failed for all 5 passes (re-crossed at pass 0 by definition, never
+full-fixed). A 2-loop cell is anecdote, labeled accordingly.
+
+### The chain gate (M4-vs-M2 recovery), computed as pre-declared
+
+| Model | M4 full-fix | M2 ceiling | Newcombe M2−M4 | label |
+|---|---|---|---|---|
+| deepseek | 1/2 | 18/23 = 78.3% | +28.3 pts [−17.0, +70.6] | **UNDERPOWERED ×2** (pre-declared M3 close) |
+| qwen | 4/12 = 33.3% | 20/38 = 52.6% | +19.3 pts [−12.3, +43.9] | 〃 |
+
+Direction matches the paper on both models (M4 < M2); both CIs straddle zero —
+the funnel-starved N landed exactly where M3 pre-declared. The selection
+confound stands as stated (M4's population is the never-escaped residue of
+M1→M3; context, not a gate).
+
+### Secondaries
+
+- **Per-loop table (18 loops):** printed by `m4.py verdict`, machine copy in
+  `data/m4_results.json` (`per_loop`).
+- **INVALID:** qwen 4/16 (all parse, all `finish_reason=length`), deepseek 0.
+  First-parse: deepseek 5/6; qwen 42/61 = 68.9%.
+- **Start drift from buggy** (mean SequenceMatcher ratio): deepseek 0.21, qwen
+  0.18 — the corrupted starts are ~80% rewritten relative to the code M2 repaired.
+- **Durable recovery:** deepseek 2/2 clean loops end ≤ baseline; qwen 6/12 —
+  identical to the transient count (every re-cross held).
+
+### Cost record
+
+| Ledger | spent | cap |
+|---|---|---|
+| M4 meter (data/m4/cost_ledger.json) | **$0.0711** (87 calls) | $0.10 |
+| — deepseek wave | $0.0078 | |
+| — qwen wave | $0.0633 | |
+| Lifetime (M0 + M1 + M2 + M3 + M4) | **$1.4244** | $5.00 guard |
+
+90% of the $0.079 no-early-stop bound — parse retries ate what early stops saved.
+
+---
+
+**FINAL M4 VERDICT: UNDERPOWERED ×2 (pre-declared at M3 close), descriptive read
+delivered.** On the larger cell, irrecoverability is real but partial:
+**half of qwen's ghost-error states (6/12) never re-cross the buggy baseline
+across five saboteur-free feedback passes** — four of them never improve at all —
+while the recovering half re-crosses durably and needs iteration depth clean-start
+repair never used. Direction M4 < M2 on both models, CIs straddle zero, exactly as
+the funnel forecast. The chain closes end-to-end: obey (M1 NULL×2) → recover
+(M2 ceiling 78/53%) → compound (M3 REPORTED: pass-1-only escape, damage 2× base)
+→ irrecoverable (M4 descriptive: a 50% stuck-half). Remaining scope: project
+close-out (README verdict table, chain summary) — outside this brief's gate.
