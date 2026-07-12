@@ -1,0 +1,350 @@
+{
+ "models": {
+  "deepseek/deepseek-chat-v3.1": {
+   "clean_n": 2,
+   "recovered": 1,
+   "rate": 0.5,
+   "wilson": [
+    0.0945,
+    0.9055
+   ],
+   "label": "UNDERPOWERED",
+   "curve": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "pass1_recovered": 1,
+   "mean_passes": 3.0,
+   "trajectory": {
+    "recovered": 1,
+    "improved": 0,
+    "held": 1,
+    "deepened": 0
+   },
+   "invalid": 0,
+   "unfinished": 0,
+   "idr_n": 1,
+   "irrecoverable": 0,
+   "idr": 0.0,
+   "idr_wilson": [
+    0.0,
+    0.7935
+   ],
+   "recross_curve": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "pass0_pids": [
+    "p03069"
+   ],
+   "sens_n": 2,
+   "sens_irrecoverable": 0,
+   "sens_idr": 0.0,
+   "durable_damaged": 1,
+   "durable_all": 2,
+   "pass_calls": 6,
+   "first_parse": 5,
+   "cost": 0.0078,
+   "mean_drift_from_buggy": 0.2081
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "clean_n": 12,
+   "recovered": 4,
+   "rate": 0.3333,
+   "wilson": [
+    0.1381,
+    0.6094
+   ],
+   "label": "UNDERPOWERED",
+   "curve": [
+    1,
+    2,
+    3,
+    4,
+    4
+   ],
+   "pass1_recovered": 1,
+   "mean_passes": 4.1667,
+   "trajectory": {
+    "recovered": 4,
+    "improved": 4,
+    "held": 4,
+    "deepened": 0
+   },
+   "invalid": 4,
+   "unfinished": 0,
+   "idr_n": 12,
+   "irrecoverable": 6,
+   "idr": 0.5,
+   "idr_wilson": [
+    0.2538,
+    0.7462
+   ],
+   "recross_curve": [
+    2,
+    3,
+    4,
+    6,
+    6
+   ],
+   "pass0_pids": [],
+   "sens_n": 12,
+   "sens_irrecoverable": 6,
+   "sens_idr": 0.5,
+   "durable_damaged": 6,
+   "durable_all": 6,
+   "pass_calls": 61,
+   "first_parse": 42,
+   "cost": 0.0633,
+   "mean_drift_from_buggy": 0.1812
+  }
+ },
+ "per_loop": {
+  "deepseek/deepseek-chat-v3.1": [
+   {
+    "problem_id": "p02863",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 16,
+    "best_failed": 0,
+    "final_failed": 0,
+    "recross_at": 1,
+    "recovered_at": 1,
+    "status": "recovered"
+   },
+   {
+    "problem_id": "p03069",
+    "class": "at-or-below-baseline",
+    "baseline": 1,
+    "start_failed": 1,
+    "best_failed": 1,
+    "final_failed": 1,
+    "recross_at": 0,
+    "recovered_at": null,
+    "status": "exhausted"
+   }
+  ],
+  "qwen/qwen3-coder-30b-a3b-instruct": [
+   {
+    "problem_id": "p02782",
+    "class": "damaged",
+    "baseline": 9,
+    "start_failed": 19,
+    "best_failed": 0,
+    "final_failed": 0,
+    "recross_at": 2,
+    "recovered_at": 2,
+    "status": "recovered"
+   },
+   {
+    "problem_id": "p03132",
+    "class": "damaged",
+    "baseline": 9,
+    "start_failed": 20,
+    "best_failed": 20,
+    "final_failed": 20,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "invalid"
+   },
+   {
+    "problem_id": "p03894",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 18,
+    "best_failed": 18,
+    "final_failed": 18,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p03713",
+    "class": "damaged",
+    "baseline": 3,
+    "start_failed": 18,
+    "best_failed": 16,
+    "final_failed": 16,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p03752",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 19,
+    "best_failed": 1,
+    "final_failed": 1,
+    "recross_at": 1,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p03628",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 2,
+    "best_failed": 2,
+    "final_failed": 2,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p03593",
+    "class": "at-or-below-baseline",
+    "baseline": 3,
+    "start_failed": 1,
+    "best_failed": 1,
+    "final_failed": 1,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "invalid"
+   },
+   {
+    "problem_id": "p01751",
+    "class": "damaged",
+    "baseline": 4,
+    "start_failed": 6,
+    "best_failed": 0,
+    "final_failed": 0,
+    "recross_at": 1,
+    "recovered_at": 1,
+    "status": "recovered"
+   },
+   {
+    "problem_id": "p03393",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 2,
+    "best_failed": 0,
+    "final_failed": 0,
+    "recross_at": 4,
+    "recovered_at": 4,
+    "status": "recovered"
+   },
+   {
+    "problem_id": "p00589",
+    "class": "damaged",
+    "baseline": 2,
+    "start_failed": 20,
+    "best_failed": 20,
+    "final_failed": 20,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p03268",
+    "class": "damaged",
+    "baseline": 17,
+    "start_failed": 18,
+    "best_failed": null,
+    "final_failed": null,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "invalid"
+   },
+   {
+    "problem_id": "p03213",
+    "class": "damaged",
+    "baseline": 9,
+    "start_failed": 14,
+    "best_failed": 14,
+    "final_failed": 14,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p02856",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 20,
+    "best_failed": 13,
+    "final_failed": 13,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "exhausted"
+   },
+   {
+    "problem_id": "p03200",
+    "class": "damaged",
+    "baseline": 6,
+    "start_failed": 10,
+    "best_failed": 0,
+    "final_failed": 0,
+    "recross_at": 3,
+    "recovered_at": 3,
+    "status": "recovered"
+   },
+   {
+    "problem_id": "p02891",
+    "class": "damaged",
+    "baseline": 3,
+    "start_failed": 6,
+    "best_failed": 6,
+    "final_failed": 8,
+    "recross_at": null,
+    "recovered_at": null,
+    "status": "invalid"
+   },
+   {
+    "problem_id": "p03069",
+    "class": "damaged",
+    "baseline": 1,
+    "start_failed": 4,
+    "best_failed": 1,
+    "final_failed": 1,
+    "recross_at": 4,
+    "recovered_at": null,
+    "status": "exhausted"
+   }
+  ]
+ },
+ "chain_gate": {
+  "deepseek/deepseek-chat-v3.1": {
+   "m4_recovered": [
+    1,
+    2
+   ],
+   "m2_recovered": [
+    18,
+    23
+   ],
+   "newcombe_m2_minus_m4": [
+    0.2826,
+    -0.1702,
+    0.7057
+   ],
+   "label": "UNDERPOWERED"
+  },
+  "qwen/qwen3-coder-30b-a3b-instruct": {
+   "m4_recovered": [
+    4,
+    12
+   ],
+   "m2_recovered": [
+    20,
+    38
+   ],
+   "newcombe_m2_minus_m4": [
+    0.193,
+    -0.123,
+    0.4385
+   ],
+   "label": "UNDERPOWERED"
+  }
+ },
+ "cost": {
+  "m4_total": 0.0711,
+  "lifetime": 1.4244
+ }
+}
