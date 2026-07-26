@@ -47,3 +47,7 @@ Raw data is gitignored but refetchable via `fetch_runbugrun.py`; everything deri
 ## Spend
 
 M0 $0.3269 · M1 $0.5840 · M2 $0.1874 · M3 $0.2549 · M4 $0.0711 — **lifetime $1.4244**, all inside pre-committed caps.
+
+---
+
+📚 **Project wiki:** [PROJECT.md](PROJECT.md) — status, scope, and next actions · [Wiki/_index.md](Wiki/_index.md) — topic pages and history
