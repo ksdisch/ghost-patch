@@ -167,105 +167,332 @@ p.fig-caption{font-size:.86rem; line-height:1.55; color:var(--ink-faint);
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
 </style>
+<style id="pg-annot-css">
+:root {
+  --pg-hl-bg: rgba(255, 213, 79, 0.45);
+  --pg-hl-noted: rgba(217, 119, 6, 0.9);
+  --pg-annot-bg: #ffffff;
+  --pg-annot-fg: #1f1f1f;
+  --pg-annot-border: #cfcfcf;
+  --pg-annot-accent: #b45309;
+  --pg-annot-muted: #6b6b6b;
+  --pg-annot-backdrop: rgba(0, 0, 0, 0.35);
+  --pg-annot-flash: rgba(255, 167, 38, 0.55);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pg-hl-bg: rgba(202, 138, 4, 0.38);
+    --pg-hl-noted: rgba(245, 158, 11, 0.9);
+    --pg-annot-bg: #232323;
+    --pg-annot-fg: #e8e8e8;
+    --pg-annot-border: #484848;
+    --pg-annot-accent: #f59e0b;
+    --pg-annot-muted: #9a9a9a;
+    --pg-annot-backdrop: rgba(0, 0, 0, 0.55);
+    --pg-annot-flash: rgba(245, 158, 11, 0.45);
+  }
+}
+:root[data-theme="dark"] {
+  --pg-hl-bg: rgba(202, 138, 4, 0.38);
+  --pg-hl-noted: rgba(245, 158, 11, 0.9);
+  --pg-annot-bg: #232323;
+  --pg-annot-fg: #e8e8e8;
+  --pg-annot-border: #484848;
+  --pg-annot-accent: #f59e0b;
+  --pg-annot-muted: #9a9a9a;
+  --pg-annot-backdrop: rgba(0, 0, 0, 0.55);
+  --pg-annot-flash: rgba(245, 158, 11, 0.45);
+}
+:root[data-theme="light"] {
+  --pg-hl-bg: rgba(255, 213, 79, 0.45);
+  --pg-hl-noted: rgba(217, 119, 6, 0.9);
+  --pg-annot-bg: #ffffff;
+  --pg-annot-fg: #1f1f1f;
+  --pg-annot-border: #cfcfcf;
+  --pg-annot-accent: #b45309;
+  --pg-annot-muted: #6b6b6b;
+  --pg-annot-backdrop: rgba(0, 0, 0, 0.35);
+  --pg-annot-flash: rgba(255, 167, 38, 0.55);
+}
+
+mark.pg-hl {
+  background: var(--pg-hl-bg);
+  color: inherit;
+  padding: 0;
+  border-radius: 2px;
+}
+mark.pg-hl--noted { border-bottom: 2px solid var(--pg-hl-noted); }
+mark.pg-hl--flash { animation: pg-annot-flash 1.2s ease-out; }
+@keyframes pg-annot-flash {
+  0% { background: var(--pg-annot-flash); }
+  100% { background: var(--pg-hl-bg); }
+}
+
+.pg-annot-ui, .pg-annot-ui * { box-sizing: border-box; }
+.pg-annot-ui button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.pg-annot-toolbar {
+  position: absolute;
+  z-index: 1200;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background: var(--pg-annot-bg);
+  color: var(--pg-annot-fg);
+  border: 1px solid var(--pg-annot-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+.pg-annot-toolbar button {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+.pg-annot-toolbar button:hover { background: var(--pg-hl-bg); }
+
+.pg-annot-editor,
+.pg-annot-fallback {
+  position: absolute;
+  z-index: 1200;
+  width: min(360px, 92vw);
+  padding: 0.75rem;
+  background: var(--pg-annot-bg);
+  color: var(--pg-annot-fg);
+  border: 1px solid var(--pg-annot-border);
+  border-radius: 10px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+}
+.pg-annot-fallback { position: fixed; top: 15vh; left: 50%; transform: translateX(-50%); }
+.pg-annot-editor-quote {
+  font-size: 0.82rem;
+  color: var(--pg-annot-muted);
+  border-left: 3px solid var(--pg-hl-noted);
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  max-height: 4.6em;
+  overflow: hidden;
+}
+.pg-annot-editor textarea,
+.pg-annot-fallback textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--pg-annot-fg);
+  background: var(--pg-annot-bg);
+  border: 1px solid var(--pg-annot-border);
+  border-radius: 6px;
+  padding: 0.4rem;
+  resize: vertical;
+}
+.pg-annot-fallback textarea { height: 10rem; }
+.pg-annot-actions {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+.pg-annot-actions button {
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  border: 1px solid var(--pg-annot-border);
+}
+.pg-annot-actions button[data-act="save"] {
+  background: var(--pg-annot-accent);
+  color: #fff;
+  border-color: var(--pg-annot-accent);
+}
+
+.pg-annot-toggle {
+  position: fixed;
+  top: 3.4rem;
+  right: 1rem;
+  /* below the figure lightbox (1000) so an open figure covers the pill; the
+     runtime hides the toggle entirely while the annotation panel is open */
+  z-index: 900;
+  padding: 0.35rem 0.7rem;
+  background: var(--pg-annot-bg);
+  color: var(--pg-annot-fg);
+  border: 1px solid var(--pg-annot-border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.pg-annot-toggle--warn {
+  border-color: var(--pg-annot-accent);
+  color: var(--pg-annot-accent);
+  font-weight: 600;
+}
+
+.pg-annot-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1190;
+  background: var(--pg-annot-backdrop);
+}
+.pg-annot-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1195;
+  width: min(420px, 90vw);
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--pg-annot-bg);
+  color: var(--pg-annot-fg);
+  border-left: 1px solid var(--pg-annot-border);
+}
+.pg-annot-panel-title { margin: 0 0 0.25rem; font-size: 1.1rem; font-weight: 700; }
+.pg-annot-panel-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.pg-annot-hint {
+  font-size: 0.78rem;
+  color: var(--pg-annot-muted);
+  margin: 0.25rem 0 0.75rem;
+}
+.pg-annot-status { font-size: 0.8rem; color: var(--pg-annot-accent); min-height: 1.2em; }
+.pg-annot-list, .pg-annot-orphans ol {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+.pg-annot-list li, .pg-annot-orphans li {
+  border-top: 1px solid var(--pg-annot-border);
+  padding: 0.6rem 0;
+}
+.pg-annot-item-section {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--pg-annot-muted);
+}
+.pg-annot-item-quote {
+  font-size: 0.85rem;
+  border-left: 3px solid var(--pg-hl-noted);
+  padding-left: 0.5rem;
+  margin: 0.25rem 0;
+}
+.pg-annot-item-note { font-size: 0.85rem; white-space: pre-wrap; }
+.pg-annot-item-actions { display: flex; gap: 0.6rem; margin-top: 0.3rem; }
+.pg-annot-item-actions button {
+  font-size: 0.78rem;
+  color: var(--pg-annot-accent);
+  padding: 0;
+}
+.pg-annot-orphans-title { font-size: 0.9rem; font-weight: 700; margin: 1rem 0 0; }
+.pg-annot-fallback-msg { margin: 0 0 0.5rem; font-size: 0.85rem; }
+</style>
 </head>
-<body>
+<body data-pg-slug="ghost-patch">
 <button id="gloss-panel-toggle" aria-expanded="false" aria-controls="gloss-panel">Glossary (20)</button>
 
 <div class="wrap">
   <header class="doc-header">
-    <p class="eyebrow">Plain-English rewrite &middot; mirrors the original 1:1</p>
-    <h1>Ghost-Patch: A Pre-Committed, Hobby-Scale Reproduction of the "Obey, Diverge, Collapse" Failure Chain on Cheap Code Models</h1>
-    <p class="meta"><strong>This is a plain-English rewrite.</strong> It mirrors the original paper 1:1 — same headings,</p><p class="meta">same paragraphs, same order. Nothing is summarized, merged, dropped, or reordered; only</p><p class="meta">the language changes. Tables are reproduced exactly as they appear in the original, each</p><p class="meta">followed by an italic <em>"In plain words"</em> line. The references section is carried through</p><p class="meta">untouched.</p><p class="meta"><strong>Original paper:</strong> <em>Ghost-Patch: A Pre-Committed, Hobby-Scale Reproduction of the "Obey, Diverge, Collapse" Failure Chain on Cheap Code Models</em></p><p class="meta"><strong>Author:</strong> Kyle Disch</p><p class="meta"><strong>Source:</strong> <code>docs/paper/ghost-patch-paper.md</code> (this repository, <code>main</code>)</p><p class="meta"><strong>Rewrite generated:</strong> 2026-07-27</p>
-    <p class="meta">Tap any underlined term for a plain-English expansion, or open the Glossary for all of them at once.</p>
+    <p data-pg-block="pg-p-0001" class="eyebrow">Plain-English rewrite &middot; mirrors the original 1:1</p>
+    <h1 data-pg-block="pg-p-0002">Ghost-Patch: A Pre-Committed, Hobby-Scale Reproduction of the "Obey, Diverge, Collapse" Failure Chain on Cheap Code Models</h1>
+    <p data-pg-block="pg-p-0003" class="meta"><strong>This is a plain-English rewrite.</strong> It mirrors the original paper 1:1 — same headings,</p><p data-pg-block="pg-p-0004" class="meta">same paragraphs, same order. Nothing is summarized, merged, dropped, or reordered; only</p><p data-pg-block="pg-p-0005" class="meta">the language changes. Tables are reproduced exactly as they appear in the original, each</p><p data-pg-block="pg-p-0006" class="meta">followed by an italic <em>"In plain words"</em> line. The references section is carried through</p><p data-pg-block="pg-p-0007" class="meta">untouched.</p><p data-pg-block="pg-p-0008" class="meta"><strong>Original paper:</strong> <em>Ghost-Patch: A Pre-Committed, Hobby-Scale Reproduction of the "Obey, Diverge, Collapse" Failure Chain on Cheap Code Models</em></p><p data-pg-block="pg-p-0009" class="meta"><strong>Author:</strong> Kyle Disch</p><p data-pg-block="pg-p-0010" class="meta"><strong>Source:</strong> <code>docs/paper/ghost-patch-paper.md</code> (this repository, <code>main</code>)</p><p data-pg-block="pg-p-0011" class="meta"><strong>Rewrite generated:</strong> 2026-07-27</p>
+    <p data-pg-block="pg-p-0012" class="meta">Tap any underlined term for a plain-English expansion, or open the Glossary for all of them at once.</p>
   </header>
-<h1>Ghost-Patch: A Pre-Committed, Hobby-Scale Reproduction of the "Obey, Diverge, Collapse" Failure Chain on Cheap Code Models</h1>
-<p><strong>Kyle Disch</strong> · <a href="https://github.com/ksdisch/ghost-patch" target="_blank" rel="noopener noreferrer">github.com/ksdisch/ghost-patch</a> · 2026-07-12</p>
-<p><em>Fourth in a series of projects that take a published finding and re-measure it (forge-gap → decay-pin → lossy-wall). Every number in this paper is copied straight out of the records already committed to this repository — the milestone write-ups (<code>docs/M0-BRIEF.md</code> … <code>docs/M4-BRIEF.md</code>) and their machine-readable twins (<code>data/m1_results.json</code> … <code>data/m4_results.json</code>). Nothing is recalculated here. A note about figures: the project saved all its results as tables and data files; there are no chart images in the repository, so this paper contains tables only.</em></p>
-<h2>Abstract</h2>
-<p>"Obey, Diverge, Collapse" (arXiv 2607.04537, version 1, published 2026-07-05) describes a four-stage failure sequence in large language models (<button type="button" class="gloss-term" data-term-id="llms">LLMs</button>) that fix code: the model can tell that a repair instruction points at the wrong place, follows it anyway, introduces brand-new "ghost errors," piles more of them on with each repair attempt, and ends up in a state that its own self-guided repair cannot climb out of. We independently re-ran and measured the <em>shape</em> of that sequence on two cheap models (deepseek-chat-v3.1 and qwen3-coder-30b-a3b-instruct) across a 186-problem set drawn from <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button>, under a protocol locked down in advance: grading done by a sandboxed program with no randomness in it, machine-checking of every planted wrong instruction on every single trial, pass/fail rules frozen as working code before any money was spent, <button type="button" class="gloss-term" data-term-id="wilson">Wilson</button> and <button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> error bars (standard recipes for putting a plausible range around a percentage and around the gap between two percentages), and a rule that any tested <button type="button" class="gloss-term" data-term-id="cell">cell</button> with fewer than 20 trials is automatically labelled <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button>. Two links in the sequence fail honestly at this price tier, and we report them as headlines: the "the model knows better" precondition does not reproduce (0 of 6 models tested clear the awareness check under two different question wordings; the paper's own Kimi K2.5 reads about 25% aware in our hands versus the 63% the paper reports), and the drop in repair quality from a single wrong instruction is statistically indistinguishable from zero on both subjects (+4.0 points, plausible range [−2.2, +10.3]; +3.6 points, [−3.4, +10.6]). The back half of the sequence is visible wherever we had enough trials to see it: repair driven by test feedback recovers 78.3% / 52.6% of broken programs when starting from a clean state, but under repeated, machine-verified sabotage qwen only ever escapes on the first attempt (30.4%, flat thereafter), and afterwards half of its damaged programs (6 of 12) never get back to as good as the original buggy version across five sabotage-free attempts. The comparison between the final stage and the recovery stage lands <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> on both models exactly as we predicted in advance, with the direction of the effect matching the paper. Total money spent: $1.42.</p>
-<h2>1. Introduction</h2>
-<p>Getting an <button type="button" class="gloss-term" data-term-id="llm">LLM</button> to fix code by repeated attempts has a claimed failure mode that is qualitatively worse than "the model just can't fix the bug": handed a confident but misaimed instruction, the model wrecks parts of the program that were working, the wreckage accumulates over repair rounds, and the end result is beyond rescue even compared with the original broken program. "Obey, Diverge, Collapse" (arXiv 2607.04537) published this sequence days before this project started, using five top-tier models, and promised a code appendix that never appeared in version 1. Nobody has independently repeated it, and the paper's problem-selection rules, prompts, and test <button type="button" class="gloss-term" data-term-id="harness">harness</button> are all unpublished.</p>
-<p>This paper's contribution is intentionally narrow: an <strong>independent re-run on a hobby budget, with every judgement rule locked in beforehand</strong>, testing the sequence's four claims on cheap models, where every verdict is delivered by a script that was written and rehearsed before any of the paid data existed. We are not inventing mechanisms, we are not trying to hit the paper's exact percentages (we check direction and shape only), and we treat "we found nothing" as a genuine result rather than a failure. Working this way, the project produced:</p>
-<ol><li><strong>Two headline non-results.</strong> The paper's "knows better but complies anyway" premise does not hold up at the cheap tier — when asked to play evaluator and judge an instruction, models perform near coin-flip level across six models and two question wordings (§5.1) — and the drop in repair quality from a single wrong-location instruction is indistinguishable from zero on both surviving subjects at 150 problems each (§5.2). Cheap models here are <em>blind</em> and compliant, and compliance on its own does not produce net damage in a single pass.</li><li><strong>The back half of the sequence, measured.</strong> Wherever we still had enough trials, the paper's shape shows up: escaping from repeated, machine-verified sabotage collapses to "first attempt or never" (§5.4), and half of the resulting damaged programs never get back to as good as the original buggy version once the sabotage stops (§5.5) — with the caveat, declared in advance, that the final comparison is short of trials because of measured drop-off through the pipeline, not because we chose a small sample.</li><li><strong>A re-runnable test <button type="button" class="gloss-term" data-term-id="harness">harness</button> and a record of what didn't work.</strong> A Docker-sandboxed grading pipeline over <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> with no <button type="button" class="gloss-term" data-term-id="llm">LLM</button> judging anywhere in it; an instruction generator whose wrongness is <em>proven on every trial</em> instead of assumed; and two measurement lessons worth carrying forward (the verifier's dilemma and the way response length grows with how badly the code has been mangled, §6).</li></ol>
-<p>Everything below says plainly what was planted by us (all wrong instructions and all damaged program states are faults we injected, and verified as such), what came back as no-effect, and what had too few trials to judge.</p>
-<h2>2. The target paper and its claims</h2>
-<p>As recorded in this repository's notes (<code>docs/M0-BRIEF.md</code>, "What the paper settles"), the paper tests five top-tier models (GPT-5.3 Codex, Sonnet 4.6, Qwen3-Coder, GLM-5, Kimi K2.5) on 538 filtered problems and claims:</p>
-<ul><li><strong>Research question 1 (obey):</strong> given a broken program, its problem description, and a confident instruction that points at the wrong part of the code (condition T2), models repair it <em>worse</em> than when given no instruction at all (condition T3) — pass rates drop by roughly 7 to 21 <button type="button" class="gloss-term" data-term-id="percentage-points">percentage points</button> — <em>while</em> a separate question that asks the model to act as an evaluator shows it can label that same instruction INCORRECT (weakest model: Kimi K2.5 at 340 of 538, about 63%). This pairing of "aware" with "fails anyway" is the paper's headline statistical result, reported as highly unlikely to be chance on all five models.</li><li><strong>Research question 2 (recovery ceiling):</strong> on the problems where the no-instruction condition failed, let the model repair on its own, showing it the most recent failing test, for at most 5 rounds, stopping early if every test passes.</li><li><strong>Research question 3 (diverge / compound):</strong> starting from the wrong-instruction trials where damage was confirmed (more failing tests than the original broken program had), run 5 further rounds, each carrying a freshly written wrong instruction (the generator sees only the current code — the paper uses GPT-5.1 Codex for this); between 5% and 22% of the 538 problems qualify to enter, depending on the model.</li><li><strong>Research question 4 (collapse):</strong> run research question 2's procedure starting from research question 3's damaged end states; the headline number is the <strong><button type="button" class="gloss-term" data-term-id="irrecoverable-damage-rate">Irrecoverable Damage Rate</button> (<button type="button" class="gloss-term" data-term-id="idr">IDR</button>)</strong> — the fraction that never get back to as good as the original broken program within 5 rounds.</li></ul>
-<p>Version 1 of the paper ships no code, no prompts, and no data (its Appendix 9 covers ethics only), so every prompt and filter below is ours, built to match the structure described in the paper's §3. Every place we departed from it is owned up to in per-milestone tables in the briefs (13 rows in total).</p>
-<h2>3. Methods</h2>
-<h3>3.1 Task, data, and the frozen bank</h3>
-<p>The task is repairing single-file Python programs: given a broken program and a description of what it should do, produce a complete corrected program, graded against hidden pairs of input and expected output. The data is the Python portion of <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> (data release v0.0.1: <code>python_test0</code> = 9,611 bugs across 1,342 problems; <code>python_valid0</code> = 2,054 across 671; <code>tests_all</code> = test pairs for 3,926 problems), with English problem descriptions taken from PIE4Perf — the same translation source <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> itself credits — covering essentially everything (1,340 of 1,342 and 670 of 671). Downloads are pinned to specific file checksums so the data can never silently change (<code>fetch_runbugrun.py</code>).</p>
-<p>The paper's rule for narrowing to 538 problems is unpublished, so our problem set comes from our own <strong>two-stage filter, written and locked before any paid call</strong> (<code>filter_bank.py</code>). Stage 1 checks things that need no model at all: both the broken and fixed versions must compile under CPython 3.12; there must be a usable English description; at least 3 tests (we consider at most 20 per problem); the program must be 3 to 40 non-blank lines; the real fix must be small and localized (at most 2 edit blocks and 6 changed lines, measured from our own standardized comparison of the two versions) with at least 5 lines outside the area being fixed; and only one bug per problem, because the statistical methods we use assume the trials are independent of one another. That leaves a <strong>frozen pool of 1,062 problems</strong> (out of 11,665 bugs examined), shuffled once using the fixed seed 2607. Stage 2 is a free run through the sandbox over the front of that pool: the fixed version must pass every selected test, and the broken version must fail at least one <strong>and pass at least one</strong> — the <em>room-to-get-worse</em> requirement, without which the phrase "more failing tests than the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button>" has no meaning (roughly a third of the problems we smoke-tested failed it).</p>
-<p><strong>We set a quality bar for the <button type="button" class="gloss-term" data-term-id="harness">harness</button> in advance, and it failed on the first try.</strong> The <button type="button" class="gloss-term" data-term-id="pre-registered">pre-registered</button> check (fixed version passes everything, broken version fails something, on at least 90% of smoke-tested problems) initially read <strong>86.0%</strong> under strict output matching / 88.3% under the looser numeric variant, across 300 problems. The diagnosis: we were picking the wrong <em>tests</em> — 30 of 35 failures were bugs whose revealing test happened to fall outside the "lowest 20 by ID" cap. The single adjustment we had permitted ourselves in advance (choosing tests that actually expose the bug, which swapped 29 of them) brought the repeat check to <strong>95.0% / 98.0%, PASS</strong>, and we adopted and froze the stricter exact-match rule. The problem set froze at <strong>186 problems</strong> (<code>data/bank.json</code>); the first milestone's main run uses the first 150; any later growth only ever extends that frozen ordering.</p>
-<h3>3.2 Sandboxed, deterministic grading</h3>
-<p>Candidate programs run inside a fresh Docker container per program (<code>python:3.12-slim</code>, no network access, 1 CPU, 512 MB of memory, at most 128 processes, read-only filesystem, non-root user), with each test run as its own process under a 5-second wall-clock limit. Grading happens <strong>outside the container</strong> under the frozen exact-match rules (strip trailing spaces from each line, drop trailing blank lines, then require an exact match) — the container never sees the expected outputs, so a program cannot grade itself. Pass or fail is fully repeatable; there are no <button type="button" class="gloss-term" data-term-id="llm">LLM</button> judges anywhere in this project.</p>
-<h3>3.3 The manipulation, and why its wrongness is provable</h3>
-<p>There are three conditions: T1 (a correct instruction), T2 (an instruction pointing at the wrong location), and T3 (no instruction). All instructions are <strong>faults we manufactured</strong>: drafted by a fixed model that is never itself a test subject (<code>openai/gpt-5.1-codex-mini</code>, with its internal deliberation dialled to low) as structured fields (target lines, a quoted snippet to anchor on, a diagnosis, and a directive), then poured into a fixed template that reads fluently. Every draft wrong instruction has to survive a <strong>mechanical check</strong>: (a) the quoted snippet really does match the code at the lines cited; (b) the targeted region, plus one line either side, is provably nowhere near the region the real fix touches (computed from a standardized comparison of broken and fixed versions); and (c) no line added by the real fix shows up in the instruction once whitespace is normalized, so the answer cannot leak. Drafts that fail the check never make it into a trial; the trials they would have belonged to are marked INVALID — excluded from every denominator, counted, and reported.</p>
-<p>Letting the generator choose freely failed, and failed honestly: given a program of 40 lines or fewer, it <em>found the actual bug</em> most of the time (only 5 of 20 first attempts survived the check, and 39 of the 41 rejections were for pointing too close to the real fix). The one revision we had allowed ourselves — <strong>protocol version 2, where the <button type="button" class="gloss-term" data-term-id="harness">harness</button> picks the target</strong> — has the <button type="button" class="gloss-term" data-term-id="harness">harness</button> deterministically assign a region that is provably far from the real fix (chosen by a fixed per-problem seed) and leaves the generator to write only the confident-sounding rationale. That lifted the acceptance rate to 13 of 13 (100%) and better mirrors the paper's <em>deliberately</em> misdirected human-written instructions. In the third milestone, where the code changes on every round, we track the real fix region forward by mapping it through a standardized comparison (<code>regions.map_fix_region</code>), deliberately <strong>erring on the side of marking too much as off-limits</strong> — the guarantee that the instruction is wrong never weakens, and the price is paid instead in discarded trials, which we count by cause. One limit is stated up front in the brief: the check proves the instruction is away from the <em>original</em> fix region as tracked forward; there is no ground truth for the ghost errors the model introduces mid-loop (the paper's unverified generator faces exactly the same exposure, minus the guarantee).</p>
-<h3>3.4 Statistics, gates, and budget discipline</h3>
-<p>Every rate we judge is a percentage wrapped in a <strong><button type="button" class="gloss-term" data-term-id="wilson-score-interval">Wilson score interval</button></strong> — a standard recipe for the range of true values that percentage is consistent with. Differences between two conditions use <strong><button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> intervals</strong> (the "square and add" recipe, his method 10, for comparing two separate groups; his 1998 paired variant with a discordance correction, written φ̂, for the first milestone's within-problem comparison of the wrong-instruction and no-instruction conditions) — all implemented in <code>stats.py</code>, unit-tested, with no outside statistics libraries. A range that includes zero means no effect or a small one, and we say so; a range that merely touches zero does not count as excluding it. Any judged <button type="button" class="gloss-term" data-term-id="cell">cell</button> with fewer than 20 usable trials <strong>automatically reports <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> — no rescues, no exceptions</strong>. Verdicts are always per model, never pooled. Every verdict script (<code>m0.py</code> through <code>m4.py</code>) was written, unit-tested (256 tests passing by the fourth milestone), and rehearsed on made-up data <strong>before</strong> the paid run it judges; the rules for killing, swapping, or halting a run were committed before the runs they govern. Each milestone ran under a hard spending cap with a meter that checks before every call and a lifetime guard of $5.00; cost estimates based on measured rates and roughly 5-call smoke tests came before every paid batch.</p>
-<h2>4. Experimental setup</h2>
-<p><strong>Subjects.</strong> Six cheap models available through <button type="button" class="gloss-term" data-term-id="openrouter">OpenRouter</button> entered the first pilot (main roster: qwen3-coder-30b-a3b-instruct, glm-4.7-flash, llama-3.1-8b-instruct; comparison set: deepseek-chat-v3.1, mistral-small-3.2-24b-instruct, kimi-k2.5 — the paper's own model). Pre-committed pilot rules eliminated four of them (§5.1); the sequence was then run on <strong>deepseek-chat-v3.1</strong> ($0.21 in / $0.79 out per million tokens) and <strong>qwen3-coder-30b-a3b-instruct</strong> ($0.07 / $0.27) — the latter a cheap relative of one of the paper's models. Subjects had their internal deliberation turned off; the repair budget was 3,200 tokens (a measured floor); parsing takes the last fenced code block, requires it to compile cleanly, and allows exactly one plain retry before marking the trial INVALID.</p>
-<p><strong>The five milestones.</strong></p>
-<ul><li><strong>M0 (does this even fit?):</strong> the first 12 problems in the set × the three conditions, plus 24 evaluator-role questions per model, judged against <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> rules on capability, skepticism, awareness, and parsing; plus the <button type="button" class="gloss-term" data-term-id="harness">harness</button>, problem-set, and generator checks from §3.</li><li><strong>M1 (research question 1, re-scoped):</strong> single-pass repair, 3 conditions × 150 problems × 2 models, with the same problems seen by every condition. The main measure is the drop in pass rate from the no-instruction condition to the wrong-instruction condition (paired <button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> interval; to count as <button type="button" class="gloss-term" data-term-id="reproduced">REPRODUCED</button> it needed a range excluding 0 <em>and</em> a drop of at least 10 points). After the awareness non-result in M0, the evaluator-question leg was dropped by signed decision — M1 claims only the behavioural drop.</li><li><strong>M2 (research question 2):</strong> on each model's set of failed no-instruction problems, self-guided repair starting from the <em>original broken program</em>: each round the model sees the description, the current code, and the first failing test (its input, the expected output, and what the program actually produced, truncated to 1,000 characters), for at most 5 rounds, stopping early if everything passes. No sabotage. Output: the recovery ceiling and the round-by-round curve — the anchor that M4 is compared against.</li><li><strong>M3 (research question 3):</strong> starting from each model's confirmed-damage wrong-instruction states (deepseek's entry pool topped up by a <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> extra wave of 36 wrong-instruction-only trials, following the frozen ordering), the same loop plus <strong>a fresh verified wrong instruction every round</strong> (the generator sees only the current code). "Escape" means every test passes despite the sabotage. Declared descriptive in advance — not a pass/fail gate.</li><li><strong>M4 (research question 4):</strong> M2's loop exactly as written, but starting from M3's frozen damaged end states (byte-for-byte identical starting points, checked at round zero). The main measure is the <strong><button type="button" class="gloss-term" data-term-id="irrecoverable-damage-rate">Irrecoverable Damage Rate</button></strong>, defined exactly as the paper defines it. One decision was pinned before the run (decision D12): two entry states sat at or below the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> (they improved during M3 without escaping) and therefore count as recovered at round zero by definition — all 18 were run, but the rate's denominator is the 16 states that were genuinely damaged at entry, with that pair reported separately and an all-18 sensitivity line included.</li></ul>
-<p>Every loop's starting state and every feedback block shown to the model is mechanically re-checked against the frozen record before the round begins (72 of 72 in M2, 56 of 56 in M3, 18 of 18 in M4 — the halt-on-drift alarm never fired).</p>
-<h2>5. Results</h2>
-<h3>5.1 M0 — the awareness precondition fails across the tier (null #1)</h3>
-<p>Compliance is emphatically present in the pilot — every model mechanically follows the wrong-location instruction on 9 to 11 of the 12 problems, and damage does occur — but <strong>when asked to play evaluator, the models perform at roughly coin-flip level everywhere</strong>. Judged against the <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> rule (a pass needs at least 8 of 12 wrong instructions labelled INCORRECT, with a sanity check that correct ones are not also being flagged):</p>
+<h1 data-pg-block="pg-p-0013">Ghost-Patch: A Pre-Committed, Hobby-Scale Reproduction of the "Obey, Diverge, Collapse" Failure Chain on Cheap Code Models</h1>
+<p data-pg-block="pg-p-0014"><strong>Kyle Disch</strong> · <a href="https://github.com/ksdisch/ghost-patch" target="_blank" rel="noopener noreferrer">github.com/ksdisch/ghost-patch</a> · 2026-07-12</p>
+<p data-pg-block="pg-p-0015"><em>Fourth in a series of projects that take a published finding and re-measure it (forge-gap → decay-pin → lossy-wall). Every number in this paper is copied straight out of the records already committed to this repository — the milestone write-ups (<code>docs/M0-BRIEF.md</code> … <code>docs/M4-BRIEF.md</code>) and their machine-readable twins (<code>data/m1_results.json</code> … <code>data/m4_results.json</code>). Nothing is recalculated here. A note about figures: the project saved all its results as tables and data files; there are no chart images in the repository, so this paper contains tables only.</em></p>
+<h2 data-pg-block="pg-p-0016">Abstract</h2>
+<p data-pg-block="pg-p-0017">"Obey, Diverge, Collapse" (arXiv 2607.04537, version 1, published 2026-07-05) describes a four-stage failure sequence in large language models (<button type="button" class="gloss-term" data-term-id="llms">LLMs</button>) that fix code: the model can tell that a repair instruction points at the wrong place, follows it anyway, introduces brand-new "ghost errors," piles more of them on with each repair attempt, and ends up in a state that its own self-guided repair cannot climb out of. We independently re-ran and measured the <em>shape</em> of that sequence on two cheap models (deepseek-chat-v3.1 and qwen3-coder-30b-a3b-instruct) across a 186-problem set drawn from <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button>, under a protocol locked down in advance: grading done by a sandboxed program with no randomness in it, machine-checking of every planted wrong instruction on every single trial, pass/fail rules frozen as working code before any money was spent, <button type="button" class="gloss-term" data-term-id="wilson">Wilson</button> and <button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> error bars (standard recipes for putting a plausible range around a percentage and around the gap between two percentages), and a rule that any tested <button type="button" class="gloss-term" data-term-id="cell">cell</button> with fewer than 20 trials is automatically labelled <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button>. Two links in the sequence fail honestly at this price tier, and we report them as headlines: the "the model knows better" precondition does not reproduce (0 of 6 models tested clear the awareness check under two different question wordings; the paper's own Kimi K2.5 reads about 25% aware in our hands versus the 63% the paper reports), and the drop in repair quality from a single wrong instruction is statistically indistinguishable from zero on both subjects (+4.0 points, plausible range [−2.2, +10.3]; +3.6 points, [−3.4, +10.6]). The back half of the sequence is visible wherever we had enough trials to see it: repair driven by test feedback recovers 78.3% / 52.6% of broken programs when starting from a clean state, but under repeated, machine-verified sabotage qwen only ever escapes on the first attempt (30.4%, flat thereafter), and afterwards half of its damaged programs (6 of 12) never get back to as good as the original buggy version across five sabotage-free attempts. The comparison between the final stage and the recovery stage lands <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> on both models exactly as we predicted in advance, with the direction of the effect matching the paper. Total money spent: $1.42.</p>
+<h2 data-pg-block="pg-p-0018">1. Introduction</h2>
+<p data-pg-block="pg-p-0019">Getting an <button type="button" class="gloss-term" data-term-id="llm">LLM</button> to fix code by repeated attempts has a claimed failure mode that is qualitatively worse than "the model just can't fix the bug": handed a confident but misaimed instruction, the model wrecks parts of the program that were working, the wreckage accumulates over repair rounds, and the end result is beyond rescue even compared with the original broken program. "Obey, Diverge, Collapse" (arXiv 2607.04537) published this sequence days before this project started, using five top-tier models, and promised a code appendix that never appeared in version 1. Nobody has independently repeated it, and the paper's problem-selection rules, prompts, and test <button type="button" class="gloss-term" data-term-id="harness">harness</button> are all unpublished.</p>
+<p data-pg-block="pg-p-0020">This paper's contribution is intentionally narrow: an <strong>independent re-run on a hobby budget, with every judgement rule locked in beforehand</strong>, testing the sequence's four claims on cheap models, where every verdict is delivered by a script that was written and rehearsed before any of the paid data existed. We are not inventing mechanisms, we are not trying to hit the paper's exact percentages (we check direction and shape only), and we treat "we found nothing" as a genuine result rather than a failure. Working this way, the project produced:</p>
+<ol><li data-pg-block="pg-p-0021"><strong>Two headline non-results.</strong> The paper's "knows better but complies anyway" premise does not hold up at the cheap tier — when asked to play evaluator and judge an instruction, models perform near coin-flip level across six models and two question wordings (§5.1) — and the drop in repair quality from a single wrong-location instruction is indistinguishable from zero on both surviving subjects at 150 problems each (§5.2). Cheap models here are <em>blind</em> and compliant, and compliance on its own does not produce net damage in a single pass.</li><li data-pg-block="pg-p-0022"><strong>The back half of the sequence, measured.</strong> Wherever we still had enough trials, the paper's shape shows up: escaping from repeated, machine-verified sabotage collapses to "first attempt or never" (§5.4), and half of the resulting damaged programs never get back to as good as the original buggy version once the sabotage stops (§5.5) — with the caveat, declared in advance, that the final comparison is short of trials because of measured drop-off through the pipeline, not because we chose a small sample.</li><li data-pg-block="pg-p-0023"><strong>A re-runnable test <button type="button" class="gloss-term" data-term-id="harness">harness</button> and a record of what didn't work.</strong> A Docker-sandboxed grading pipeline over <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> with no <button type="button" class="gloss-term" data-term-id="llm">LLM</button> judging anywhere in it; an instruction generator whose wrongness is <em>proven on every trial</em> instead of assumed; and two measurement lessons worth carrying forward (the verifier's dilemma and the way response length grows with how badly the code has been mangled, §6).</li></ol>
+<p data-pg-block="pg-p-0024">Everything below says plainly what was planted by us (all wrong instructions and all damaged program states are faults we injected, and verified as such), what came back as no-effect, and what had too few trials to judge.</p>
+<h2 data-pg-block="pg-p-0025">2. The target paper and its claims</h2>
+<p data-pg-block="pg-p-0026">As recorded in this repository's notes (<code>docs/M0-BRIEF.md</code>, "What the paper settles"), the paper tests five top-tier models (GPT-5.3 Codex, Sonnet 4.6, Qwen3-Coder, GLM-5, Kimi K2.5) on 538 filtered problems and claims:</p>
+<ul><li data-pg-block="pg-p-0027"><strong>Research question 1 (obey):</strong> given a broken program, its problem description, and a confident instruction that points at the wrong part of the code (condition T2), models repair it <em>worse</em> than when given no instruction at all (condition T3) — pass rates drop by roughly 7 to 21 <button type="button" class="gloss-term" data-term-id="percentage-points">percentage points</button> — <em>while</em> a separate question that asks the model to act as an evaluator shows it can label that same instruction INCORRECT (weakest model: Kimi K2.5 at 340 of 538, about 63%). This pairing of "aware" with "fails anyway" is the paper's headline statistical result, reported as highly unlikely to be chance on all five models.</li><li data-pg-block="pg-p-0028"><strong>Research question 2 (recovery ceiling):</strong> on the problems where the no-instruction condition failed, let the model repair on its own, showing it the most recent failing test, for at most 5 rounds, stopping early if every test passes.</li><li data-pg-block="pg-p-0029"><strong>Research question 3 (diverge / compound):</strong> starting from the wrong-instruction trials where damage was confirmed (more failing tests than the original broken program had), run 5 further rounds, each carrying a freshly written wrong instruction (the generator sees only the current code — the paper uses GPT-5.1 Codex for this); between 5% and 22% of the 538 problems qualify to enter, depending on the model.</li><li data-pg-block="pg-p-0030"><strong>Research question 4 (collapse):</strong> run research question 2's procedure starting from research question 3's damaged end states; the headline number is the <strong><button type="button" class="gloss-term" data-term-id="irrecoverable-damage-rate">Irrecoverable Damage Rate</button> (<button type="button" class="gloss-term" data-term-id="idr">IDR</button>)</strong> — the fraction that never get back to as good as the original broken program within 5 rounds.</li></ul>
+<p data-pg-block="pg-p-0031">Version 1 of the paper ships no code, no prompts, and no data (its Appendix 9 covers ethics only), so every prompt and filter below is ours, built to match the structure described in the paper's §3. Every place we departed from it is owned up to in per-milestone tables in the briefs (13 rows in total).</p>
+<h2 data-pg-block="pg-p-0032">3. Methods</h2>
+<h3 data-pg-block="pg-p-0033">3.1 Task, data, and the frozen bank</h3>
+<p data-pg-block="pg-p-0034">The task is repairing single-file Python programs: given a broken program and a description of what it should do, produce a complete corrected program, graded against hidden pairs of input and expected output. The data is the Python portion of <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> (data release v0.0.1: <code>python_test0</code> = 9,611 bugs across 1,342 problems; <code>python_valid0</code> = 2,054 across 671; <code>tests_all</code> = test pairs for 3,926 problems), with English problem descriptions taken from PIE4Perf — the same translation source <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> itself credits — covering essentially everything (1,340 of 1,342 and 670 of 671). Downloads are pinned to specific file checksums so the data can never silently change (<code>fetch_runbugrun.py</code>).</p>
+<p data-pg-block="pg-p-0035">The paper's rule for narrowing to 538 problems is unpublished, so our problem set comes from our own <strong>two-stage filter, written and locked before any paid call</strong> (<code>filter_bank.py</code>). Stage 1 checks things that need no model at all: both the broken and fixed versions must compile under CPython 3.12; there must be a usable English description; at least 3 tests (we consider at most 20 per problem); the program must be 3 to 40 non-blank lines; the real fix must be small and localized (at most 2 edit blocks and 6 changed lines, measured from our own standardized comparison of the two versions) with at least 5 lines outside the area being fixed; and only one bug per problem, because the statistical methods we use assume the trials are independent of one another. That leaves a <strong>frozen pool of 1,062 problems</strong> (out of 11,665 bugs examined), shuffled once using the fixed seed 2607. Stage 2 is a free run through the sandbox over the front of that pool: the fixed version must pass every selected test, and the broken version must fail at least one <strong>and pass at least one</strong> — the <em>room-to-get-worse</em> requirement, without which the phrase "more failing tests than the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button>" has no meaning (roughly a third of the problems we smoke-tested failed it).</p>
+<p data-pg-block="pg-p-0036"><strong>We set a quality bar for the <button type="button" class="gloss-term" data-term-id="harness">harness</button> in advance, and it failed on the first try.</strong> The <button type="button" class="gloss-term" data-term-id="pre-registered">pre-registered</button> check (fixed version passes everything, broken version fails something, on at least 90% of smoke-tested problems) initially read <strong>86.0%</strong> under strict output matching / 88.3% under the looser numeric variant, across 300 problems. The diagnosis: we were picking the wrong <em>tests</em> — 30 of 35 failures were bugs whose revealing test happened to fall outside the "lowest 20 by ID" cap. The single adjustment we had permitted ourselves in advance (choosing tests that actually expose the bug, which swapped 29 of them) brought the repeat check to <strong>95.0% / 98.0%, PASS</strong>, and we adopted and froze the stricter exact-match rule. The problem set froze at <strong>186 problems</strong> (<code>data/bank.json</code>); the first milestone's main run uses the first 150; any later growth only ever extends that frozen ordering.</p>
+<h3 data-pg-block="pg-p-0037">3.2 Sandboxed, deterministic grading</h3>
+<p data-pg-block="pg-p-0038">Candidate programs run inside a fresh Docker container per program (<code>python:3.12-slim</code>, no network access, 1 CPU, 512 MB of memory, at most 128 processes, read-only filesystem, non-root user), with each test run as its own process under a 5-second wall-clock limit. Grading happens <strong>outside the container</strong> under the frozen exact-match rules (strip trailing spaces from each line, drop trailing blank lines, then require an exact match) — the container never sees the expected outputs, so a program cannot grade itself. Pass or fail is fully repeatable; there are no <button type="button" class="gloss-term" data-term-id="llm">LLM</button> judges anywhere in this project.</p>
+<h3 data-pg-block="pg-p-0039">3.3 The manipulation, and why its wrongness is provable</h3>
+<p data-pg-block="pg-p-0040">There are three conditions: T1 (a correct instruction), T2 (an instruction pointing at the wrong location), and T3 (no instruction). All instructions are <strong>faults we manufactured</strong>: drafted by a fixed model that is never itself a test subject (<code>openai/gpt-5.1-codex-mini</code>, with its internal deliberation dialled to low) as structured fields (target lines, a quoted snippet to anchor on, a diagnosis, and a directive), then poured into a fixed template that reads fluently. Every draft wrong instruction has to survive a <strong>mechanical check</strong>: (a) the quoted snippet really does match the code at the lines cited; (b) the targeted region, plus one line either side, is provably nowhere near the region the real fix touches (computed from a standardized comparison of broken and fixed versions); and (c) no line added by the real fix shows up in the instruction once whitespace is normalized, so the answer cannot leak. Drafts that fail the check never make it into a trial; the trials they would have belonged to are marked INVALID — excluded from every denominator, counted, and reported.</p>
+<p data-pg-block="pg-p-0041">Letting the generator choose freely failed, and failed honestly: given a program of 40 lines or fewer, it <em>found the actual bug</em> most of the time (only 5 of 20 first attempts survived the check, and 39 of the 41 rejections were for pointing too close to the real fix). The one revision we had allowed ourselves — <strong>protocol version 2, where the <button type="button" class="gloss-term" data-term-id="harness">harness</button> picks the target</strong> — has the <button type="button" class="gloss-term" data-term-id="harness">harness</button> deterministically assign a region that is provably far from the real fix (chosen by a fixed per-problem seed) and leaves the generator to write only the confident-sounding rationale. That lifted the acceptance rate to 13 of 13 (100%) and better mirrors the paper's <em>deliberately</em> misdirected human-written instructions. In the third milestone, where the code changes on every round, we track the real fix region forward by mapping it through a standardized comparison (<code>regions.map_fix_region</code>), deliberately <strong>erring on the side of marking too much as off-limits</strong> — the guarantee that the instruction is wrong never weakens, and the price is paid instead in discarded trials, which we count by cause. One limit is stated up front in the brief: the check proves the instruction is away from the <em>original</em> fix region as tracked forward; there is no ground truth for the ghost errors the model introduces mid-loop (the paper's unverified generator faces exactly the same exposure, minus the guarantee).</p>
+<h3 data-pg-block="pg-p-0042">3.4 Statistics, gates, and budget discipline</h3>
+<p data-pg-block="pg-p-0043">Every rate we judge is a percentage wrapped in a <strong><button type="button" class="gloss-term" data-term-id="wilson-score-interval">Wilson score interval</button></strong> — a standard recipe for the range of true values that percentage is consistent with. Differences between two conditions use <strong><button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> intervals</strong> (the "square and add" recipe, his method 10, for comparing two separate groups; his 1998 paired variant with a discordance correction, written φ̂, for the first milestone's within-problem comparison of the wrong-instruction and no-instruction conditions) — all implemented in <code>stats.py</code>, unit-tested, with no outside statistics libraries. A range that includes zero means no effect or a small one, and we say so; a range that merely touches zero does not count as excluding it. Any judged <button type="button" class="gloss-term" data-term-id="cell">cell</button> with fewer than 20 usable trials <strong>automatically reports <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> — no rescues, no exceptions</strong>. Verdicts are always per model, never pooled. Every verdict script (<code>m0.py</code> through <code>m4.py</code>) was written, unit-tested (256 tests passing by the fourth milestone), and rehearsed on made-up data <strong>before</strong> the paid run it judges; the rules for killing, swapping, or halting a run were committed before the runs they govern. Each milestone ran under a hard spending cap with a meter that checks before every call and a lifetime guard of $5.00; cost estimates based on measured rates and roughly 5-call smoke tests came before every paid batch.</p>
+<h2 data-pg-block="pg-p-0044">4. Experimental setup</h2>
+<p data-pg-block="pg-p-0045"><strong>Subjects.</strong> Six cheap models available through <button type="button" class="gloss-term" data-term-id="openrouter">OpenRouter</button> entered the first pilot (main roster: qwen3-coder-30b-a3b-instruct, glm-4.7-flash, llama-3.1-8b-instruct; comparison set: deepseek-chat-v3.1, mistral-small-3.2-24b-instruct, kimi-k2.5 — the paper's own model). Pre-committed pilot rules eliminated four of them (§5.1); the sequence was then run on <strong>deepseek-chat-v3.1</strong> ($0.21 in / $0.79 out per million tokens) and <strong>qwen3-coder-30b-a3b-instruct</strong> ($0.07 / $0.27) — the latter a cheap relative of one of the paper's models. Subjects had their internal deliberation turned off; the repair budget was 3,200 tokens (a measured floor); parsing takes the last fenced code block, requires it to compile cleanly, and allows exactly one plain retry before marking the trial INVALID.</p>
+<p data-pg-block="pg-p-0046"><strong>The five milestones.</strong></p>
+<ul><li data-pg-block="pg-p-0047"><strong>M0 (does this even fit?):</strong> the first 12 problems in the set × the three conditions, plus 24 evaluator-role questions per model, judged against <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> rules on capability, skepticism, awareness, and parsing; plus the <button type="button" class="gloss-term" data-term-id="harness">harness</button>, problem-set, and generator checks from §3.</li><li data-pg-block="pg-p-0048"><strong>M1 (research question 1, re-scoped):</strong> single-pass repair, 3 conditions × 150 problems × 2 models, with the same problems seen by every condition. The main measure is the drop in pass rate from the no-instruction condition to the wrong-instruction condition (paired <button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> interval; to count as <button type="button" class="gloss-term" data-term-id="reproduced">REPRODUCED</button> it needed a range excluding 0 <em>and</em> a drop of at least 10 points). After the awareness non-result in M0, the evaluator-question leg was dropped by signed decision — M1 claims only the behavioural drop.</li><li data-pg-block="pg-p-0049"><strong>M2 (research question 2):</strong> on each model's set of failed no-instruction problems, self-guided repair starting from the <em>original broken program</em>: each round the model sees the description, the current code, and the first failing test (its input, the expected output, and what the program actually produced, truncated to 1,000 characters), for at most 5 rounds, stopping early if everything passes. No sabotage. Output: the recovery ceiling and the round-by-round curve — the anchor that M4 is compared against.</li><li data-pg-block="pg-p-0050"><strong>M3 (research question 3):</strong> starting from each model's confirmed-damage wrong-instruction states (deepseek's entry pool topped up by a <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> extra wave of 36 wrong-instruction-only trials, following the frozen ordering), the same loop plus <strong>a fresh verified wrong instruction every round</strong> (the generator sees only the current code). "Escape" means every test passes despite the sabotage. Declared descriptive in advance — not a pass/fail gate.</li><li data-pg-block="pg-p-0051"><strong>M4 (research question 4):</strong> M2's loop exactly as written, but starting from M3's frozen damaged end states (byte-for-byte identical starting points, checked at round zero). The main measure is the <strong><button type="button" class="gloss-term" data-term-id="irrecoverable-damage-rate">Irrecoverable Damage Rate</button></strong>, defined exactly as the paper defines it. One decision was pinned before the run (decision D12): two entry states sat at or below the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> (they improved during M3 without escaping) and therefore count as recovered at round zero by definition — all 18 were run, but the rate's denominator is the 16 states that were genuinely damaged at entry, with that pair reported separately and an all-18 sensitivity line included.</li></ul>
+<p data-pg-block="pg-p-0052">Every loop's starting state and every feedback block shown to the model is mechanically re-checked against the frozen record before the round begins (72 of 72 in M2, 56 of 56 in M3, 18 of 18 in M4 — the halt-on-drift alarm never fired).</p>
+<h2 data-pg-block="pg-p-0053">5. Results</h2>
+<h3 data-pg-block="pg-p-0054">5.1 M0 — the awareness precondition fails across the tier (null #1)</h3>
+<p data-pg-block="pg-p-0055">Compliance is emphatically present in the pilot — every model mechanically follows the wrong-location instruction on 9 to 11 of the 12 problems, and damage does occur — but <strong>when asked to play evaluator, the models perform at roughly coin-flip level everywhere</strong>. Judged against the <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> rule (a pass needs at least 8 of 12 wrong instructions labelled INCORRECT, with a sanity check that correct ones are not also being flagged):</p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>probe v1 (T2✓/T1✓)</th><th>probe v2 (T2✓/T1✓)</th><th>pilot verdict (v1 triggers)</th></tr></thead><tbody><tr><td>qwen3-coder-30b-a3b</td><td>4/10</td><td>1/5</td><td>KILL (T-C)</td></tr><tr><td>glm-4.7-flash</td><td>0/12</td><td>3/10</td><td>KILL (T-C)</td></tr><tr><td>llama-3.1-8b</td><td>1/8</td><td>3/6</td><td>KILL (T-A, T-C)</td></tr><tr><td>deepseek-chat-v3.1</td><td>7/5</td><td>2/8</td><td>AMBER → survives</td></tr><tr><td>mistral-small-3.2</td><td>2/12</td><td>2/12</td><td>KILL (T-C)</td></tr><tr><td>kimi-k2.5 (paper's model)</td><td>3/9 (partial wave)</td><td>3/6</td><td>KILL (T-C)</td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> each row is one model. The two middle columns show, for each of two question wordings, how many of the wrong instructions it correctly flagged as incorrect out of 12, followed by how many of the correct instructions it also flagged (a high second number means it was just saying "incorrect" to everything). No model reached the 8-out-of-12 bar under either wording, so five of the six were eliminated and deepseek scraped through on a borderline "AMBER" call.</p>
-<p>The second wording (which asks the model to find the bug itself first, and lets it think before answering) was the remedy we paid for after auditing the first; <strong>0 of 6 models clear the bar under either version</strong>. deepseek's "7 out of 12" on the first wording was just a bias toward answering "incorrect" — it also called 7 of 12 <em>correct</em> instructions incorrect. The anchor result: <strong>Kimi K2.5 — the paper's own subject — reads flat at about 25% under both wordings, against the 63% the paper reports</strong>, which largely rules out the explanation that we simply asked the question badly. Explanations we cannot separate at this scale: our verified machine-drafted instructions may be harder to see through than the paper's human-written ones; the paper's question wording may differ in ways we can't see; or the model provider's own settings may differ. Whichever combination it is, on this setup the "aware" leg simply does not exist — <strong>blindness rather than knowing compliance</strong> — and this was one of the failure directions we registered in advance (KICKOFF risk 1c). The pilot's roster rule returned STOP; the signed decision re-scoped version 1 of the project to the compliance → damage → recovery → irrecoverability sequence on the two most capable models, with the awareness claim reported as this tier-wide non-result.</p>
-<h3>5.2 M1 — obedience without net damage (null #2)</h3>
-<p>All 900 single-pass trials completed (2 models × 3 conditions × 150 problems; every wrong instruction verified under protocol version 2).</p>
-<p><strong>Primary — paired T2-vs-T3 drop (<button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button>, φ̂-corrected):</strong></p>
+<p data-pg-block="pg-p-0056" class="plain-words"><em class="pw-label">In plain words:</em> each row is one model. The two middle columns show, for each of two question wordings, how many of the wrong instructions it correctly flagged as incorrect out of 12, followed by how many of the correct instructions it also flagged (a high second number means it was just saying "incorrect" to everything). No model reached the 8-out-of-12 bar under either wording, so five of the six were eliminated and deepseek scraped through on a borderline "AMBER" call.</p>
+<p data-pg-block="pg-p-0057">The second wording (which asks the model to find the bug itself first, and lets it think before answering) was the remedy we paid for after auditing the first; <strong>0 of 6 models clear the bar under either version</strong>. deepseek's "7 out of 12" on the first wording was just a bias toward answering "incorrect" — it also called 7 of 12 <em>correct</em> instructions incorrect. The anchor result: <strong>Kimi K2.5 — the paper's own subject — reads flat at about 25% under both wordings, against the 63% the paper reports</strong>, which largely rules out the explanation that we simply asked the question badly. Explanations we cannot separate at this scale: our verified machine-drafted instructions may be harder to see through than the paper's human-written ones; the paper's question wording may differ in ways we can't see; or the model provider's own settings may differ. Whichever combination it is, on this setup the "aware" leg simply does not exist — <strong>blindness rather than knowing compliance</strong> — and this was one of the failure directions we registered in advance (KICKOFF risk 1c). The pilot's roster rule returned STOP; the signed decision re-scoped version 1 of the project to the compliance → damage → recovery → irrecoverability sequence on the two most capable models, with the awareness claim reported as this tier-wide non-result.</p>
+<h3 data-pg-block="pg-p-0058">5.2 M1 — obedience without net damage (null #2)</h3>
+<p data-pg-block="pg-p-0059">All 900 single-pass trials completed (2 models × 3 conditions × 150 problems; every wrong instruction verified under protocol version 2).</p>
+<p data-pg-block="pg-p-0060"><strong>Primary — paired T2-vs-T3 drop (<button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button>, φ̂-corrected):</strong></p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>drop d</th><th>95% CI</th><th>clean pairs</th><th>verdict</th></tr></thead><tbody><tr><td>deepseek-chat-v3.1</td><td>+0.0400</td><td>[−0.0218, +0.1029]</td><td>150</td><td><strong>NULL</strong></td></tr><tr><td>qwen3-coder-30b</td><td>+0.0362</td><td>[−0.0343, +0.1062]</td><td>138</td><td><strong>NULL</strong></td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> "drop" is how much worse the wrong instruction made things compared with giving no instruction at all — 0.0400 means 4 <button type="button" class="gloss-term" data-term-id="percentage-points">percentage points</button>. The bracketed range is the span of true values the data is consistent with; because both ranges contain zero, we cannot rule out that the wrong instruction made no difference whatsoever, which is what NULL means here.</p>
-<p>Both ranges cross zero, and neither comes close to the 10-point bar we committed to in advance. The paper's 7-to-21-point collapse does not reproduce at this tier with 150 problems.</p>
-<p><strong>Arms (pass/valid, <button type="button" class="gloss-term" data-term-id="wilson">Wilson</button> 95%):</strong></p>
+<p data-pg-block="pg-p-0061" class="plain-words"><em class="pw-label">In plain words:</em> "drop" is how much worse the wrong instruction made things compared with giving no instruction at all — 0.0400 means 4 <button type="button" class="gloss-term" data-term-id="percentage-points">percentage points</button>. The bracketed range is the span of true values the data is consistent with; because both ranges contain zero, we cannot rule out that the wrong instruction made no difference whatsoever, which is what NULL means here.</p>
+<p data-pg-block="pg-p-0062">Both ranges cross zero, and neither comes close to the 10-point bar we committed to in advance. The paper's 7-to-21-point collapse does not reproduce at this tier with 150 problems.</p>
+<p data-pg-block="pg-p-0063"><strong>Arms (pass/valid, <button type="button" class="gloss-term" data-term-id="wilson">Wilson</button> 95%):</strong></p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>T1 (correct instr.)</th><th>T2 (wrong-location)</th><th>T3 (no instr.)</th></tr></thead><tbody><tr><td>deepseek</td><td>141/150 = 94.0% [89.0, 96.8]</td><td>121/150 = 80.7% [73.6, 86.2]</td><td>127/150 = 84.7% [78.0, 89.6]</td></tr><tr><td>qwen</td><td>114/146 = 78.1% [70.7, 84.0]</td><td>87/146 = 59.6% [51.5, 67.2]</td><td>91/140 = 65.0% [56.8, 72.4]</td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> for each model and each of the three conditions, this shows how many problems were repaired successfully out of how many usable trials, as a percentage, with the plausible range in brackets. Reading across: a correct instruction helps most, no instruction is next, and a wrong instruction is worst — but the wrong-instruction and no-instruction columns overlap heavily, which is why the comparison above came back as no effect.</p>
-<p>The structure that <em>is</em> real: correct instructions help (correct minus none = +9.3 points for deepseek, +13.1 for qwen — instructions do steer these models), and the wrong instruction is <strong>followed</strong> at high rates (the model edits the named region in 129 of 150 and 127 of 146 trials) — the models patch the wrong location they were pointed at <em>and frequently fix the real bug anyway</em>. The brief's phrase for the tier-wide story is <strong>"obedience without net damage."</strong> Damage still happens at the level of individual trials — the wrong instruction leaves the program worse off than the original broken version in 18 of 150 = 12.0% [7.7, 18.2] of deepseek's trials and 35 of 146 = 24.0% [17.8, 31.5] of qwen's — and those damaged programs feed the next link in the sequence.</p>
-<h3>5.3 M2 — the recovery ceiling is alive (the M4 anchor)</h3>
-<p>On the problems where the no-instruction condition had failed (23 for deepseek, 49 for qwen), the model repairs on its own starting from the original broken program, seeing one failing test per round:</p>
+<p data-pg-block="pg-p-0064" class="plain-words"><em class="pw-label">In plain words:</em> for each model and each of the three conditions, this shows how many problems were repaired successfully out of how many usable trials, as a percentage, with the plausible range in brackets. Reading across: a correct instruction helps most, no instruction is next, and a wrong instruction is worst — but the wrong-instruction and no-instruction columns overlap heavily, which is why the comparison above came back as no effect.</p>
+<p data-pg-block="pg-p-0065">The structure that <em>is</em> real: correct instructions help (correct minus none = +9.3 points for deepseek, +13.1 for qwen — instructions do steer these models), and the wrong instruction is <strong>followed</strong> at high rates (the model edits the named region in 129 of 150 and 127 of 146 trials) — the models patch the wrong location they were pointed at <em>and frequently fix the real bug anyway</em>. The brief's phrase for the tier-wide story is <strong>"obedience without net damage."</strong> Damage still happens at the level of individual trials — the wrong instruction leaves the program worse off than the original broken version in 18 of 150 = 12.0% [7.7, 18.2] of deepseek's trials and 35 of 146 = 24.0% [17.8, 31.5] of qwen's — and those damaged programs feed the next link in the sequence.</p>
+<h3 data-pg-block="pg-p-0066">5.3 M2 — the recovery ceiling is alive (the M4 anchor)</h3>
+<p data-pg-block="pg-p-0067">On the problems where the no-instruction condition had failed (23 for deepseek, 49 for qwen), the model repairs on its own starting from the original broken program, seeing one failing test per round:</p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>ceiling</th><th>Wilson 95%</th><th>curve (cum. by pass)</th><th>clean N</th><th>label</th></tr></thead><tbody><tr><td>deepseek</td><td>18/23 = <strong>78.3%</strong></td><td>[58.1, 90.3]</td><td>[14, 17, 18, 18, 18]</td><td>23</td><td>REPORTED</td></tr><tr><td>qwen</td><td>20/38 = <strong>52.6%</strong></td><td>[37.3, 67.5]</td><td>[14, 16, 18, 20, 20]</td><td>38</td><td>REPORTED</td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> "ceiling" is how many of these previously-failed problems the model eventually fixed on its own, with the plausible range beside it. The five numbers in the curve are running totals after each of the five rounds — so deepseek reached 14 fixes after round one and only added four more across the remaining four rounds.</p>
-<p>Both curves are heavily front-loaded: the first round delivers 14 of deepseek's 18 total recoveries and 14 of qwen's 20 — <strong>the active ingredient is the feedback, not the number of rounds</strong>, when starting from a clean state. Two secondary findings matter later. First, the <strong>damage rate with no instruction at all</strong>: even with no saboteur present, the final state ends up worse than the original broken program in 4 of 23 = 17.4% (deepseek) and 12 of 38 = 31.6% (qwen) of clean loops — so M3's damage claim has to beat this rate, not zero. Second, <strong>qwen's fragility when parsing its own output mid-loop</strong>: 11 of 49 loops (22.4%) were discarded because of parsing failures partway through, and its first-attempt parse rate (116 of 144 = 80.6%) cleared the <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> 80% floor by only 0.6 points — a concern flagged forward to M4.</p>
-<h3>5.4 M3 — ghost-error compounding on the powered cell</h3>
-<p>Entry consists of the wrong-instruction states with confirmed damage (35 for qwen; 18 for deepseek plus 3 from the <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> extension, so 21). Every round adds a fresh, verified wrong-location instruction alongside a visible failing test.</p>
+<p data-pg-block="pg-p-0068" class="plain-words"><em class="pw-label">In plain words:</em> "ceiling" is how many of these previously-failed problems the model eventually fixed on its own, with the plausible range beside it. The five numbers in the curve are running totals after each of the five rounds — so deepseek reached 14 fixes after round one and only added four more across the remaining four rounds.</p>
+<p data-pg-block="pg-p-0069">Both curves are heavily front-loaded: the first round delivers 14 of deepseek's 18 total recoveries and 14 of qwen's 20 — <strong>the active ingredient is the feedback, not the number of rounds</strong>, when starting from a clean state. Two secondary findings matter later. First, the <strong>damage rate with no instruction at all</strong>: even with no saboteur present, the final state ends up worse than the original broken program in 4 of 23 = 17.4% (deepseek) and 12 of 38 = 31.6% (qwen) of clean loops — so M3's damage claim has to beat this rate, not zero. Second, <strong>qwen's fragility when parsing its own output mid-loop</strong>: 11 of 49 loops (22.4%) were discarded because of parsing failures partway through, and its first-attempt parse rate (116 of 144 = 80.6%) cleared the <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> 80% floor by only 0.6 points — a concern flagged forward to M4.</p>
+<h3 data-pg-block="pg-p-0070">5.4 M3 — ghost-error compounding on the powered cell</h3>
+<p data-pg-block="pg-p-0071">Entry consists of the wrong-instruction states with confirmed damage (35 for qwen; 18 for deepseek plus 3 from the <button type="button" class="gloss-term" data-term-id="pre-committed">pre-committed</button> extension, so 21). Every round adds a fresh, verified wrong-location instruction alongside a visible failing test.</p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>escape</th><th>Wilson 95%</th><th>curve (cum. by pass)</th><th>clean N</th><th>label</th></tr></thead><tbody><tr><td>deepseek</td><td>10/12 = 83.3%</td><td>[55.2, 95.3]</td><td>[7, 8, 9, 9, 10]</td><td>12</td><td><strong>UNDERPOWERED</strong></td></tr><tr><td>qwen</td><td>7/23 = <strong>30.4%</strong></td><td>[15.6, 50.9]</td><td><strong>[7, 7, 7, 7, 7]</strong></td><td>23</td><td><strong>REPORTED</strong></td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> "escape" means the program reached a state where every test passes, despite being sabotaged every round. The five curve numbers are running totals by round. qwen's curve reads 7, 7, 7, 7, 7 — every single escape happened on the first round, and not one more occurred in the four rounds that followed.</p>
-<p>The <button type="button" class="gloss-term" data-term-id="cell">cell</button> with enough trials shows the paper's shape. <strong>All of qwen's escapes happen on the first round; the curve is flat at zero for rounds 2 through 5</strong> — 16 of 23 usable loops stay broken through four further verified wrong instructions. Its damage trajectory breaks down as: 7 escaped, 3 got worse, 9 held steady, 4 improved (12 of the 16 non-escapes end at or above the damage level they started at); the average number of failing tests per round runs 9.4 → 13.3 → 13.9 → 12.6 → 12.3 — damage spikes early and then stays pinned there. The share of loops ending below the original broken <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> is 15 of 23 = 65.2% [44.9, 81.2], against M2's no-instruction rate of 31.6% [19.1, 47.5] — a difference of <strong>+33.6 points, <button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> 95% range [+7.8, +53.9]</strong>. That range excludes zero, but the comparison was <strong>committed in advance as descriptive context, not as a pass/fail test</strong>: M2's loops start <em>at</em> the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> while M3's start <em>below</em> it, so the difference mixes the starting position together with the instruction pressure. We report the direction (roughly double the base rate) without claiming a controlled effect. Compliance persists even as evidence mounts against it, eroding only from 25 of 27 = 93% in round 1 to 11 of 16 = 69% in round 5.</p>
-<p>deepseek's <button type="button" class="gloss-term" data-term-id="cell">cell</button> is the earlier non-result propagating forward — 83% escape among the loops we could verify — but it is honestly <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button>: its way of complying is <em>rewriting the whole file</em>, which destroys the tracked fix region across the entire program and starves the verifier (7 of its 9 discarded loops were thrown out because the anchor could no longer be located; 42.9% of its loops were discarded overall, versus qwen's 34.3%, which is dominated by parsing failures instead). This is the <strong>verifier's dilemma in its iterative form</strong>: the more destructive the compliance, the less verifiable the sabotage becomes. It is the disclosed price of checking every manipulation mechanically on every round — the paper's unverified generator pays no such <button type="button" class="gloss-term" data-term-id="attrition">attrition</button> and carries no guarantee of wrongness in return. The generator itself held up well on drifting code (34 of 36 and 100 of 104 accepted on first attempt, at average drift of 0.21 and 0.25).</p>
-<p><strong>The funnel consequence, pre-declared at M3 close:</strong> the number of states available to enter M4 — usable loops that never escaped — is <strong>2 (deepseek) and 16 (qwen), both under 20</strong> — so the sequence's final comparison was declared <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> on both models <em>before</em> M4 was even run, with no rescue available (deepseek escapes faster than its pool can supply damaged end states; qwen's shortfall is driven by discarded trials).</p>
-<h3>5.5 M4 — irrecoverability, descriptively</h3>
-<p>This is M2's loop exactly as written, started from the 18 frozen damaged end states; every label was declared <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> at entry.</p>
-<p><strong>Primary — <button type="button" class="gloss-term" data-term-id="irrecoverable-damage-rate">Irrecoverable Damage Rate</button></strong> (paper-verbatim: never re-crosses the buggy <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> within 5 passes; denominator = damaged-at-entry per D12):</p>
+<p data-pg-block="pg-p-0072" class="plain-words"><em class="pw-label">In plain words:</em> "escape" means the program reached a state where every test passes, despite being sabotaged every round. The five curve numbers are running totals by round. qwen's curve reads 7, 7, 7, 7, 7 — every single escape happened on the first round, and not one more occurred in the four rounds that followed.</p>
+<p data-pg-block="pg-p-0073">The <button type="button" class="gloss-term" data-term-id="cell">cell</button> with enough trials shows the paper's shape. <strong>All of qwen's escapes happen on the first round; the curve is flat at zero for rounds 2 through 5</strong> — 16 of 23 usable loops stay broken through four further verified wrong instructions. Its damage trajectory breaks down as: 7 escaped, 3 got worse, 9 held steady, 4 improved (12 of the 16 non-escapes end at or above the damage level they started at); the average number of failing tests per round runs 9.4 → 13.3 → 13.9 → 12.6 → 12.3 — damage spikes early and then stays pinned there. The share of loops ending below the original broken <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> is 15 of 23 = 65.2% [44.9, 81.2], against M2's no-instruction rate of 31.6% [19.1, 47.5] — a difference of <strong>+33.6 points, <button type="button" class="gloss-term" data-term-id="newcombe">Newcombe</button> 95% range [+7.8, +53.9]</strong>. That range excludes zero, but the comparison was <strong>committed in advance as descriptive context, not as a pass/fail test</strong>: M2's loops start <em>at</em> the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> while M3's start <em>below</em> it, so the difference mixes the starting position together with the instruction pressure. We report the direction (roughly double the base rate) without claiming a controlled effect. Compliance persists even as evidence mounts against it, eroding only from 25 of 27 = 93% in round 1 to 11 of 16 = 69% in round 5.</p>
+<p data-pg-block="pg-p-0074">deepseek's <button type="button" class="gloss-term" data-term-id="cell">cell</button> is the earlier non-result propagating forward — 83% escape among the loops we could verify — but it is honestly <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button>: its way of complying is <em>rewriting the whole file</em>, which destroys the tracked fix region across the entire program and starves the verifier (7 of its 9 discarded loops were thrown out because the anchor could no longer be located; 42.9% of its loops were discarded overall, versus qwen's 34.3%, which is dominated by parsing failures instead). This is the <strong>verifier's dilemma in its iterative form</strong>: the more destructive the compliance, the less verifiable the sabotage becomes. It is the disclosed price of checking every manipulation mechanically on every round — the paper's unverified generator pays no such <button type="button" class="gloss-term" data-term-id="attrition">attrition</button> and carries no guarantee of wrongness in return. The generator itself held up well on drifting code (34 of 36 and 100 of 104 accepted on first attempt, at average drift of 0.21 and 0.25).</p>
+<p data-pg-block="pg-p-0075"><strong>The funnel consequence, pre-declared at M3 close:</strong> the number of states available to enter M4 — usable loops that never escaped — is <strong>2 (deepseek) and 16 (qwen), both under 20</strong> — so the sequence's final comparison was declared <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> on both models <em>before</em> M4 was even run, with no rescue available (deepseek escapes faster than its pool can supply damaged end states; qwen's shortfall is driven by discarded trials).</p>
+<h3 data-pg-block="pg-p-0076">5.5 M4 — irrecoverability, descriptively</h3>
+<p data-pg-block="pg-p-0077">This is M2's loop exactly as written, started from the 18 frozen damaged end states; every label was declared <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> at entry.</p>
+<p data-pg-block="pg-p-0078"><strong>Primary — <button type="button" class="gloss-term" data-term-id="irrecoverable-damage-rate">Irrecoverable Damage Rate</button></strong> (paper-verbatim: never re-crosses the buggy <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> within 5 passes; denominator = damaged-at-entry per D12):</p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>IDR</th><th>Wilson 95%</th><th>re-cross curve (cum.)</th><th>sensitivity (all clean)</th><th>label</th></tr></thead><tbody><tr><td>deepseek</td><td>0/1 = 0%</td><td>[0, 79.4]</td><td>[1, 1, 1, 1, 1]</td><td>0/2</td><td>UNDERPOWERED (pre-declared)</td></tr><tr><td>qwen</td><td><strong>6/12 = 50.0%</strong></td><td>[25.4, 74.6]</td><td><strong>[2, 3, 4, 6, 6]</strong></td><td>6/12</td><td>UNDERPOWERED (pre-declared)</td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> the rate is the share of damaged programs that never got back to being as good as the original broken version within five rounds. The curve counts, cumulatively by round, how many did get back. The "sensitivity" column repeats the calculation with every usable loop included, to show the answer does not hinge on which states were counted. Both rows are labelled <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> because they rest on far fewer than 20 trials — deepseek's on a single one.</p>
-<p>The qwen <button type="button" class="gloss-term" data-term-id="cell">cell</button> splits exactly in half, and the two halves look structurally different. <strong>The six that never recover:</strong> four never improve by even one test across five rounds of feedback (p03894, p03628, p00589, p03213 — their best state equals their starting state), and two do move but never get close to the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> (p03713 goes from 18 failing tests to 16, against a <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> of 3; p02856 goes from 20 to 13, against a <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> of 1). And yet <strong>nothing got worse: 0 of 12</strong> — once the saboteur goes quiet, damage stops accumulating, no loop ends worse than it began — it just doesn't heal. <strong>The six that do recover:</strong> every recovery holds (the final state is at or better than the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button>; none of them backslide), four are complete fixes, and p03752 dropped from 19 failing tests to 1 in a single round. Unlike M2's first-round rush, M4's recoveries <strong>keep arriving through round 4</strong> — starting from a damaged state, extra rounds do real work that clean-start repair never needed. deepseek's two loops are anecdote and are labelled as such: its one genuinely damaged state was fully fixed on round 1, and its round-zero loop held at 1 failing test throughout.</p>
-<p><strong>The chain gate, computed as pre-declared:</strong></p>
+<p data-pg-block="pg-p-0079" class="plain-words"><em class="pw-label">In plain words:</em> the rate is the share of damaged programs that never got back to being as good as the original broken version within five rounds. The curve counts, cumulatively by round, how many did get back. The "sensitivity" column repeats the calculation with every usable loop included, to show the answer does not hinge on which states were counted. Both rows are labelled <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> because they rest on far fewer than 20 trials — deepseek's on a single one.</p>
+<p data-pg-block="pg-p-0080">The qwen <button type="button" class="gloss-term" data-term-id="cell">cell</button> splits exactly in half, and the two halves look structurally different. <strong>The six that never recover:</strong> four never improve by even one test across five rounds of feedback (p03894, p03628, p00589, p03213 — their best state equals their starting state), and two do move but never get close to the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> (p03713 goes from 18 failing tests to 16, against a <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> of 3; p02856 goes from 20 to 13, against a <button type="button" class="gloss-term" data-term-id="baseline">baseline</button> of 1). And yet <strong>nothing got worse: 0 of 12</strong> — once the saboteur goes quiet, damage stops accumulating, no loop ends worse than it began — it just doesn't heal. <strong>The six that do recover:</strong> every recovery holds (the final state is at or better than the <button type="button" class="gloss-term" data-term-id="baseline">baseline</button>; none of them backslide), four are complete fixes, and p03752 dropped from 19 failing tests to 1 in a single round. Unlike M2's first-round rush, M4's recoveries <strong>keep arriving through round 4</strong> — starting from a damaged state, extra rounds do real work that clean-start repair never needed. deepseek's two loops are anecdote and are labelled as such: its one genuinely damaged state was fully fixed on round 1, and its round-zero loop held at 1 failing test throughout.</p>
+<p data-pg-block="pg-p-0081"><strong>The chain gate, computed as pre-declared:</strong></p>
 <div class="scroll-x"><table><thead><tr><th>Model</th><th>M4 full-fix</th><th>M2 ceiling</th><th>Newcombe M2−M4</th><th>label</th></tr></thead><tbody><tr><td>deepseek</td><td>1/2</td><td>18/23 = 78.3%</td><td>+28.3 pts [−17.0, +70.6]</td><td>UNDERPOWERED ×2 (pre-declared)</td></tr><tr><td>qwen</td><td>4/12 = 33.3%</td><td>20/38 = 52.6%</td><td>+19.3 pts [−12.3, +43.9]</td><td>〃</td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> this asks whether repair works worse from a damaged starting state than from a clean one. The middle columns give the success rate in each situation, and the fourth gives the gap between them with its plausible range. Both ranges include zero, so although the gap points the way the paper predicts, the data cannot confirm it.</p>
-<p>The direction matches the paper on both models (repair from damaged states does worse than from clean ones); <strong>both ranges <button type="button" class="gloss-term" data-term-id="straddle-zero">straddle zero</button>, so we make no claim about a recovery gap</strong>. The selection issue is also stated plainly: M4's population is what is left over after everything else escaped through the M1→M3 pipeline, while M2's is every failed no-instruction problem — so the comparison mixes selection together with corruption, and it is context rather than a test.</p>
-<p>One alarm went off during the qwen run — the project's only decision not settled in advance — and was handled live by the author (recorded in <code>m4.py</code> and in the brief): when the run resumed, the smoke check read only 3 parses out of 5, with every miss caused by the model hitting its length limit. The decision was to finish under the frozen protocol and report the breach. The completed run read a first-attempt parse rate of <strong>42 of 61 = 68.9%, below the 80% floor</strong>; 4 loops were discarded (all for length, including qwen's round-zero loop p03593). The <button type="button" class="gloss-term" data-term-id="attrition">attrition</button> is itself a finding: <strong>the length of a repair response scales with how badly the code has been mangled</strong> — truncated responses ran 9,000 to 13,000 characters against a 3,200-token budget that had been measured on pristine code, and M4's sabotage-free prompts let qwen ramble where M3's pointed instructions had kept it terse (90.3% first-attempt parse rate there). The damaged starting states sit a long way from the original code: their average similarity to the original broken program is 0.21 (deepseek) and 0.18 (qwen) — roughly 80% rewritten, compared with what M2 was repairing.</p>
-<h3>5.6 The chain verdict and the ledger</h3>
+<p data-pg-block="pg-p-0082" class="plain-words"><em class="pw-label">In plain words:</em> this asks whether repair works worse from a damaged starting state than from a clean one. The middle columns give the success rate in each situation, and the fourth gives the gap between them with its plausible range. Both ranges include zero, so although the gap points the way the paper predicts, the data cannot confirm it.</p>
+<p data-pg-block="pg-p-0083">The direction matches the paper on both models (repair from damaged states does worse than from clean ones); <strong>both ranges <button type="button" class="gloss-term" data-term-id="straddle-zero">straddle zero</button>, so we make no claim about a recovery gap</strong>. The selection issue is also stated plainly: M4's population is what is left over after everything else escaped through the M1→M3 pipeline, while M2's is every failed no-instruction problem — so the comparison mixes selection together with corruption, and it is context rather than a test.</p>
+<p data-pg-block="pg-p-0084">One alarm went off during the qwen run — the project's only decision not settled in advance — and was handled live by the author (recorded in <code>m4.py</code> and in the brief): when the run resumed, the smoke check read only 3 parses out of 5, with every miss caused by the model hitting its length limit. The decision was to finish under the frozen protocol and report the breach. The completed run read a first-attempt parse rate of <strong>42 of 61 = 68.9%, below the 80% floor</strong>; 4 loops were discarded (all for length, including qwen's round-zero loop p03593). The <button type="button" class="gloss-term" data-term-id="attrition">attrition</button> is itself a finding: <strong>the length of a repair response scales with how badly the code has been mangled</strong> — truncated responses ran 9,000 to 13,000 characters against a 3,200-token budget that had been measured on pristine code, and M4's sabotage-free prompts let qwen ramble where M3's pointed instructions had kept it terse (90.3% first-attempt parse rate there). The damaged starting states sit a long way from the original code: their average similarity to the original broken program is 0.21 (deepseek) and 0.18 (qwen) — roughly 80% rewritten, compared with what M2 was repairing.</p>
+<h3 data-pg-block="pg-p-0085">5.6 The chain verdict and the ledger</h3>
 <div class="scroll-x"><table><thead><tr><th>Link</th><th>Paper claim</th><th>Our verdict</th><th>Key measured numbers</th></tr></thead><tbody><tr><td>Precondition (M0)</td><td>aware-but-obedient</td><td><strong>NULL (tier-level)</strong></td><td>0/6 models clear the probe gate ×2 wordings; Kimi ~25% vs paper's 63%</td></tr><tr><td>Obey (M1)</td><td>wrong-location drop</td><td><strong>NULL ×2</strong></td><td>+4.0 pts [−2.2, +10.3]; +3.6 pts [−3.4, +10.6]; comply 129/150, 127/146</td></tr><tr><td>Recover (M2)</td><td>recovery ceiling</td><td><strong>REPORTED ×2</strong></td><td>78.3% [58.1, 90.3]; 52.6% [37.3, 67.5]; pass-1 front-loaded</td></tr><tr><td>Compound (M3)</td><td>ghost-error compounding</td><td><strong>REPORTED (qwen) · UNDERPOWERED (deepseek)</strong></td><td>escape 30.4% [15.6, 50.9], pass-1-only; final-below-baseline 65.2% vs base 31.6% (descriptive)</td></tr><tr><td>Collapse (M4)</td><td>irrecoverability</td><td><strong>UNDERPOWERED ×2 (pre-declared) + descriptive IDR</strong></td><td>IDR 6/12 = 50% [25.4, 74.6]; M2−M4 +28.3 [−17.0, +70.6] / +19.3 [−12.3, +43.9]</td></tr></tbody></table></div>
-<p class="plain-words"><em class="pw-label">In plain words:</em> one row per link in the paper's four-stage sequence. The two front links came back as no effect, the middle two are reported as measured, and the final one had too few trials to judge — so what survived the move to cheap models is the shape of the back half, not the paper's headline claims.</p>
-<p><strong>Money spent</strong> (from the per-milestone meters recorded in <code>data/m*/cost_ledger.json</code>): M0 $0.3269 · M1 $0.5840 · M2 $0.1874 · M3 $0.2549 · M4 $0.0711 — <strong>$1.4244 in total</strong> against the $5.00 guard (1,227 / 224 / 374 / 87 metered calls across M1 through M4), all within the caps set in advance; the one cap that did fire (M0's $0.25 pilot cap, partway through the kimi run) halted that run exactly as designed.</p>
-<h2>6. Discussion</h2>
-<p><strong>What survives the move to cheap models is the sequence's shape, not its headline results.</strong> The paper's story starts with a model that <em>knows better and complies anyway</em>. The models at our tier comply — they edit the region they were pointed at almost every time — but they cannot reliably tell that the instruction was wrong in the first place, and their compliance produces no net drop in single-pass repair: they patch the wrong location they were given and often fix the real bug in the same breath. Both front-of-sequence claims come back as no effect, and we regard those non-results as the project's most useful output: <strong>the paper's premise appears to need a level of competence that cheap models simply do not have.</strong> Anyone extrapolating "top-tier models follow wrong instructions all the way into collapse" down to the cheap tier would be wrong twice over — the failure mode changes character (blindness rather than knowing compliance) and the single-pass damage disappears into the noise.</p>
-<p><strong>At this tier, damage comes from <em>sustained</em> sabotage rather than single instructions.</strong> One verified wrong instruction produces a 12–24% damage rate and no net drop. Five of them, delivered against visible failing tests, collapse the capable model's escape rate to first-round-only and pin its failure count at roughly 13 failing tests per active loop. Then, the moment the saboteur falls silent (M4), the compounding stops with it — nothing got worse, 0 of 12 — but healing does not resume for half the programs. The repository's own summary line is accurate to the data: corruption stops compounding but doesn't heal.</p>
-<p><strong>The split between recoverable and unrecoverable is a sharp divide, not a gradient.</strong> Four of qwen's six stuck programs never improve by a single test across five rounds of feedback, while the recovering half gets back across the line and keeps gaining all the way through round 4. That last point inverts M2's lesson: from clean starts, extra rounds bought almost nothing past the first; from damaged states, they did real work. At these small numbers this is direction and shape only — but it is exactly the kind of shape a larger replication could turn into a firm test.</p>
-<p><strong>Honest measurement carries a measurable price, and we paid it in plain sight.</strong> Checking every manipulation mechanically on every round cost deepseek's M3 <button type="button" class="gloss-term" data-term-id="cell">cell</button> its statistical power (trials discarded because the anchor vanished under wholesale rewriting) and starved the M4 comparison before it began. We consider that the right trade: the alternative — scoring manipulations nobody verified — would turn "the instruction was wrong" from a per-trial proven fact into an assumption. Two lessons banked for anyone following on: budget at least 40% slack for discarded trials when your subject rewrites whole files, and never freeze a token budget measured on pristine code and then apply it to prompts built from mangled code (response length grows with how badly the code has been damaged).</p>
-<h2>7. Threats to validity</h2>
-<ul><li><strong>Power.</strong> The M4 sequence comparison and every M4 and M3-deepseek <button type="button" class="gloss-term" data-term-id="cell">cell</button> are <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> exactly as the rules automatically declared (entry pools of 2 and 16, both under 20; 12 usable loops, under 20). We report direction and ranges; none of those <button type="button" class="gloss-term" data-term-id="cells">cells</button> supports a firm claim. deepseek's 2-loop M4 <button type="button" class="gloss-term" data-term-id="cell">cell</button> is labelled anecdote.</li><li><strong>Confounds we cannot remove.</strong> The M3-versus-M2 damage comparison is confounded by the different starting states (committed in advance as descriptive); the M4-versus-M2 comparison mixes pipeline selection together with corruption. Both are disclosed everywhere they are used.</li><li><strong>Manufactured manipulations.</strong> Wrong instructions are machine-drafted with harness-chosen targets (protocol version 2) and mechanically verified — they are not the paper's human-written ones. Verified-but-synthetic instructions may be <em>harder to see through</em> than human ones, which is one candidate explanation for the awareness non-result; we cannot separate it from question wording or provider settings on this budget, and we say so rather than pick a side.</li><li><strong>Our problem set is not the paper's.</strong> The paper's 538-problem filter is unpublished; ours is committed in advance but different (notably the room-to-get-worse and locality requirements), as are our prompts. Comparisons are about structure, never point-for-point numbers.</li><li><strong>Two subjects, one language, one dataset, one provider.</strong> Cheap-tier serving through <button type="button" class="gloss-term" data-term-id="openrouter">OpenRouter</button> may differ from the paper's deployments in ways we cannot see (compression of the model's weights, default sampling settings). Our exact-match grading is stricter than tolerance-based alternatives (the <button type="button" class="gloss-term" data-term-id="pre-registered">pre-registered</button> looser numeric variant graded 98% fidelity against exact matching's 95% at the quality check; exact matching was adopted under the frozen rule).</li></ul>
-<h2>8. Conclusion</h2>
-<p>We set out to re-run and measure a four-claim failure sequence on cheap models with every verdict committed in advance as working code, and we closed the sequence end to end for $1.4244: <strong>obey came back as no effect on both models · recovery is reported on both (78.3% / 52.6%) · compounding is reported on the <button type="button" class="gloss-term" data-term-id="cell">cell</button> that had enough trials (first-round-only escape at 30.4%) · collapse is underpowered on both exactly as pre-declared, with a descriptive stuck-half of 50% (6 of 12).</strong> The awareness precondition itself failed to reproduce across six cheap models, including the paper's own Kimi K2.5. None of this contradicts the paper on its own home ground of top-tier models; it maps where the sequence's claims do and do not survive the trip down-market, and it shows that a fully honest reproduction — non-results headlined, judgement rules frozen before the data, every manipulation proven wrong on every trial — fits inside a $5 hobby budget. The natural next step (parked, and gated): the cure question — does putting the failing-test evidence, or explicit permission to refuse, into the instruction prompt break the compliance, and does it unstick the stuck half?</p>
-<h2>9. Reproducibility and artifacts</h2>
-<p>Everything needed to audit or re-run this work lives in the repository: the verdict scripts with their subcommands (<code>m0.py</code>–<code>m4.py</code>), the frozen problem set and pool (<code>data/bank.json</code>, <code>data/pool.json</code>), per-trial records and per-milestone cost ledgers (<code>data/m1/</code>–<code>data/m4/</code>), machine-readable results (<code>data/m*_results.json</code>), signed per-milestone briefs carrying the decisions made in advance with results appended (<code>docs/M0-BRIEF.md</code>–<code>docs/M4-BRIEF.md</code>), hand-checked samples of accepted wrong instructions (<code>docs/*-SPOTREAD.md</code>), checksum-pinned data fetching (<code>fetch_runbugrun.py</code>), and 256 passing tests. The raw <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> data is excluded from the repository but can be re-downloaded; every artifact derived from it is committed.</p>
-<h2>References</h2>
-<p>The repository deliberately records sources by identifier/URL rather than full bibliographies; we cite exactly what is recorded and add nothing:</p>
-<ol><li><em>Obey, Diverge, Collapse</em> — arXiv 2607.04537, v1 2026-07-05 (9 pp). The reproduced paper. (Author list not recorded in the project notes; its promised code appendix is absent from v1.)</li><li>RunBugRun — dataset and JSONL data release v0.0.1: <code>github.com/giganticode/run_bug_run_data</code> (fetched with pinned MD5s; see <code>fetch_runbugrun.py</code>).</li><li>PIE4Perf problem statements — <code>github.com/madaan/pie-perf</code>, <code>problem_statements_translated.zip</code> (RunBugRun's credited translation source; pinned SHA-256).</li><li>Wilson score interval and Newcombe difference intervals (unpaired square-and-add "method 10"; paired 1998 variant with φ̂ correction) — as named and implemented in <code>stats.py</code>; the guardrail statistics here reproduce established practice rather than new methodology.</li></ol>
+<p data-pg-block="pg-p-0086" class="plain-words"><em class="pw-label">In plain words:</em> one row per link in the paper's four-stage sequence. The two front links came back as no effect, the middle two are reported as measured, and the final one had too few trials to judge — so what survived the move to cheap models is the shape of the back half, not the paper's headline claims.</p>
+<p data-pg-block="pg-p-0087"><strong>Money spent</strong> (from the per-milestone meters recorded in <code>data/m*/cost_ledger.json</code>): M0 $0.3269 · M1 $0.5840 · M2 $0.1874 · M3 $0.2549 · M4 $0.0711 — <strong>$1.4244 in total</strong> against the $5.00 guard (1,227 / 224 / 374 / 87 metered calls across M1 through M4), all within the caps set in advance; the one cap that did fire (M0's $0.25 pilot cap, partway through the kimi run) halted that run exactly as designed.</p>
+<h2 data-pg-block="pg-p-0088">6. Discussion</h2>
+<p data-pg-block="pg-p-0089"><strong>What survives the move to cheap models is the sequence's shape, not its headline results.</strong> The paper's story starts with a model that <em>knows better and complies anyway</em>. The models at our tier comply — they edit the region they were pointed at almost every time — but they cannot reliably tell that the instruction was wrong in the first place, and their compliance produces no net drop in single-pass repair: they patch the wrong location they were given and often fix the real bug in the same breath. Both front-of-sequence claims come back as no effect, and we regard those non-results as the project's most useful output: <strong>the paper's premise appears to need a level of competence that cheap models simply do not have.</strong> Anyone extrapolating "top-tier models follow wrong instructions all the way into collapse" down to the cheap tier would be wrong twice over — the failure mode changes character (blindness rather than knowing compliance) and the single-pass damage disappears into the noise.</p>
+<p data-pg-block="pg-p-0090"><strong>At this tier, damage comes from <em>sustained</em> sabotage rather than single instructions.</strong> One verified wrong instruction produces a 12–24% damage rate and no net drop. Five of them, delivered against visible failing tests, collapse the capable model's escape rate to first-round-only and pin its failure count at roughly 13 failing tests per active loop. Then, the moment the saboteur falls silent (M4), the compounding stops with it — nothing got worse, 0 of 12 — but healing does not resume for half the programs. The repository's own summary line is accurate to the data: corruption stops compounding but doesn't heal.</p>
+<p data-pg-block="pg-p-0091"><strong>The split between recoverable and unrecoverable is a sharp divide, not a gradient.</strong> Four of qwen's six stuck programs never improve by a single test across five rounds of feedback, while the recovering half gets back across the line and keeps gaining all the way through round 4. That last point inverts M2's lesson: from clean starts, extra rounds bought almost nothing past the first; from damaged states, they did real work. At these small numbers this is direction and shape only — but it is exactly the kind of shape a larger replication could turn into a firm test.</p>
+<p data-pg-block="pg-p-0092"><strong>Honest measurement carries a measurable price, and we paid it in plain sight.</strong> Checking every manipulation mechanically on every round cost deepseek's M3 <button type="button" class="gloss-term" data-term-id="cell">cell</button> its statistical power (trials discarded because the anchor vanished under wholesale rewriting) and starved the M4 comparison before it began. We consider that the right trade: the alternative — scoring manipulations nobody verified — would turn "the instruction was wrong" from a per-trial proven fact into an assumption. Two lessons banked for anyone following on: budget at least 40% slack for discarded trials when your subject rewrites whole files, and never freeze a token budget measured on pristine code and then apply it to prompts built from mangled code (response length grows with how badly the code has been damaged).</p>
+<h2 data-pg-block="pg-p-0093">7. Threats to validity</h2>
+<ul><li data-pg-block="pg-p-0094"><strong>Power.</strong> The M4 sequence comparison and every M4 and M3-deepseek <button type="button" class="gloss-term" data-term-id="cell">cell</button> are <button type="button" class="gloss-term" data-term-id="underpowered">UNDERPOWERED</button> exactly as the rules automatically declared (entry pools of 2 and 16, both under 20; 12 usable loops, under 20). We report direction and ranges; none of those <button type="button" class="gloss-term" data-term-id="cells">cells</button> supports a firm claim. deepseek's 2-loop M4 <button type="button" class="gloss-term" data-term-id="cell">cell</button> is labelled anecdote.</li><li data-pg-block="pg-p-0095"><strong>Confounds we cannot remove.</strong> The M3-versus-M2 damage comparison is confounded by the different starting states (committed in advance as descriptive); the M4-versus-M2 comparison mixes pipeline selection together with corruption. Both are disclosed everywhere they are used.</li><li data-pg-block="pg-p-0096"><strong>Manufactured manipulations.</strong> Wrong instructions are machine-drafted with harness-chosen targets (protocol version 2) and mechanically verified — they are not the paper's human-written ones. Verified-but-synthetic instructions may be <em>harder to see through</em> than human ones, which is one candidate explanation for the awareness non-result; we cannot separate it from question wording or provider settings on this budget, and we say so rather than pick a side.</li><li data-pg-block="pg-p-0097"><strong>Our problem set is not the paper's.</strong> The paper's 538-problem filter is unpublished; ours is committed in advance but different (notably the room-to-get-worse and locality requirements), as are our prompts. Comparisons are about structure, never point-for-point numbers.</li><li data-pg-block="pg-p-0098"><strong>Two subjects, one language, one dataset, one provider.</strong> Cheap-tier serving through <button type="button" class="gloss-term" data-term-id="openrouter">OpenRouter</button> may differ from the paper's deployments in ways we cannot see (compression of the model's weights, default sampling settings). Our exact-match grading is stricter than tolerance-based alternatives (the <button type="button" class="gloss-term" data-term-id="pre-registered">pre-registered</button> looser numeric variant graded 98% fidelity against exact matching's 95% at the quality check; exact matching was adopted under the frozen rule).</li></ul>
+<h2 data-pg-block="pg-p-0099">8. Conclusion</h2>
+<p data-pg-block="pg-p-0100">We set out to re-run and measure a four-claim failure sequence on cheap models with every verdict committed in advance as working code, and we closed the sequence end to end for $1.4244: <strong>obey came back as no effect on both models · recovery is reported on both (78.3% / 52.6%) · compounding is reported on the <button type="button" class="gloss-term" data-term-id="cell">cell</button> that had enough trials (first-round-only escape at 30.4%) · collapse is underpowered on both exactly as pre-declared, with a descriptive stuck-half of 50% (6 of 12).</strong> The awareness precondition itself failed to reproduce across six cheap models, including the paper's own Kimi K2.5. None of this contradicts the paper on its own home ground of top-tier models; it maps where the sequence's claims do and do not survive the trip down-market, and it shows that a fully honest reproduction — non-results headlined, judgement rules frozen before the data, every manipulation proven wrong on every trial — fits inside a $5 hobby budget. The natural next step (parked, and gated): the cure question — does putting the failing-test evidence, or explicit permission to refuse, into the instruction prompt break the compliance, and does it unstick the stuck half?</p>
+<h2 data-pg-block="pg-p-0101">9. Reproducibility and artifacts</h2>
+<p data-pg-block="pg-p-0102">Everything needed to audit or re-run this work lives in the repository: the verdict scripts with their subcommands (<code>m0.py</code>–<code>m4.py</code>), the frozen problem set and pool (<code>data/bank.json</code>, <code>data/pool.json</code>), per-trial records and per-milestone cost ledgers (<code>data/m1/</code>–<code>data/m4/</code>), machine-readable results (<code>data/m*_results.json</code>), signed per-milestone briefs carrying the decisions made in advance with results appended (<code>docs/M0-BRIEF.md</code>–<code>docs/M4-BRIEF.md</code>), hand-checked samples of accepted wrong instructions (<code>docs/*-SPOTREAD.md</code>), checksum-pinned data fetching (<code>fetch_runbugrun.py</code>), and 256 passing tests. The raw <button type="button" class="gloss-term" data-term-id="runbugrun">RunBugRun</button> data is excluded from the repository but can be re-downloaded; every artifact derived from it is committed.</p>
+<h2 data-pg-block="pg-p-0103">References</h2>
+<p data-pg-block="pg-p-0104">The repository deliberately records sources by identifier/URL rather than full bibliographies; we cite exactly what is recorded and add nothing:</p>
+<ol><li data-pg-block="pg-p-0105"><em>Obey, Diverge, Collapse</em> — arXiv 2607.04537, v1 2026-07-05 (9 pp). The reproduced paper. (Author list not recorded in the project notes; its promised code appendix is absent from v1.)</li><li data-pg-block="pg-p-0106">RunBugRun — dataset and JSONL data release v0.0.1: <code>github.com/giganticode/run_bug_run_data</code> (fetched with pinned MD5s; see <code>fetch_runbugrun.py</code>).</li><li data-pg-block="pg-p-0107">PIE4Perf problem statements — <code>github.com/madaan/pie-perf</code>, <code>problem_statements_translated.zip</code> (RunBugRun's credited translation source; pinned SHA-256).</li><li data-pg-block="pg-p-0108">Wilson score interval and Newcombe difference intervals (unpaired square-and-add "method 10"; paired 1998 variant with φ̂ correction) — as named and implemented in <code>stats.py</code>; the guardrail statistics here reproduce established practice rather than new methodology.</li></ol>
 </div>
 
 <div id="gloss-popover" class="gloss-popover" role="tooltip" hidden>
@@ -277,7 +504,7 @@ p.fig-caption{font-size:.86rem; line-height:1.55; color:var(--ink-faint);
 <div id="gloss-backdrop" class="gloss-backdrop" hidden></div>
 <aside id="gloss-panel" class="gloss-panel" hidden aria-label="Glossary">
   <button class="gloss-panel-close" aria-label="Close">&times;</button>
-  <h2>Glossary</h2>
+  <h2 data-pg-block="pg-p-0109">Glossary</h2>
   <table>
     <thead><tr><th>Term</th><th>Plain-English expansion</th></tr></thead>
     <tbody id="gloss-panel-rows"></tbody>
@@ -458,6 +685,746 @@ const GLOSS_TERMS = {
     var td2 = document.createElement("td"); td2.textContent = e.expansion;
     tr.appendChild(td1); tr.appendChild(td2); rows.appendChild(tr);
   });
+})();
+</script>
+<script id="pg-annot-js">
+(function () {
+  'use strict';
+  if (window.__pgAnnotInit) return;
+  window.__pgAnnotInit = true;
+
+  /* ---------- config ---------- */
+  var SLUG = document.body.getAttribute('data-pg-slug') || 'paper';
+  var KEY = 'pg-annotations:' + SLUG;
+  var CTX = 32;
+  var EXCLUDE = 'script,style,.math,math,pre.equation,' +
+    '#gloss-popover,#gloss-panel,#gloss-backdrop,#figure-lightbox,.pg-annot-ui';
+
+  /* ---------- storage ---------- */
+  var TOKEN_RE = /^[A-Za-z0-9_-]+$/;
+  function str(v) { return typeof v === 'string' ? v : ''; }
+  function isUsable(a) {
+    // The two fields that cannot be repaired: `id` is the record's identity
+    // AND is interpolated into three selectors, so a non-token id is
+    // unusable (rewriting it would break dedupe against the rest of the
+    // payload); a blank quote can never anchor. Everything else is
+    // normalised by sanitize() rather than costing the reader the note.
+    return !!a && typeof a.id === 'string' && TOKEN_RE.test(a.id) &&
+      typeof a.exact === 'string' && a.exact.trim() !== '';
+  }
+  function sanitize(a) {
+    // Normalise EVERY field the runtime consumes — not just the one that most
+    // recently caused a bug. Import is this module's only untrusted input, and
+    // each field feeds code that assumes its type:
+    //   pid, id  -> CSS selectors. An invalid one throws SyntaxError out of an
+    //               unguarded handler; a crafted selector LIST silently widens
+    //               the match (own-block status, or unmark hitting every
+    //               highlight on the page).
+    //   created  -> localeCompare in ordered()'s comparator, which openPanel
+    //               runs BEFORE it un-hides the panel — a bad value locks the
+    //               reader out of the panel, and out of export with it.
+    //   prefix/suffix/offset -> the anchoring score.
+    //   note/section         -> rendered, and written into the export.
+    if (typeof a.pid !== 'string' || !TOKEN_RE.test(a.pid)) a.pid = '';
+    a.prefix = str(a.prefix);
+    a.suffix = str(a.suffix);
+    a.note = str(a.note);
+    a.section = str(a.section);
+    a.created = str(a.created);
+    if (typeof a.offset !== 'number' || !isFinite(a.offset)) a.offset = 0;
+    return a;
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var p = JSON.parse(raw);
+        if (p && p.v === 1 && Array.isArray(p.annotations)) {
+          // Drop records that can't anchor and normalise every field the
+          // runtime consumes — a payload written by an older build (or
+          // hand-edited) must never be able to wedge the runtime.
+          p.annotations = p.annotations.filter(isUsable).map(sanitize);
+          return p;
+        }
+      }
+    } catch (e) { /* private mode or corrupt payload: start empty */ }
+    return { v: 1, slug: SLUG, title: document.title, annotations: [] };
+  }
+  var storageOk = true;
+  function persist() {
+    // Never silent: partitioned iframe storage is a live path, and a badge
+    // that counts up while nothing persists is the lie D3 forbids.
+    try {
+      localStorage.setItem(KEY, JSON.stringify(store));
+      storageOk = true;
+    } catch (e) {
+      storageOk = false;
+    }
+    updateHint();
+    updateBadge();   // the warning has to reach the always-visible surface too
+  }
+  function updateHint() {
+    var h = panel && panel.querySelector('.pg-annot-hint');
+    if (!h) return;
+    h.textContent = storageOk
+      ? 'Notes live in this browser only — export to keep them safe.'
+      : '⚠️ Not saved in this browser (storage unavailable) — export before you close this tab.';
+  }
+  var store = load();
+  var posCache = {};   // id -> {bi, start} for document-order sorting
+  var orphans = [];    // ids that failed to re-anchor this session
+
+  function newId() {
+    return 'a-' + Date.now().toString(36) + '-' +
+      Math.random().toString(36).slice(2, 6);
+  }
+  function byId(id) {
+    for (var i = 0; i < store.annotations.length; i++) {
+      if (store.annotations[i].id === id) return store.annotations[i];
+    }
+    return null;
+  }
+
+  /* ---------- anchoring ---------- */
+  function allBlocks() {
+    return Array.prototype.slice.call(
+      document.querySelectorAll('[data-pg-block]'));
+  }
+  function blockOf(node) {
+    var el = node.nodeType === 1 ? node : node.parentElement;
+    return el ? el.closest('[data-pg-block]') : null;
+  }
+  function sectionOf(block) {
+    var bs = allBlocks(), i = bs.indexOf(block);
+    for (var k = i; k >= 0; k--) {
+      if (/^H[1-6]$/.test(bs[k].tagName)) return bs[k].textContent.trim();
+    }
+    return '';
+  }
+  function offsetIn(block, container, offset) {
+    var r = document.createRange();
+    r.selectNodeContents(block);
+    r.setEnd(container, offset);
+    return r.toString().length;
+  }
+  function captureTarget(range) {
+    var b1 = blockOf(range.startContainer);
+    var b2 = blockOf(range.endContainer);
+    if (!b1 || b1 !== b2) return null;   // v1: single-block highlights only
+    var text = b1.textContent;
+    var start = offsetIn(b1, range.startContainer, range.startOffset);
+    var exact = range.toString();
+    if (!exact.trim()) return null;
+    return {
+      pid: b1.getAttribute('data-pg-block'),
+      exact: exact,
+      prefix: text.slice(Math.max(0, start - CTX), start),
+      suffix: text.slice(start + exact.length, start + exact.length + CTX),
+      offset: start,
+      section: sectionOf(b1)
+    };
+  }
+  function indexesOf(hay, needle) {
+    var out = [];
+    // An empty needle never terminates: String.indexOf clamps the start index,
+    // so "abc".indexOf("", 4) is 3, not -1, and the loop below runs forever.
+    // Capture can't produce one (captureTarget rejects blank), but import is a
+    // trust boundary and a hang here bricks every later load of the page.
+    if (!needle) return out;
+    var i = hay.indexOf(needle);
+    while (i !== -1) { out.push(i); i = hay.indexOf(needle, i + 1); }
+    return out;
+  }
+  function scoreAt(text, i, a) {
+    var s = 0;
+    if (a.prefix &&
+        text.slice(Math.max(0, i - a.prefix.length), i) === a.prefix) s += 2;
+    if (a.suffix &&
+        text.slice(i + a.exact.length,
+                   i + a.exact.length + a.suffix.length) === a.suffix) s += 2;
+    if (typeof a.offset === 'number') {
+      s -= Math.min(1, Math.abs(i - a.offset) / 1000);
+    }
+    return s;
+  }
+  // scoreAt awards +2 per corroborating side, minus up to 1 for offset
+  // distance, so >= 1 means at least one of prefix/suffix matched exactly.
+  var CONTEXT_MIN = 1;
+  var textCache = null;   // block -> textContent, valid for one renderAll pass
+  function blockText(b) {
+    if (!textCache) return b.textContent;
+    var t = textCache.get(b);
+    if (t === undefined) { t = b.textContent; textCache.set(b, t); }
+    return t;
+  }
+  function bestHitIn(b, a, requireContext) {
+    var text = blockText(b);
+    var hits = indexesOf(text, a.exact);
+    if (!hits.length) return null;
+    var best = hits[0], bestScore = -Infinity;
+    for (var h = 0; h < hits.length; h++) {
+      var s = scoreAt(text, hits[h], a);
+      if (s > bestScore) { bestScore = s; best = hits[h]; }
+    }
+    // A match OUTSIDE the stored block must be corroborated by the stored
+    // context. Without that bar a short or repeated quote ("the model")
+    // re-anchors to the earliest paragraph that happens to contain it, and
+    // renderAnnotation then overwrites a.pid and persists — destroying the
+    // real anchor and attaching the note to text the reader never highlighted.
+    // An uncorroborated quote belongs in the orphan list, which is the
+    // designed landing place for a quote whose block no longer contains it.
+    // Exception: a highlight covering a whole block stores no context at all,
+    // and an exact whole-block match is itself the corroboration.
+    if (requireContext) {
+      var wholeBlock = !a.prefix && !a.suffix && a.exact === text;
+      if (!wholeBlock && bestScore < CONTEXT_MIN) return null;
+    }
+    return { block: b, start: best, end: best + a.exact.length };
+  }
+  function locateAll(a, blocks) {
+    var out = [];
+    var own = a.pid &&
+      document.querySelector('[data-pg-block="' + a.pid + '"]');
+    if (own) {
+      var o = bestHitIn(own, a, false);
+      if (o) out.push(o);
+    }
+    blocks.forEach(function (b) {
+      if (b === own) return;
+      var c = bestHitIn(b, a, true);
+      if (c) out.push(c);
+    });
+    return out;
+  }
+
+  /* ---------- mark rendering ---------- */
+  function markRange(block, start, end, id, noted) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
+    var pos = 0, node, jobs = [];
+    while ((node = walker.nextNode())) {
+      var len = node.nodeValue.length;
+      var nStart = pos, nEnd = pos + len;
+      pos = nEnd;
+      if (nEnd <= start || nStart >= end) continue;
+      if (node.parentElement && node.parentElement.closest(EXCLUDE)) continue;
+      jobs.push({
+        node: node,
+        from: Math.max(start, nStart) - nStart,
+        to: Math.min(end, nEnd) - nStart
+      });
+    }
+    jobs.forEach(function (j) {
+      var target = j.node;
+      if (j.from > 0) target = target.splitText(j.from);
+      if (j.to - j.from < target.nodeValue.length) target.splitText(j.to - j.from);
+      var m = document.createElement('mark');
+      m.className = 'pg-hl' + (noted ? ' pg-hl--noted' : '');
+      m.setAttribute('data-annot-id', id);
+      target.parentNode.insertBefore(m, target);
+      m.appendChild(target);
+    });
+    return jobs.length;
+  }
+  function unmark(id) {
+    var marks = document.querySelectorAll(
+      'mark.pg-hl[data-annot-id="' + id + '"]');
+    Array.prototype.forEach.call(marks, function (m) {
+      var parent = m.parentNode;
+      while (m.firstChild) parent.insertBefore(m.firstChild, m);
+      parent.removeChild(m);
+      parent.normalize();
+    });
+  }
+  function renderAnnotation(a, blockIndex, blocks) {
+    var cands = locateAll(a, blocks);
+    for (var i = 0; i < cands.length; i++) {
+      var loc = cands[i];
+      var made = markRange(loc.block, loc.start, loc.end, a.id, !!a.note);
+      // quote matched, but every segment sits in excluded content (math,
+      // chrome): nothing was inserted, so try the next candidate rather than
+      // reporting a recoverable annotation as unanchored
+      if (!made) continue;
+      var marker = loc.block.getAttribute('data-pg-block');
+      if (a.pid !== marker) a.pid = marker;  // heal drift (corroborated only)
+      posCache[a.id] = { bi: blockIndex.get(loc.block), start: loc.start };
+      return;
+    }
+    orphans.push(a.id);
+  }
+  function renderAll() {
+    Array.prototype.forEach.call(
+      document.querySelectorAll('mark.pg-hl'),
+      function (m) {
+        var parent = m.parentNode;
+        while (m.firstChild) parent.insertBefore(m.firstChild, m);
+        parent.removeChild(m);
+      });
+    posCache = {};
+    orphans = [];
+    var blocks = allBlocks();
+    var blockIndex = new Map();
+    blocks.forEach(function (b, i) { blockIndex.set(b, i); });
+    // one textContent read per block for the whole pass, not one per block
+    // per annotation — locateAll now scans every block when the stored one
+    // no longer holds the quote
+    textCache = new Map();
+    store.annotations.forEach(function (a) {
+      renderAnnotation(a, blockIndex, blocks);
+    });
+    textCache = null;
+    persist();  // pids may have healed
+  }
+  function ordered() {
+    return store.annotations.slice().sort(function (x, y) {
+      var px = posCache[x.id], py = posCache[y.id];
+      if (px && py) return (px.bi - py.bi) || (px.start - py.start);
+      if (px) return -1;
+      if (py) return 1;
+      return (x.created || '').localeCompare(y.created || '');
+    });
+  }
+
+  /* ---------- surface coordination ---------- */
+  function closeOtherSurfaces() {
+    // Prefer the hooks a post-amendment page exports; the six retrofit
+    // targets mostly predate them (five export nothing, jacobian-lens only
+    // closeGlossSurfaces + closeFigureLightbox), so also drive the surfaces'
+    // own markup by id — same layered pattern as paper-figures' lightbox.
+    ['closeGlossSurfaces', 'closeGlossPopover', 'closeGlossPanel',
+     'closeFigureLightbox'].forEach(function (fn) {
+      if (typeof window[fn] === 'function') window[fn]();
+    });
+    ['gloss-popover', 'gloss-panel', 'gloss-backdrop', 'figure-lightbox']
+      .forEach(function (id) {
+        var n = document.getElementById(id);
+        if (n && !n.hidden) n.hidden = true;
+      });
+    var gt = document.getElementById('gloss-panel-toggle');
+    if (gt) gt.setAttribute('aria-expanded', 'false');
+    // sweep the active-term state too (same as paper-figures' fallback) —
+    // hiding the popover alone leaves .gloss-term--active desynced
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.gloss-term--active'),
+      function (b) {
+        b.classList.remove('gloss-term--active');
+        b.setAttribute('aria-expanded', 'false');
+      });
+  }
+  function closeAnnotationUI() {
+    hideToolbar();
+    closeEditor();
+    closePanel();
+    fallback.hidden = true;
+  }
+  window.closeAnnotationUI = closeAnnotationUI;
+
+  /* ---------- UI construction ---------- */
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html !== undefined) e.innerHTML = html;
+    return e;
+  }
+
+  var toolbar = el('div', 'pg-annot-toolbar pg-annot-ui',
+    '<button type="button" data-act="hl">Highlight</button>' +
+    '<button type="button" data-act="note">Note</button>');
+  toolbar.hidden = true;
+
+  var editor = el('div', 'pg-annot-editor pg-annot-ui',
+    '<div class="pg-annot-editor-quote"></div>' +
+    '<textarea rows="4" placeholder="Add a note…"></textarea>' +
+    '<div class="pg-annot-actions">' +
+    '<button type="button" data-act="delete">Delete</button>' +
+    '<button type="button" data-act="cancel">Cancel</button>' +
+    '<button type="button" data-act="save">Save</button></div>');
+  editor.hidden = true;
+
+  var toggle = el('button', 'pg-annot-toggle pg-annot-ui');
+  toggle.type = 'button';
+  toggle.setAttribute('aria-expanded', 'false');
+
+  var backdrop = el('div', 'pg-annot-backdrop pg-annot-ui');
+  backdrop.hidden = true;
+
+  // NB: no paragraph / list-item / definition-description / heading tag
+  // literal may appear anywhere in this file — markup OR comment. The whole
+  // file is embedded into the page, and Phase 3 asserts injection leaves the
+  // page's paragraph and heading counts exactly unchanged; any such literal
+  // makes that gate false-fail on a clean run. role + aria-level carry the
+  // semantics the heading tags would have.
+  var panel = el('aside', 'pg-annot-panel pg-annot-ui',
+    '<button type="button" class="pg-annot-panel-close" aria-label="Close">×</button>' +
+    '<div class="pg-annot-panel-title" role="heading" aria-level="2">Annotations</div>' +
+    '<div class="pg-annot-hint">Notes live in this browser only — export to keep them safe.</div>' +
+    '<div class="pg-annot-actions" style="justify-content:flex-start">' +
+    '<button type="button" data-act="export-md">Export Markdown</button>' +
+    '<button type="button" data-act="export-json">Export JSON</button>' +
+    '<button type="button" data-act="import">Import</button>' +
+    '<input type="file" accept=".json,application/json" hidden></div>' +
+    '<div class="pg-annot-status"></div>' +
+    '<ol class="pg-annot-list"></ol>' +
+    '<div class="pg-annot-orphans" hidden>' +
+    '<div class="pg-annot-orphans-title" role="heading" aria-level="3">Unanchored</div>' +
+    '<ol></ol></div>');
+  panel.hidden = true;
+
+  var fallback = el('div', 'pg-annot-fallback pg-annot-ui',
+    '<div class="pg-annot-fallback-msg"></div>' +
+    '<textarea readonly></textarea>' +
+    '<div class="pg-annot-actions">' +
+    '<button type="button" data-act="copy">Copy</button>' +
+    '<button type="button" data-act="close">Close</button></div>');
+  fallback.hidden = true;
+
+  [toolbar, editor, toggle, backdrop, panel, fallback].forEach(function (n) {
+    document.body.appendChild(n);
+  });
+
+  function updateBadge() {
+    // The panel hint alone is not enough: it lives inside a panel that is
+    // hidden by default, so a reader whose storage is blocked (private mode,
+    // a partitioned artifact iframe) would watch this counter climb for an
+    // hour and lose everything on tab close without ever opening the panel.
+    if (!toggle) return;
+    toggle.textContent = storageOk
+      ? '✏️ Notes (' + store.annotations.length + ')'
+      : '⚠️ Notes (' + store.annotations.length + ') — not saved';
+    toggle.classList.toggle('pg-annot-toggle--warn', !storageOk);
+    toggle.title = storageOk
+      ? ''
+      : 'This browser is blocking storage — your notes are only in this tab. Export them before you close it.';
+  }
+  function status(msg) {
+    panel.querySelector('.pg-annot-status').textContent = msg || '';
+  }
+
+  /* ---------- toolbar ---------- */
+  function hideToolbar() { toolbar.hidden = true; }
+  function placeAt(node, rect) {
+    node.style.left = Math.max(8, Math.min(
+      window.scrollX + rect.left,
+      window.scrollX + document.documentElement.clientWidth - node.offsetWidth - 8
+    )) + 'px';
+    node.style.top = (window.scrollY + rect.top - node.offsetHeight - 8) + 'px';
+  }
+  function maybeShowToolbar() {
+    var sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) { hideToolbar(); return; }
+    var range = sel.getRangeAt(0);
+    var anchor = range.startContainer.nodeType === 1 ?
+      range.startContainer : range.startContainer.parentElement;
+    if (anchor && anchor.closest('.pg-annot-ui')) return;
+    if (!captureTarget(range)) { hideToolbar(); return; }
+    toolbar.hidden = false;
+    placeAt(toolbar, range.getBoundingClientRect());
+  }
+  document.addEventListener('mouseup', function () {
+    setTimeout(maybeShowToolbar, 0);
+  });
+  // Touch selection (long-press handles) and keyboard selection (Shift+arrows)
+  // don't reliably emit mouseup — selectionchange is the path that covers them.
+  var selTimer = null;
+  document.addEventListener('selectionchange', function () {
+    clearTimeout(selTimer);
+    selTimer = setTimeout(maybeShowToolbar, 250);
+  });
+  toolbar.addEventListener('mousedown', function (e) { e.preventDefault(); });
+  toolbar.addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    var sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) { hideToolbar(); return; }
+    var target = captureTarget(sel.getRangeAt(0));
+    hideToolbar();
+    if (!target) return;
+    sel.removeAllRanges();
+    var a = {
+      id: newId(), exact: target.exact, prefix: target.prefix,
+      suffix: target.suffix, pid: target.pid, offset: target.offset,
+      note: '', section: target.section,
+      created: new Date().toISOString()
+    };
+    store.annotations.push(a);
+    persist();
+    renderAll();
+    updateBadge();
+    if (btn.getAttribute('data-act') === 'note') openEditor(a.id, true);
+  });
+
+  /* ---------- editor ---------- */
+  var editorState = { id: null, fresh: false };
+  function openEditor(id, fresh) {
+    var a = byId(id);
+    if (!a) return;
+    closeEditor();          // switching annotations commits the open draft
+    closeOtherSurfaces();
+    closePanel();
+    hideToolbar();
+    editorState = { id: id, fresh: !!fresh };
+    editor.querySelector('.pg-annot-editor-quote').textContent =
+      a.exact.length > 200 ? a.exact.slice(0, 200) + '…' : a.exact;
+    editor.querySelector('textarea').value = a.note || '';
+    editor.hidden = false;
+    var m = document.querySelector('mark.pg-hl[data-annot-id="' + id + '"]');
+    if (m) placeAt(editor, m.getBoundingClientRect());
+    else { editor.style.left = '50%'; editor.style.top = (window.scrollY + 120) + 'px'; }
+    editor.querySelector('textarea').focus();
+  }
+  function removeAnnotation(id) {
+    unmark(id);
+    store.annotations = store.annotations.filter(function (a) { return a.id !== id; });
+    delete posCache[id];
+    persist();
+    updateBadge();
+  }
+  function closeEditor(mode) {
+    // Dismissal COMMITS the draft. "Highlight → start a note → click a jargon
+    // term to check what it means" is the page's most natural gesture, and it
+    // must destroy neither the highlight nor the words already typed — every
+    // dismissal path (term click, glossary toggle, figure, Escape, body click,
+    // opening the panel, switching to another annotation) lands here. Only the
+    // explicit Cancel button passes 'discard'.
+    if (editor.hidden) return;
+    var a = byId(editorState.id);
+    if (a && mode !== 'discard') {
+      var typed = editor.querySelector('textarea').value.trim();
+      if (typed !== (a.note || '')) {
+        a.note = typed;
+        persist();
+        renderAll();
+      }
+    }
+    editor.hidden = true;
+    editorState = { id: null, fresh: false };
+  }
+  editor.addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    var act = btn.getAttribute('data-act');
+    if (act === 'save') closeEditor();
+    else if (act === 'cancel') {
+      var wasFresh = editorState.fresh, freshId = editorState.id;
+      closeEditor('discard');
+      var fa = byId(freshId);
+      if (wasFresh && fa && !fa.note) removeAnnotation(freshId);
+    }
+    else if (act === 'delete') {
+      var id = editorState.id;
+      editorState = { id: null, fresh: false };
+      editor.hidden = true;
+      removeAnnotation(id);
+      refreshPanelList();
+    }
+  });
+
+  /* ---------- panel ---------- */
+  function openPanel() {
+    closeOtherSurfaces();
+    hideToolbar();
+    closeEditor();
+    refreshPanelList();
+    panel.hidden = false;
+    backdrop.hidden = false;
+    // hide the toggle while the panel is open: its z-index sits below the
+    // lightbox and the backdrop by design, so it must not be the close control
+    toggle.hidden = true;
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closePanel() {
+    panel.hidden = true;
+    backdrop.hidden = true;
+    toggle.hidden = false;
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  function itemFor(a, anchored) {
+    var li = document.createElement('li');
+    var sec = el('div', 'pg-annot-item-section');
+    sec.textContent = a.section || '';
+    var q = el('blockquote', 'pg-annot-item-quote');
+    q.textContent = a.exact.length > 140 ? a.exact.slice(0, 140) + '…' : a.exact;
+    var note = el('div', 'pg-annot-item-note');
+    note.textContent = a.note || '';
+    var actions = el('div', 'pg-annot-item-actions');
+    if (anchored) {
+      var jump = el('button', '', 'Jump'); jump.type = 'button';
+      jump.addEventListener('click', function () {
+        closePanel();
+        var m = document.querySelector('mark.pg-hl[data-annot-id="' + a.id + '"]');
+        if (!m) return;
+        m.scrollIntoView({ block: 'center' });
+        m.classList.add('pg-hl--flash');
+        setTimeout(function () { m.classList.remove('pg-hl--flash'); }, 1300);
+      });
+      actions.appendChild(jump);
+    }
+    var edit = el('button', '', 'Edit'); edit.type = 'button';
+    edit.addEventListener('click', function () { openEditor(a.id, false); });
+    var del = el('button', '', 'Delete'); del.type = 'button';
+    del.addEventListener('click', function () {
+      removeAnnotation(a.id);
+      refreshPanelList();
+    });
+    actions.appendChild(edit);
+    actions.appendChild(del);
+    li.appendChild(sec); li.appendChild(q);
+    if (a.note) li.appendChild(note);
+    li.appendChild(actions);
+    return li;
+  }
+  function refreshPanelList() {
+    var list = panel.querySelector('.pg-annot-list');
+    var orphanBox = panel.querySelector('.pg-annot-orphans');
+    var orphanList = orphanBox.querySelector('ol');
+    list.innerHTML = '';
+    orphanList.innerHTML = '';
+    ordered().forEach(function (a) {
+      if (orphans.indexOf(a.id) === -1) list.appendChild(itemFor(a, true));
+      else orphanList.appendChild(itemFor(a, false));
+    });
+    orphanBox.hidden = orphanList.children.length === 0;
+  }
+  toggle.addEventListener('click', function () {
+    if (panel.hidden) openPanel(); else closePanel();
+  });
+  panel.querySelector('.pg-annot-panel-close')
+    .addEventListener('click', closePanel);
+  backdrop.addEventListener('click', closePanel);
+
+  /* ---------- export / import ---------- */
+  function exportPayload() {
+    return {
+      v: 1, kind: 'paper-gloss-annotations', slug: SLUG,
+      title: store.title || document.title, url: location.href,
+      exported: new Date().toISOString(), annotations: ordered()
+    };
+  }
+  function toMarkdown(p) {
+    var lines = [
+      '---',
+      'paper: "' + p.title.replace(/"/g, '\\"') + '"',
+      'url: "' + p.url + '"',
+      'exported: ' + p.exported,
+      'tags: [paper-annotations]',
+      '---',
+      '',
+      '# Annotations — ' + p.title,
+      ''
+    ];
+    var section = null;
+    p.annotations.forEach(function (a) {
+      var s = a.section || 'Untitled section';
+      if (s !== section) { section = s; lines.push('## ' + s, ''); }
+      lines.push('> ' + a.exact.replace(/\r?\n/g, ' '), '');
+      if (a.note) lines.push(a.note, '');
+    });
+    return lines.join('\n');
+  }
+  function showFallback(filename, text, msg) {
+    closeOtherSurfaces();
+    fallback.querySelector('.pg-annot-fallback-msg').textContent =
+      (msg || 'Saving isn’t available here.') +
+      ' Copy the text below into a file named ' + filename + '.';
+    fallback.querySelector('textarea').value = text;
+    fallback.hidden = false;
+  }
+  fallback.addEventListener('click', function (e) {
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    if (btn.getAttribute('data-act') === 'close') { fallback.hidden = true; return; }
+    var ta = fallback.querySelector('textarea');
+    ta.select();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ta.value).then(function () {
+        btn.textContent = 'Copied ✓';
+      }, function () { btn.textContent = 'Press ⌘C to copy'; });
+    } else { btn.textContent = 'Press ⌘C to copy'; }
+  });
+  function saveFile(filename, text) {
+    var dl = window.claude && window.claude.downloads;
+    if (!dl) { showFallback(filename, text); return; }
+    dl.save({ filename: filename, data: text }).then(function () {
+      status('Saved ' + filename);
+    }, function (err) {
+      if (err && err.code === 'declined') return;  // viewer's call; no retry
+      if (err && err.code === 'rate_limited') {
+        showFallback(filename, text,
+          'A download prompt was already open — copy instead, or try again shortly.');
+        return;
+      }
+      showFallback(filename, text);
+    });
+  }
+  function importPayload(text) {
+    var p;
+    try { p = JSON.parse(text); } catch (e) { status('Import failed: not valid JSON'); return; }
+    if (!p || p.v !== 1 || !Array.isArray(p.annotations)) {
+      status('Import failed: not an annotations export'); return;
+    }
+    var existing = {};
+    store.annotations.forEach(function (a) { existing[a.id] = true; });
+    var added = 0, skipped = 0;
+    // Validate and neutralise BEFORE anything is stored, and let renderAll's
+    // own trailing persist() be the write: if rendering this payload throws,
+    // the poisoned record must not be what is left behind in storage.
+    p.annotations.forEach(function (a) {
+      if (isUsable(a) && !existing[a.id]) {
+        store.annotations.push(sanitize(a)); existing[a.id] = true; added++;
+      } else skipped++;
+    });
+    renderAll();
+    updateBadge();
+    refreshPanelList();
+    status('Imported ' + added + (skipped ? ' (skipped ' + skipped + ' duplicate/invalid)' : '') +
+      (p.slug !== SLUG ? ' — note: export was from "' + p.slug + '"' : ''));
+  }
+  panel.addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-act]');
+    if (!btn) return;
+    var act = btn.getAttribute('data-act');
+    if (act === 'export-md') saveFile(SLUG + '-annotations.md', toMarkdown(exportPayload()));
+    else if (act === 'export-json') saveFile(SLUG + '-annotations.json', JSON.stringify(exportPayload(), null, 2));
+    else if (act === 'import') panel.querySelector('input[type="file"]').click();
+  });
+  panel.querySelector('input[type="file"]').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    this.value = '';
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () { importPayload(String(reader.result)); };
+    reader.readAsText(f);
+  });
+
+  /* ---------- global coordination listeners ---------- */
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    // another surface is opening: get out of its way (their own handlers run too)
+    if (t.closest('.gloss-term') || t.closest('#gloss-panel-toggle') ||
+        t.closest('.paper-figure img')) {
+      closeAnnotationUI();
+      return;
+    }
+    if (t.closest('.pg-annot-ui')) return;
+    var m = t.closest('mark.pg-hl');
+    if (m && !m.closest('.gloss-term')) {   // a highlight inside a gloss button defers to the popover
+      // read the id first: openEditor commits any open draft, and that
+      // re-renders the marks, detaching this node
+      var clickedId = m.getAttribute('data-annot-id');
+      closeOtherSurfaces();
+      openEditor(clickedId, false);
+      return;
+    }
+    hideToolbar();
+    closeEditor();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAnnotationUI();
+  });
+
+  /* ---------- init ---------- */
+  renderAll();
+  updateBadge();
 })();
 </script>
 </body>
