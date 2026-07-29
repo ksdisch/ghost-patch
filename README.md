@@ -1,5 +1,7 @@
 # ghost-patch
 
+[![CI](https://github.com/ksdisch/ghost-patch/actions/workflows/ci.yml/badge.svg)](https://github.com/ksdisch/ghost-patch/actions/workflows/ci.yml)
+
 Hobby-scale, pre-committed reproduction of **"Obey, Diverge, Collapse"** (arXiv 2607.04537): the claim that code LLMs recognize a wrong-location repair instruction as incorrect, follow it anyway, compound ghost errors across iterative repair passes, and land in a corrupted state that self-guided repair cannot recover — not even back to the original buggy baseline. Fourth in a lineage of reproduce-and-measure projects (forge-gap → decay-pin → lossy-wall); the target paper is days old, unreplicated, and its promised code appendix is absent from v1, so every prompt, filter, and gate here is independently built and disclosed.
 
 **Status: v1 COMPLETE — the chain is closed end-to-end (M4 closed 2026-07-11).** Measured on two cheap models — deepseek-chat-v3.1 and qwen3-coder-30b-a3b-instruct — over a frozen 186-problem RunBugRun bank, with every verdict rendered by a script written and dry-run **before** the paid data existed. Lifetime spend: **$1.4244** against a $5.00 guard.
