@@ -1,4 +1,4 @@
-# Runs every offline test suite (test_*.py) on push to main and on PRs.
+# Runs every offline test suite on push to main and on PRs.
 # The suites need no API key and make no paid calls — that's by design;
 # they gate everything that does spend (see README "How to re-run").
 name: CI
@@ -17,46 +17,17 @@ jobs:
         with:
           enable-cache: true
 
-      # A green badge over zero assertions is worse than no badge. `uv run <file>`
-      # executes the module as a plain script; these suites are bare `def test_*`
-      # collections with no `__main__` entrypoint (0 of 12 files have one), so
-      # that form imported each file and exited 0 without running a single
-      # assertion. CI passed vacuously until the portfolio's 2026-08-07 audit
-      # caught it. pytest must be the thing invoked — per file, so the per-suite
-      # log grouping still works.
-      - name: Run all offline test suites
-        run: |
-          rc=0
-          for f in test_*.py; do
-            # test_sandbox.py is a Docker *integration* suite by its own docstring
-            # ("they run real containers"), not an offline one. GitHub's runner has a
-            # live daemon, so the suite's `docker info` probe reports available — but
-            # it bind-mounts /work unreadable to the container user and every run dies
-            # with `[Errno 13] Permission denied` before emitting a verdict. Excluded
-            # here by name and out loud, rather than by weakening the probe until it
-            # skips silently: a suite that stops running should say so.
-            if [ "$f" = "test_sandbox.py" ]; then
-              echo "::notice::skipped $f — Docker integration suite; run it locally with Docker"
-              continue
-            fi
-            echo "::group::$f"
-            if ! uv run pytest -q "$f"; then
-              echo "FAILED: $f"
-              rc=1
-            fi
-            echo "::endgroup::"
-          done
-          exit $rc
+      # `uv run <file>` executes a module as a plain script. These suites are bare
+      # `def test_*` collections with no `__main__` entrypoint, so that form imported
+      # each file and exited 0 without running a single assertion — CI passed
+      # vacuously under a green badge until the portfolio's 2026-08-07 audit caught
+      # it. pytest has to be the thing invoked.
+      - name: Run the offline suites
+        run: uv run pytest -q --junit-xml=junit.xml
 
-      # The tripwire that makes the vacuous mode unreachable rather than merely
-      # fixed: a silent drop to zero collected — the exact shape of the original
-      # bug — now fails the build instead of passing it.
-      - name: Guard the collected test count
-        run: |
-          FLOOR=256
-          n=$(uv run pytest --collect-only -q | tail -1 | grep -oE '^[0-9]+')
-          echo "collected: $n (floor: $FLOOR)"
-          if [ -z "$n" ] || [ "$n" -lt "$FLOOR" ]; then
-            echo "::error::collected $n tests, expected >= $FLOOR"
-            exit 1
-          fi
+      # Reads the report the run step itself produced, so it can tell "pytest ran
+      # and executed N tests" from "pytest was never invoked" — a distinction a
+      # separate --collect-only count cannot make.
+      - name: Guard — the suites actually ran, and still have their tests
+        if: always()
+        run: python3 .github/ci/guard.py junit.xml 256

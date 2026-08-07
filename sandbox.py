@@ -13,6 +13,7 @@ recorded as test failures — the honesty contract separates "program failed" fr
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import tempfile
 import uuid
@@ -80,6 +81,19 @@ def run_tests(
         tdir.mkdir()
         for i, s in enumerate(inputs):
             (tdir / f"in_{i}.txt").write_text(s)
+        # The container runs as `nobody` (65534) against a read-only bind mount,
+        # but TemporaryDirectory() is 0700 and host-user-owned. On Linux — which
+        # includes GitHub's runners — that makes /work unreadable to the container
+        # user, and every run dies with `[Errno 13] Permission denied` before
+        # emitting a verdict. macOS's Docker mount hides this by not mapping host
+        # ownership through. Widen the throwaway tree so the unprivileged user can
+        # read it: it lives for one container, is mounted read-only, and holds only
+        # the generated program and its test inputs — no secrets, no expected
+        # outputs (the container never sees those, by design).
+        os.chmod(work, 0o755)
+        os.chmod(tdir, 0o755)
+        for f in (work / "prog.py", work / "_runner.py", *tdir.iterdir()):
+            os.chmod(f, 0o644)
         cmd = [
             "docker", "run", "--rm", "--name", name,
             "--network=none", "--cpus=1", "--memory=512m", "--pids-limit=128",

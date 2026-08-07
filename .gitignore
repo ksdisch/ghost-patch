@@ -12,3 +12,4 @@ __pycache__/
 
 # fetched raw data (refetchable; the pre-committed filtered bank IS committed)
 data/raw/
+junit.xml
